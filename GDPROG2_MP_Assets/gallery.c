@@ -1,13 +1,14 @@
 #include "stdio.h"
 #include "assets.h"
 #include "gallery.h"
+#include "userInput.c"
 
 void printOptions(char assCat[][51]){
     int i=0;
 
     printf("\n");
     printf("\tEnter the letter of the category you want to see\n");
-    for (i=0;i<6;i++) printf("\t %c - %s\n", 'A'+i, assCat[i]);
+    for (i=0;i<8;i++) printf("\t %c - %s\n", 'A'+i, assCat[i]);
     printf("\n\t'0' - Quit\n\n");
 }
 
@@ -24,16 +25,28 @@ void processInput(char cInput){
         case 'A':
         case 'a':
             runRoundtable();break;
+        case 'd':
+        case 'D':
+            runMap(); break;
         case 'f':
         case 'F':
-            runMiscellaneous();
+            runColor();break;
+        case 'g':
+        case 'G':
+            runMiscellaneous();break;
+        case 'h':
+        case 'H':
+            runUserInput(); break;
+        case 'z':
+        case 'Z':
+            theBoiledOne(); break;
         default: printf(" huh? "); break;
     }
 }
 
 void runGallery(){
     char cInput=',';
-    char assCat[10][51]={"ROUNDTABLE","HUD","SHOP","MAP","ENEMIES","MISCELLANEOUS"}; //Asset Catgories
+    char assCat[10][51]={"ROUNDTABLE","HUD","SHOP","MAP","ENEMIES","COLOR","MISCELLANEOUS","INPUTS"}; //Asset Catgories
 
     do{
     welcomeText();
