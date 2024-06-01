@@ -1,4 +1,5 @@
 #include "stdio.h"
+#include "userInput.h"
 #include "conio.h" // Confirm if miss will allow this library
 #include "windows.h" // Needed for function, system("CLS"). This might not work on Linux or Mac
 // #include "stdlib.h"
@@ -6,6 +7,7 @@
 
 void runUserInput(){
     char name[16]="               "; // There are spaces in the array to make the format pretty later on
+    char finalName[16]; // Paste the characters on a final name WITHOUT the extra spaces
     int nameSize=(sizeof(name)/sizeof(name[0]))-1; // Gets the size of char array name[]
     system("CLS"); // Clears the screen
 
@@ -39,9 +41,10 @@ void runUserInput(){
             case '\b': // \b is the character mapped to backspace
                 if (i>0){ //Checks if (i)ndex is currently at the first index of the char array name[]. You can't erase any more if name is empty
                     i--; 
-                    name[i]=' ';
-                    system("CLS"); // System clears to make it seem as though the user is typing within the box
-                }; break;
+                    name[i]=' '; //How to delete an element from an array?
+                }; 
+                system("CLS"); // System clears to make it seem as though the user is typing within the box
+                break;
             default:
                 if (i<nameSize){ // Check if (i)ndex is at the last index of char array. You can't type anymore past the max characters.
                     name[i]=userInput;
@@ -52,8 +55,10 @@ void runUserInput(){
         }
 
     };
+    
+    for (int j=0; j<i; j++) finalName[j]=name[j]; //
 
-    printf("Welcome, %s, to Elden Rogue! :) \n\n", name);
+    printf("Welcome, %s, to Elden Rogue! :) \n\n", finalName);
     printf("\tPress any key to continue to main menu... ");
     getch(); // Awaits for key input before exiting runUserInput()
     system("CLS");
@@ -61,6 +66,7 @@ void runUserInput(){
     /*Issues to fix:
     1. How to fix the print of name so that the box wall is not affected by user input
     2. The cursor is seen in the terminal below the box :( 
+    3. If user spams backspace, whole thing breaks (system clear fails)
     */
 
 }

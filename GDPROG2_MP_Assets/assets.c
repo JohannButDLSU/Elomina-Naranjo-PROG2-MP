@@ -81,6 +81,100 @@ void theBoiledOne(){
     printf("\tEnter any key to continue : ");
     scanf(" %c", &iDontHearTheScreamsOfThousands);
 }
+
+void wallBorder(int scrLen, char* flavorText1, char* flavorText2){ // Note that Screen Length (scrLen) is for the size of screen and flavor text
+    int i=0, lineSize=(scrLen*2)+1; // +1 Don't forget to take into account the null byte :D
+    char displayText1[lineSize];
+    char displayText2[lineSize];
+    
+    for (i=0; i<lineSize-1;i++){ // -1 is to exclude the null byte in the print
+        displayText1[i]=' ';
+        displayText2[i]=' ';
+    }
+
+    for (i=0; i<lineSize;i++){
+        if (flavorText1[i]==';'){
+            i=lineSize;
+        } else {
+            displayText1[i]=flavorText1[i];
+        }
+    }
+
+    for (i=0; i<lineSize;i++){
+        if (flavorText2[i]==';'){
+            i=lineSize;
+        } else {
+            displayText2[i]=flavorText2[i];
+        }
+    }
+
+    printf("\t▐▐╱╲▌▌");
+    printf("%s", displayText1);
+    printf("▐▐╱╲▌▌\n");
+    printf("\t▐▐╲╱▌▌");
+    printf("%s", displayText2);
+    printf("▐▐╲╱▌▌\n");
+}
+
+void borderTopBottom(int scrLen, char which){ 
+    int i=0,j=0;
+    int top[3]={1,2,3}, bottom[3]={4,5,6}, heaven[3]={0,0,0};
+
+    if (which=='t'){
+        for (i=0;i<3;i++) heaven[i]=top[i];
+    } else{
+        for (i=0;i<3;i++) heaven[i]=bottom[i];
+    }
+    
+    for (i=0;i<3;i++){
+        switch (heaven[i]){
+            case 1:
+                printf("\t▜▙▟▙▟");
+                for (j=0;j<scrLen+1;j++) printf("▙▟");
+                printf("▙▟▙▟▛\n");
+                break;
+            case 2:
+                printf("\t▐▐╱╲▌▌");
+                for (j=0;j<scrLen;j++) printf("╳╳");
+                printf("▐▐╱╲▌▌\n");
+                break;
+            case 3:
+                printf("\t▐▐╲╱▌▛");
+                for (j=0;j<scrLen;j++) printf("▔▔");
+                printf("▜▐╲╱▌▌\n");
+                break;
+            case 4:
+                printf("\t▐▐╱╲▌▙");
+                for (j=0;j<scrLen;j++) printf("▂▂");
+                printf("▟▐╱╲▌▌\n");
+                break;
+            case 5:
+                printf("\t▐▐╲╱▌▌");
+                for (j=0;j<scrLen;j++) printf("╳╳");
+                printf("▐▐╲╱▌▌\n");
+                break;
+            case 6:
+                printf("\t▟▛▜▛▜");
+                for (j=0;j<scrLen;j++) printf("▛▜");
+                printf("▛▜▛▜▛▜▙\n");
+                break;
+        }
+    }
+
+}
+
+void runRoundtable2(){
+    int screenLength=21; // This also acts as array/flavor text size
+    printf("\n");
+    borderTopBottom(screenLength, 't');
+    wallBorder(screenLength, " Har har har har har;", " Five Nights at Feddys;"); // Flavor text should not exceed screen length
+    wallBorder(screenLength, ";", ";"); // End flavor text with semicolon(;)
+    wallBorder(screenLength, ";", ";");
+    borderTopBottom(screenLength, 'b');
+    printf("\n\tEnter any key to continue... ");
+    getch();
+}
+
 void runRoundtable(){
     char enterKeyToContinue=',';
 
@@ -110,7 +204,7 @@ void runRoundtable(){
     printf("\t▐▐╲╱▌▙▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▟▐╲╱▌▌\n");
     printf("\t▐▐╱╲▌▌╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳▐▐╱╲▌▌\n");
     printf("\t▟▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▙\n");
-    
+
     //Gamer nation
     printf("\n");
     printf("\tEnter any key to continue : ");
