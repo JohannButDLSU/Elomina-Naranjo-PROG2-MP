@@ -4,17 +4,39 @@
 #include "windows.h"
 
 void renderDungeon(int* map, int* dungeonDimension, int playerPosX, int playerPosY){
-    int row=0, col=0;
+    int row=0, col=0, element=0;
+    // printf("\t╭");
+    // for (row=0;row<dungeonDimension[0];row++) printf("╌╌╌");
+    // printf("╮\n");
+    // for (element=0; element<(dungeonDimension[0]*dungeonDimension[1]); element++){
+    //     if (element%dungeonDimension[0]==0) printf("\t╎");
+    //     if (element/dungeonDimension[1]==playerPosY&&element%dungeonDimension[0]==playerPosX){ printf(" 🗡");
+    //     } else{
+    //         switch (*(map+element)){
+    //             case 2:
+    //                 printf(" ▩ "); break;
+    //             case 5:
+    //                 printf(" ☠︎︎ "); break;
+    //             default:
+    //                 printf("   "); break;
+    //         }
+    //     }
+    //     if (element%dungeonDimension[0]==dungeonDimension[0]-1) printf("╎\n");
+    // }
+    // printf("\t╰");
+    // for (row=0;row<dungeonDimension[0];row++) printf("╌╌╌");
+    // printf("╯\n");
+
     printf("\t╭");
-    for (row=0;row<dungeonDimension[1];row++) printf("╌╌╌");
+    for (row=0;row<(dungeonDimension[0]*2)-1;row++) printf("╌");
     printf("╮\n");
-    for (row=0; row<dungeonDimension[1]; row++){
+    for (row=0; row<dungeonDimension[0]; row++){
         printf("\t╎");
-        for(col=0; col<dungeonDimension[0]; col++){
+        for(col=0; col<dungeonDimension[1]; col++){
             if (row==playerPosY&&col==playerPosX){ 
                 printf(" 🗡");
             } else{
-                switch (*(map+(row*dungeonDimension[0])+col)){
+                switch (*(map+(row*dungeonDimension[1])+col)){
                     case 2:
                         printf(" ▩ "); break;
                     case 5:
@@ -27,9 +49,9 @@ void renderDungeon(int* map, int* dungeonDimension, int playerPosX, int playerPo
         printf("╎\n");
     }
     printf("\t╰");
-    for (row=0;row<dungeonDimension[1];row++) printf("╌╌╌");
+    for (row=0;row<(dungeonDimension[0]*2)-1;row++) printf("╌");
     printf("╯\n");
-    
+
     // printf("\t╭───╮\n");
     // printf("\t|   |\n");
     // printf("\t╰───╯\n");
@@ -65,11 +87,11 @@ void processInput(char cInput, int* playerPosX, int* playerPosY, int* dungeonDim
     switch (cInput){
         case 'a':
         case 'A':
-            if (*playerPosX>0&&(*(map+((*playerPosY)*dungeonDimension[0])+(*playerPosX)-1))!=2) (*playerPosX)--; 
+            if (*playerPosX>0&&(*(map+((*playerPosY)*dungeonDimension[1])+(*playerPosX)-1))!=2) (*playerPosX)--; 
             break;
         case 'd':
         case 'D':
-            if (*playerPosX<dungeonDimension[0]-1&&(*(map+((*playerPosY)*dungeonDimension[0])+(*playerPosX)+1))!=2) (*playerPosX)++; 
+            if (*playerPosX<dungeonDimension[1]-1&&(*(map+((*playerPosY)*dungeonDimension[1])+(*playerPosX)+1))!=2) (*playerPosX)++; 
             break;
         case 'w':
         case 'W':
@@ -77,7 +99,7 @@ void processInput(char cInput, int* playerPosX, int* playerPosY, int* dungeonDim
             break;
         case 's':
         case 'S':
-            if (*playerPosY<dungeonDimension[1]-1&&(*(map+(((*playerPosY)+1)*dungeonDimension[1])+(*playerPosX)))!=2) (*playerPosY)++; 
+            if (*playerPosY<dungeonDimension[0]-1&&(*(map+(((*playerPosY)+1)*dungeonDimension[1])+(*playerPosX)))!=2) (*playerPosY)++; 
             break;
     }
 }
@@ -110,17 +132,31 @@ void runDungeon(){
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
         {5,0,0,0,0,5,0,5,0,0,0,0,0,0,5}
     };
+
+    int hall[8][5]={
+        {2,0,0,0,2},
+        {0,0,0,0,0},
+        {0,5,0,5,0},
+        {0,2,2,2,0},
+        {0,2,2,2,0},
+        {0,5,0,5,0},
+        {0,0,0,0,0},
+        {2,0,0,0,2},
+    };
+
     char cInput=',';
-    int playerPosX=6, playerPosY=14;
+    int playerPosX=2, playerPosY=0;
     int dungeonDimension[2]={0,0};
-    dungeonDimension[0]=sizeof(courtyard[0])/sizeof(courtyard[0][0]); // Gets X or how many columns (number of elements in first array)
-    dungeonDimension[1]=sizeof(courtyard)/sizeof(courtyard[0]); // Gets Y or how many rows (number of arrays in map array)
+    dungeonDimension[1]=sizeof(hall[0])/sizeof(hall[0][0]); // Gets X or how many columns (number of elements in first array)
+    dungeonDimension[0]=sizeof(hall)/sizeof(hall[0]); // Gets Y or how many rows (number of arrays in map array)
+    // AGHHG! XYRowCOL really confuses me
     
     do{
         // printf(" X %d ; Y %d\n", dungeonDimension[0], dungeonDimension[1]);
-        renderDungeon(*courtyard, dungeonDimension, playerPosX, playerPosY);
+        printf("rows %d ; columns %d", dungeonDimension[1], dungeonDimension[0]);
+        renderDungeon(*hall, dungeonDimension, playerPosX, playerPosY);
         cInput=getch();
-        processInput(cInput, &playerPosX, &playerPosY, dungeonDimension, *courtyard);
+        processInput(cInput, &playerPosX, &playerPosY, dungeonDimension, *hall);
         system("CLS");
     }while(cInput!='0');
 
