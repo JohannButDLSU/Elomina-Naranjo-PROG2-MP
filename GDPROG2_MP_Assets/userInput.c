@@ -1,3 +1,8 @@
+
+// This code is now OBSOLETE. Just use ANSII ESCAPE CODE to manipulate the cursor position
+// Hi, I'm back. This may not be obsolete. The code can limit the number of characters a user inputs
+    // Instead of breaking the UI graphics :) use both accordingly
+
 #include "stdio.h"
 #include "userInput.h"
 #include "conio.h" // Confirm if miss will allow this library

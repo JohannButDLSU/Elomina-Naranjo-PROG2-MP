@@ -82,6 +82,7 @@ void theBoiledOne(){
     scanf(" %c", &iDontHearTheScreamsOfThousands);
 }
 
+// Update void wallBorder to support colorBG and colorFG
 void wallBorder(int scrLen, char* flavorText1, char* flavorText2){ // Note that Screen Length (scrLen) is for the size of screen and flavor text
     int i=0, lineSize=(scrLen*2)+1; // +1 Don't forget to take into account the null byte :D
     char displayText1[lineSize];
@@ -107,16 +108,19 @@ void wallBorder(int scrLen, char* flavorText1, char* flavorText2){ // Note that 
             displayText2[i]=flavorText2[i];
         }
     }
-
-    printf("\t▐▐╱╲▌▌");
-    printf("%s", displayText1);
-    printf("▐▐╱╲▌▌\n");
-    printf("\t▐▐╲╱▌▌");
-    printf("%s", displayText2);
-    printf("▐▐╲╱▌▌\n");
+    printf("\t\x1b[38;5;214m▐");
+    printc(102, 214,"▐╱╲▌▌");
+    printc(102, 214, displayText1);
+    printc(102, 214,"▐▐╱╲▌");
+    printf("\x1b[38;5;214m▌\n");
+    printf("\t\x1b[38;5;214m▐");
+    printc(102, 214,"▐╲╱▌▌");
+    printc(102, 214, displayText2);
+    printc(102, 214,"▐▐╲╱▌");
+    printf("\x1b[38;5;214m▌\n");
 }
 
-void borderTopBottom(int scrLen, char which){ 
+void borderTopBottom(int scrLen, char which){ // Update to support colorBG and colorFG
     int i=0,j=0;
     int top[3]={1,2,3}, bottom[3]={4,5,6}, heaven[3]={0,0,0};
 
@@ -129,34 +133,44 @@ void borderTopBottom(int scrLen, char which){
     for (i=0;i<3;i++){
         switch (heaven[i]){
             case 1:
-                printf("\t▜▙▟▙▟");
+                printf("\t\x1b[38;5;214m▜▙▟▙▟");
                 for (j=0;j<scrLen+1;j++) printf("▙▟");
-                printf("▙▟▙▟▛\n");
+                printf("▙▟▙▟▛\x1b[0m");
+                printf("\n");
                 break;
             case 2:
-                printf("\t▐▐╱╲▌▌");
-                for (j=0;j<scrLen;j++) printf("╳╳");
-                printf("▐▐╱╲▌▌\n");
+                printf("\t\x1b[38;5;214m▐");
+                printc(102, 214, "▐╱╲▌▌");
+                for (j=0;j<scrLen;j++) printc(102, 214, "╳╳");
+                printc(102, 214,"▐▐╱╲▌");
+                printf("\x1b[38;5;214m▌\n");
                 break;
             case 3:
-                printf("\t▐▐╲╱▌▛");
-                for (j=0;j<scrLen;j++) printf("▔▔");
-                printf("▜▐╲╱▌▌\n");
+                printf("\t\x1b[38;5;214m▐");
+                printc(102, 214,"▐╲╱▌▛");
+                for (j=0;j<scrLen;j++) printc(102, 214,"▔▔");
+                printc(102, 214,"▜▐╲╱▌");
+                printf("\x1b[38;5;214m▌\x1b[0m\n");
                 break;
             case 4:
-                printf("\t▐▐╱╲▌▙");
-                for (j=0;j<scrLen;j++) printf("▂▂");
-                printf("▟▐╱╲▌▌\n");
+                printf("\t\x1b[38;5;214m▐");
+                printc(102, 214,"▐╱╲▌▙");
+                for (j=0;j<scrLen;j++) printc(102, 214,"▂▂");
+                printc(102, 214,"▟▐╱╲▌");
+                printf("\x1b[38;5;214m▌\x1b[0m\n");
                 break;
             case 5:
-                printf("\t▐▐╲╱▌▌");
-                for (j=0;j<scrLen;j++) printf("╳╳");
-                printf("▐▐╲╱▌▌\n");
+                printf("\t\x1b[38;5;214m▐");
+                printc(102, 214,"▐╲╱▌▌");
+                for (j=0;j<scrLen;j++) printc(102, 214,"╳╳");
+                printc(102, 214,"▐▐╲╱▌");
+                printf("\x1b[38;5;214m▌\x1b[0m\n");
                 break;
             case 6:
-                printf("\t▟▛▜▛▜");
+                printf("\t\x1b[38;5;214m▟▛▜▛▜");
                 for (j=0;j<scrLen;j++) printf("▛▜");
-                printf("▛▜▛▜▛▜▙\n");
+                printf("▛▜▛▜▛▜▙\x1b[0m");
+                printf("\n");
                 break;
         }
     }
@@ -206,11 +220,16 @@ void runRoundtable(){
     printf("\t▟▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▛▜▙\n");
 
     //Gamer nation
-    printf("\n");
-    printf("\tEnter any key to continue : ");
+    // printf("\n");
+    // printf("\tEnter any key to continue : ");
     // gotoxy(20, 10);
-    enterKeyToContinue=getch();
-    printf("\t testing %c\n", enterKeyToContinue);
+
+    //Using ANSII Escape Code to move cursor to inside the UI
+    printf("\033[?25h \033[6A \033[47C");
+    scanf(" %c", &enterKeyToContinue);
+    printf("\033[6B \033[47D");
+    
+    // printf("\t testing %c\n", enterKeyToContinue);
     // scanf(" %c", &enterKeyToContinue);
 }
 
@@ -265,4 +284,26 @@ void runMiscellaneous(){
     printf("\n");
     printf("\tEnter any key to continue : ");
     scanf(" %c", &enterKeyToContinue);
+}
+
+void printc(int colorBG, int colorFG, char* flavorText){ // NOTE: that foreground color is faint because of how thin the characters are. Using ANSII code to bold the text to make the color more apparent
+    // NOTE: keyboard characters are colored more faintly than ASCII characters D:
+    printf("\033[1m\x1b[48;5;%dm\x1b[38;5;%dm%s\x1b[0m", colorBG, colorFG, flavorText);
+
+    // printf("\t \033[1m < Bold | Reset > \033[0m");
+
+    // printf("\x1b[0m");
+}
+
+void credits(){
+    printf("\n\n");
+    borderTopBottom(15,'t');
+    wallBorder(15, "Credits;", " ;");
+    wallBorder(15, "Game Director;", "Han Dynasty;");
+    wallBorder(15, " ;", "Artist;");
+    wallBorder(15, "ZzZzZz z z;", " ;");
+    wallBorder(15, "Special Thanks;", "Library Conio.h;");
+    borderTopBottom(15,'b');
+    printf("\n\n\t");
+    getch();
 }

@@ -153,7 +153,7 @@ void runDungeon(){
     
     do{
         // printf(" X %d ; Y %d\n", dungeonDimension[0], dungeonDimension[1]);
-        printf("rows %d ; columns %d", dungeonDimension[1], dungeonDimension[0]);
+        // printf("rows %d ; columns %d", dungeonDimension[1], dungeonDimension[0]);
         renderDungeon(*hall, dungeonDimension, playerPosX, playerPosY);
         cInput=getch();
         processInput(cInput, &playerPosX, &playerPosY, dungeonDimension, *hall);

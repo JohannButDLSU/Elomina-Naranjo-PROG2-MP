@@ -43,19 +43,24 @@ void processInput(char cInput){
         case 'z':
         case 'Z':
             theBoiledOne(); break;
+        case 'c':
+        case 'C':
+            credits(); break;
         default: printf(" huh? "); break;
     }
 }
 
 void runGallery(){
     char cInput=',';
-    char assCat[10][51]={"ROUNDTABLE","HUD","SHOP","MAP","ENEMIES","COLOR","MISCELLANEOUS","INPUTS", "ROUNDTABLE2"}; //Asset Catgories
+    char assCat[10][51]={"ROUNDTABLE","HUD","CREDITS","MAP","ENEMIES","COLOR","MISCELLANEOUS","INPUTS", "ROUNDTABLE2"}; //Asset Catgories
 
     do{
     welcomeText();
     printOptions(assCat);
+    printc(59, 214, "\t▐▐╱╲▌▌ Color Test ▐▐╱╲▌▌"); // \n breaks the code
+    printf("\n");
     printf("\t[Input] : ");
-    scanf(" %c", &cInput);
+    cInput=getch();
     processInput(cInput);
     }while(cInput!='0');
 }
