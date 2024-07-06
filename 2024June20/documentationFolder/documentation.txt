@@ -1,0 +1,71 @@
+Ay23-34 T3 GDPROG2 MP "Elden Rogue"
+
+Title Screen
+    Start           -> Character Creation
+    Continue        -> Load save -> Roundtable
+    Exit            -> Terminate Program
+    System Message
+
+Character Creation
+    Display
+        Screen Header
+        Name
+        Job Class
+        Level
+        Statistics
+        System Messages
+    
+    Input Name          -> Should initially be blank; min 1 char, max 25 char
+    Input Job Class     -> GachaSlider for each class
+    Confirm             -> If all fields are filled, proceed to Roundtable Hold
+    Back                -> Go back to Title Screen
+
+Roundtable Hold
+    Display
+        Screen Header
+        Name
+        Job Class
+        Level
+        Runes
+        Shards
+        System Messages
+    
+    Fast Travel (Dungeon Selection) (SubScreen)
+        Stormveil Castle
+        Raya Lucaria
+        Redmane Castle
+        Volcano Manor
+        Layndell Royal Capital (Locked)
+        The Elden Throne (Locked)
+        Back (Not in the specs)
+
+    Level Up (SubScreen)
+        Display 
+            Rune cost
+            Rune
+            Health
+            Endurance
+            Dexterity
+            Strength
+            Intelligence
+            Faith
+            System Messages
+
+        Level Health
+        Level Endurance
+        Level Dexterity
+        Level Strength
+        Level Intelligence
+        Level Faith
+        Back
+
+    Inventory (Screen)
+        Select Weapon (When cursor is hovering over weapon, display weapon stats)
+        System Message ("Your dexterity is not high enough for that weapon")
+        Back
+
+    Shop (Screen)
+        weapon
+        
+    Save
+    Quit Game
