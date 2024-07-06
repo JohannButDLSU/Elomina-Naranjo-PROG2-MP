@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "character_creation.h": "c",
+        "structs_manager.h": "c"
+    }
+}
