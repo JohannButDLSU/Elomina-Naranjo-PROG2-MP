@@ -1,6 +1,10 @@
 #include "string.h"
 
-struct Player{
+// -----------------------------------
+// the actual structs
+// -----------------------------------
+
+struct sPlayer{
     char strName[31];
     char strJobClass[11];
 
@@ -11,9 +15,9 @@ struct Player{
     int nStrength;
     int nIntelligence;
     int nFaith;
- };
+ }; typedef Player;
 
- struct JobClass{
+ struct sJobClass{
     char strJobClass[11];
     int nLevel;
     int nHealth;
@@ -22,34 +26,41 @@ struct Player{
     int nStrength;
     int nIntelligence;
     int nFaith;
-};
+}; typedef JobClass;
 
-// struct Runes -> money?
-// struct Shards -> keys after completing stage
+// integer Runes -> money?
+// integer Shards -> keys after completing stage
 
 // struct Inventory -> items n shtuff, contains these:
-   // struct Potions -> ???
+   // int Potions -> ???
    // structs Weapons
    // struct armor
 
+struct Weapon{
+   int type;
+}
 
 struct Save{
-   struct Player player;
-   struct JobClass jobClass;
+   Player player;
+   JobClass jobClass;
 
 };
 
- struct Player setPlayer(){
-    struct Player player;
-    strcpy(player.strName, "Goofy Goober");
-    strcpy(player.strJobClass, "Jobless :(");
-    player.nLevel = 1;
-    player.nHealth = 1;
-    player.nEndurance = 1;
-    player.nDexterity = 1;
-    player.nStrength = 1;
-    player.nIntelligence = 1;
-    player.nFaith = 1;
+// -----------------------------------
+// Initializations
+// -----------------------------------
+
+Player setPlayer(){
+   Player player;
+   strcpy(player.strName, "Goofy Goober");
+   strcpy(player.strJobClass, "Jobless :(");
+   player.nLevel = 1;
+   player.nHealth = 1;
+   player.nEndurance = 1;
+   player.nDexterity = 1;
+   player.nStrength = 1;
+   player.nIntelligence = 1;
+   player.nFaith = 1;
 
     return player;
  }
