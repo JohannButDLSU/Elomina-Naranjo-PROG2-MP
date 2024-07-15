@@ -1,11 +1,11 @@
 #pragma once
 
-#include "title.h"
+#include "../Chapter 1/title.h"
 
 void runCharacterCreation();
 
-void displayCharacterCreation(struct Player player);
+void displayCharacterCreation(Player player);
 
-void processCharacterCreationInput(struct Player* player, char* cInput);
+void processCharacterCreationInput(Player* player, char* cInput);
 
-struct Player setPlayerJobClass(struct Player player, int cInput);
+Player setPlayerJobClass(Player player, int cInput);

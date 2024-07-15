@@ -15,7 +15,7 @@ struct sPlayer{
     int nStrength;
     int nIntelligence;
     int nFaith;
- }; typedef Player;
+ }; typedef struct sPlayer Player;
 
  struct sJobClass{
     char strJobClass[11];
@@ -26,7 +26,7 @@ struct sPlayer{
     int nStrength;
     int nIntelligence;
     int nFaith;
-}; typedef JobClass;
+}; typedef struct sJobClass JobClass;
 
 // integer Runes -> money?
 // integer Shards -> keys after completing stage
@@ -38,7 +38,7 @@ struct sPlayer{
 
 struct Weapon{
    int type;
-}
+};
 
 struct Save{
    Player player;
@@ -63,23 +63,23 @@ Player setPlayer(){
    player.nFaith = 1;
 
     return player;
- }
+ };
 
- struct JobClass setJobClass(char* strJobClass, int nLevel, int nHealth, int nEndurance, int nDexterity, int nStrength, int nIntelligence, int nFaith){
-    struct JobClass jobClass;
-    strcpy(jobClass.strJobClass, strJobClass);
-    jobClass.nLevel = nLevel;
-    jobClass.nHealth = nHealth;
-    jobClass.nEndurance = nEndurance;
-    jobClass.nDexterity = nDexterity;
-    jobClass.nStrength = nStrength;
-    jobClass.nIntelligence = nIntelligence;
-    jobClass.nFaith = nFaith;
+JobClass setJobClass(char* strJobClass, int nLevel, int nHealth, int nEndurance, int nDexterity, int nStrength, int nIntelligence, int nFaith){
+   JobClass jobClass;
+   strcpy(jobClass.strJobClass, strJobClass);
+   jobClass.nLevel = nLevel;
+   jobClass.nHealth = nHealth;
+   jobClass.nEndurance = nEndurance;
+   jobClass.nDexterity = nDexterity;
+   jobClass.nStrength = nStrength;
+   jobClass.nIntelligence = nIntelligence;
+   jobClass.nFaith = nFaith;
 
-    return jobClass;
- }
+   return jobClass;
+ };
 
- struct Player statCopy(struct Player player, struct JobClass jobClass){
+ Player statCopy(Player player, JobClass jobClass){
     strcpy(player.strJobClass, jobClass.strJobClass);
     player.nLevel = jobClass.nLevel;
     player.nHealth = jobClass.nHealth;
@@ -90,4 +90,4 @@ Player setPlayer(){
     player.nFaith = jobClass.nFaith;
 
     return player;
-}
+};

@@ -1,7 +1,7 @@
 #include "character_creation.h"
 
 void runCharacterCreation(){
-    struct Player player = setPlayer();
+    Player player = setPlayer();
     char cInput = ' ';
     do{
         displayCharacterCreation(player);
@@ -9,7 +9,7 @@ void runCharacterCreation(){
     } while (cInput != '0');
 }
 
-void displayCharacterCreation(struct Player player){
+void displayCharacterCreation(Player player){
     printf("Pretend this is the epic character screen!!!\n");
     printf("Name : %s\n", player.strName);
     printf("Class : %s\n", player.strJobClass);
@@ -28,7 +28,7 @@ void displayCharacterCreation(struct Player player){
     printf("[INPUT] : ");
 }
 
-void processCharacterCreationInput(struct Player* player, char* cInput){
+void processCharacterCreationInput(Player* player, char* cInput){
     scanf(" %c", cInput);
 
     switch (*cInput)
@@ -60,13 +60,13 @@ void processCharacterCreationInput(struct Player* player, char* cInput){
     }
 }
 
-struct Player setPlayerJobClass(struct Player player, int cInput){
-    struct JobClass vagabond = setJobClass("Vagabond", 9, 15, 11, 13, 14, 9, 9);
-    struct JobClass samurai = setJobClass("Samurai", 9, 12, 13, 15, 12, 9, 8);
-    struct JobClass warrior = setJobClass("Warrior", 8, 11, 11, 16, 10, 10, 8);
-    struct JobClass hero = setJobClass("Hero", 7, 14, 12, 9, 16, 7, 8);
-    struct JobClass astrologer = setJobClass("Astrologer", 6, 9, 9, 12, 8, 16, 7);
-    struct JobClass prophet = setJobClass("Prophet", 7, 10, 8, 10, 11, 7, 16);
+Player setPlayerJobClass(Player player, int cInput){
+    JobClass vagabond = setJobClass("Vagabond", 9, 15, 11, 13, 14, 9, 9);
+    JobClass samurai = setJobClass("Samurai", 9, 12, 13, 15, 12, 9, 8);
+    JobClass warrior = setJobClass("Warrior", 8, 11, 11, 16, 10, 10, 8);
+    JobClass hero = setJobClass("Hero", 7, 14, 12, 9, 16, 7, 8);
+    JobClass astrologer = setJobClass("Astrologer", 6, 9, 9, 12, 8, 16, 7);
+    JobClass prophet = setJobClass("Prophet", 7, 10, 8, 10, 11, 7, 16);
 
     switch (cInput)
     {
