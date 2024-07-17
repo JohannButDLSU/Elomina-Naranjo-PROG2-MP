@@ -40,12 +40,6 @@ struct Weapon{
    int type;
 };
 
-struct Save{
-   Player player;
-   JobClass jobClass;
-
-};
-
 // -----------------------------------
 // Initializations
 // -----------------------------------

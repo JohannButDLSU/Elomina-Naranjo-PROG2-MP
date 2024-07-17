@@ -1,5 +1,8 @@
 #include "character_creation.h"
 
+    // printf("\t▩═════════════════▩\n");
+    // ║
+    
 void runCharacterCreation(){
     Player player = setPlayer();
     char cInput = ' ';
@@ -10,22 +13,26 @@ void runCharacterCreation(){
 }
 
 void displayCharacterCreation(Player player){
-    printf("Pretend this is the epic character screen!!!\n");
-    printf("Name : %s\n", player.strName);
-    printf("Class : %s\n", player.strJobClass);
-
-    printf("Level : %d\n", player.nLevel);
-    printf("HP : %d\n", player.nHealth);
-    printf("Endurance : %d\n", player.nEndurance);
-    printf("Dexterity : %d\n", player.nDexterity);
-    printf("Strength : %d\n", player.nStrength);
-    printf("Intelligence : %d\n", player.nIntelligence);
-    printf("Faith : %d\n", player.nFaith);
-    printf("\n");
-    printf("[1] Change Name\n");
-    printf("[2] Change Class\n");
-    printf("[0] Back\n");
-    printf("[INPUT] : ");
+    printf("\t▩═══════════════════════════════════════════════════════════════════════▩\n");
+    printf("\t║\tcreate the dudes face on the right side\t\t\t\t║\n");
+    printf("\t║\t\t\t\t\t\t\t\t\n");
+    printf("\t║\tName : %s\n", player.strName);
+    printf("\t║\tClass : %s\n", player.strJobClass);
+    printf("\t║\n");
+    printf("\t║\tLevel : %d\n", player.nLevel);
+    printf("\t║\tHP : %d\n", player.nHealth);
+    printf("\t║\tEndurance : %d\n", player.nEndurance);
+    printf("\t║\tDexterity : %d\n", player.nDexterity);
+    printf("\t║\tStrength : %d\n", player.nStrength);
+    printf("\t║\tIntelligence : %d\n", player.nIntelligence);
+    printf("\t║\tFaith : %d\n", player.nFaith);
+    printf("\t║\n");
+    printf("\t▩═════════════════════════════════════════════════════════════════════▩\n");
+    printf("\t\t[1] Change Name\n");
+    printf("\t\t[2] Change Class\n");
+    printf("\t\t[3]\n");
+    printf("\t\t[0] Back\n");
+    printf("\t\t[INPUT] : ");
 }
 
 void processCharacterCreationInput(Player* player, char* cInput){
