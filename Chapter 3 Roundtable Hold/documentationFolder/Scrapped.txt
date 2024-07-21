@@ -1,0 +1,33 @@
+    /*
+    //TEST
+    struct Player cheatSave;
+    strcpy(cheatSave.strName, "The Goat");
+    strcpy(cheatSave.strJobClass, "Pog Champion");
+    cheatSave.nLevel = 99;
+    cheatSave.nHealth = 99;
+    cheatSave.nEndurance = 99;
+    cheatSave.nDexterity = 99;
+    cheatSave.nStrength = 99;
+    cheatSave.nIntelligence = 99;
+    cheatSave.nFaith = 99;
+    
+    fwrite(arrListOfSaves,sizeof(struct Player), nTotalSaveFiles, filePointer);
+    fclose(filePointer);
+    struct Player *arrTempList;
+    struct Player *storedOnFile;
+    arrTempList=malloc(sizeof(struct Player)*nTotalSaveFiles);
+    storedOnFile=malloc(sizeof(struct Player)*nTotalSaveFiles);
+
+    filePointer=fopen("playerSaves.dat","rb");
+    fread(storedOnFile, sizeof(struct Player), nTotalSaveFiles, filePointer);
+    for (int nIndex=0; nIndex<nTotalSaveFiles; nIndex++){
+        arrTempList[nIndex]=storedOnFile[nIndex];
+    }
+    fclose(filePointer);
+    arrTempList[nCursor]=cheatSave;
+
+    filePointer=fopen("playerSaves.dat","wb");
+    fwrite(arrTempList,sizeof(struct Player), 3, filePointer);
+    fclose(filePointer);
+    //TEST
+    */

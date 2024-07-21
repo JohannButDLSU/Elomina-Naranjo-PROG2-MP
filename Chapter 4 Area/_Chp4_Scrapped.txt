@@ -1,0 +1,126 @@
+/*
+┌───┐
+│   │ Empty
+└───┘
+┌─┐
+└─┘
+╓───╖
+╟┤?├╢ Spawn
+╙───╜
+╓?╖
+╙─╜
+╒╤═╤╕
+││⇳├│ Door
+╘╧═╧╛
+╒⇳╕
+╘═╛
+Bosses of Area in order
+╆┄┄┄╅ ╆┄┄┄╅ ╆┄┄┄╅ ╆┄┄┄╅ ╆┄┄┄╅ ╆┄┄┄╅ ╆┄┄┄╅ 
+┊ 🝏 ┊ ┊ 🝋 ┊ ┊ 🜣 ┊ ┊ 🝡 ┊ ┊ 🜿 ┊ ┊ 🝤 ┊ ┊ ᛝ ┊ 
+╄┄┄┄╃ ╄┄┄┄╃ ╄┄┄┄╃ ╄┄┄┄╃ ╄┄┄┄╃ ╄┄┄┄╃ ╄┄┄┄╃ 
+╆🝏╅
+╆┄╅
+╆🝋╅
+╆┄╅
+╆🜣╅
+╆┄╅
+╆🝡╅
+╆┄╅
+╆🜿╅
+╆┄╅
+╆🝤╅
+╆┄╅
+╆ᛝ╅
+╆┄╅
+*/
+
+    // for (int nRow=0; nRow<15; nRow++){
+    //     for (int nBoxLine=0; nBoxLine<2; nBoxLine++){
+    //         printRepeatedly(5,"\t");
+    //         printRepeatedly(nSideMargin, "░░░");
+    //         if (nRow>=nUpperLowerMargin&&nRow<(nUpperLowerMargin+sArea.sFloors[sArea.nCurrentFloor].nDimensions[0])){
+    //             for (int nCol=0; nCol<sArea.sFloors[sArea.nCurrentFloor].nDimensions[1]; nCol++){
+    //                 if ((nRow-nUpperLowerMargin)!=nPlayerPosRow||nCol!=nPlayerPosCol){
+    //                     switch (sArea.sFloors[sArea.nCurrentFloor].nLayout[nRow-nUpperLowerMargin][nCol]){
+    //                         case 0:
+    //                             switch(nBoxLine){
+    //                                 case 0:
+    //                                     printf("┌─┐");
+    //                                     break;
+    //                                 case 1:
+    //                                     printf("└─┘");
+    //                                     break;
+    //                             }
+    //                             break;
+    //                         case 1:
+    //                             switch(nBoxLine){
+    //                                 case 0:
+    //                                     printf("╒⇳╕");
+    //                                     break;
+    //                                 case 1:
+    //                                     printf("╘═╛");
+    //                                     break;
+    //                             }
+    //                             break;
+    //                         case 2:
+    //                             switch(nBoxLine){
+    //                                 case 0:
+    //                                     printf("╓?╖");
+    //                                     break;
+    //                                 case 1:
+    //                                     printf("╙─╜");
+    //                                     break;
+    //                             }
+    //                             break;
+    //                         case 3:
+    //                             switch(nBoxLine){
+    //                                 case 0:
+    //                                     printf("┼ ┼");
+    //                                     break;
+    //                                 case 1:
+    //                                     printf("┼ ┼");
+    //                                     break;
+    //                             }
+    //                             break;
+    //                     }
+    //                 } else{
+    //                     switch(nBoxLine){
+    //                                 case 1:
+    //                                     printf("└🗡┘");
+    //                                     break;
+    //                             }
+    //                 }
+    //             }
+    //         } else{
+    //             for (int nCol=0; nCol<sArea.sFloors[sArea.nCurrentFloor].nDimensions[1]; nCol++){
+    //                 printf("░░░");
+    //             }
+    //         }
+    //         printRepeatedly(nSideMargin, "░░░");
+    //         printf("\n");
+    //     }
+    // }
+    // for (int nRow=0; nRow<sArea.sFloors[sArea.nCurrentFloor].nDimensions[0]; nRow++){
+    //     for (int nCol=0; nCol<sArea.sFloors[sArea.nCurrentFloor].nDimensions[1]; nCol++){
+    //         if (nRow!=nPlayerPosRow||nCol!=nPlayerPosCol){
+    //             switch (sArea.sFloors[sArea.nCurrentFloor].nLayout[nRow][nCol]){
+    //                 case 0:
+    //                     printf(" -"); // 0 is an empty cell
+    //                     break;
+    //                 case 1:
+    //                     printf(" D"); // 1 is a door
+    //                     break;
+    //                 case 2:
+    //                     printf(" ?"); // 2 is an available spawn tile
+    //                     break;
+    //                 case 3:
+    //                     printf(" ~"); // 3 is a deactivated spawn tile
+    //                     break;
+    //             }
+    //         } else{
+    //             printf(" $"); // This is the player
+    //         }
+    //     }
+    //     printf("\n");
+    // }
+    // printf("\n");

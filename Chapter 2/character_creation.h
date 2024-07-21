@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Chapter 1/title.h"
+#include "../Chapter 3 Roundtable Hold/roundTable.h"
 
 void runCharacterCreation();
 
