@@ -8,6 +8,7 @@
 
 struct sDoorPairData{
     int nEndpoints[2][4]; // [endpoint A, endpoint B][Row coordinate, Col coordinate, Room coordinate, Locked Boolean]
+     // Locked boolean: 0 = FALSE, unlocked. 1 = TRUE, locked/innaccesible
 };
 
 struct sFloorData{
@@ -20,15 +21,29 @@ struct sSpawnTileData{
     int nActive; // bool: 0 = FALSE, 1 = TRUE. "When a spawn tile has been triggered, it remains disabled until the player leaves the area"
 };
 
+struct sBossTileData{
+    int nLocation[3];
+    int nEnabled; // bool: 0 = FALSE, 1 = TRUE. You cant fight a boss twice in a run
+};
+
+struct sFastTravelTileData{
+    int nLocation[3]; // [row coordinate, column coordinate, floor coordinate]
+    int nLocked; // Locked boolean: 0 = FALSE, unlocked. 1 = TRUE, locked/innaccesible
+};
+
 struct sAreaData{ // Area Data
     int nCurrentFloor; // The current floor the player is in. Might need to move this to the player struct instead :/
     int nTotalFloors; // How many floors in this area
     int nTotalDoorPairs; // How many doors in this area
     int nTotalSpawnTiles; // How many spawn tiles in area
+    int nTotalBossTiles; // How many boss tiles in area
+    int nTotalFastTravelTiles; // How many fast travel tiles in area
     char strAreaName[31]; // The name of the Area
     struct sFloorData* sFloors; // an array of floor layouts
     struct sDoorPairData* sDoors; // an array of structs Doors
     struct sSpawnTileData* sSpawns; // an array of structs Spawn tile
+    struct sBossTileData* sBosses; // an array of structs Boss tile
+    struct sFastTravelTileData* sFastTravels; // an array of structs fast travel tile
 };
 
 

@@ -79,6 +79,29 @@ void displayArea(int nPlayerPosRow, int nPlayerPosCol, struct sAreaData sArea){
                             printf("╙%s╜",jobClassSpriteTEST[0]);
                         }
                         break;
+                    case 4:
+                        if (nBoxLine==0){
+                            printf("╆ᛝ╅");
+                        } else if (nBoxLine==1&&nPlayerLanding==0){
+                            printf("╄┄╃");
+                        } else{
+                            printf("╄%s╃",jobClassSpriteTEST[0]);
+                        }
+                        break;
+                    case 5:
+                        if (nBoxLine==0&&sArea.sFastTravels[0].nLocked==1){
+                            printf("╭╥╮");
+                        } else if (nBoxLine==0&&sArea.sFastTravels[0].nLocked==0){
+                            printf("╭└╮");
+                        } else if (nBoxLine==1&&nPlayerLanding==0){
+                            printf("╰╨╯");
+                        }else{
+                            printf("╰%s╯",jobClassSpriteTEST[0]);
+                        }
+                        break;
+                    case 6:
+                        printf("░░░");
+                        break;
                     }
                 } else{
                     printf("░░░");
@@ -90,29 +113,29 @@ void displayArea(int nPlayerPosRow, int nPlayerPosCol, struct sAreaData sArea){
 
 }
 
-void processUserInputArea(struct sAreaData* sArea, int* nPlayerMoney, int* nPlayerPosRow, int* nPlayerPosCol, char cInput){
+void processUserInputArea(int* nRunning, struct sAreaData* sArea, int* nPlayerMoney, int* nPlayerPosRow, int* nPlayerPosCol, char cInput){
     switch (cInput){
         case 'a':
         case 'A':
-            if ((*nPlayerPosCol)>0){
+            if ((*nPlayerPosCol)>0&&(sArea->sFloors[sArea->nCurrentFloor].nLayout[*nPlayerPosRow][(*nPlayerPosCol)-1])!=6){
                 (*nPlayerPosCol)-=1;
             }
             break;
         case 'd':
         case 'D':
-            if ((*nPlayerPosCol)<((sArea->sFloors[sArea->nCurrentFloor].nDimensions[1])-1)){
+            if ((*nPlayerPosCol)<((sArea->sFloors[sArea->nCurrentFloor].nDimensions[1])-1)&&(sArea->sFloors[sArea->nCurrentFloor].nLayout[*nPlayerPosRow][(*nPlayerPosCol)+1])!=6){
                 (*nPlayerPosCol)+=1;
             }
             break;
         case 'w':
         case 'W':
-            if ((*nPlayerPosRow)>0){
+            if ((*nPlayerPosRow)>0&&(sArea->sFloors[sArea->nCurrentFloor].nLayout[(*nPlayerPosRow)-1][*nPlayerPosCol])!=6){
                 (*nPlayerPosRow)-=1;
             }
             break;
         case 's':
         case 'S':
-            if ((*nPlayerPosRow)<((sArea->sFloors[sArea->nCurrentFloor].nDimensions[0])-1)){
+            if ((*nPlayerPosRow)<((sArea->sFloors[sArea->nCurrentFloor].nDimensions[0])-1)&&(sArea->sFloors[sArea->nCurrentFloor].nLayout[(*nPlayerPosRow)+1][*nPlayerPosCol])!=6){
                 (*nPlayerPosRow)+=1;
             }
             break;
@@ -124,6 +147,18 @@ void processUserInputArea(struct sAreaData* sArea, int* nPlayerMoney, int* nPlay
                     break;
                 case 2: // Spawn tile
                     runSpawnTile(sArea, nPlayerMoney, nPlayerPosRow, nPlayerPosCol);
+                    break;
+                case 4: // Boss Tile
+                    // runBossBattle();
+                    printf("\n\n\nGRRRRR runBossBattle() Rawr uwu~\nLet's Assume you beat the boss and the fast trvel tile is unlocked uwu\n\n\n");
+                    for (int nFastTravelTile=0; nFastTravelTile<(sArea->nTotalFastTravelTiles); nFastTravelTile++){
+                        sArea->sFastTravels[nFastTravelTile].nLocked=0;
+                    } // Unlocks all fast travel tiles upon defeat of boss
+                    break;
+                case 5:
+                    if (sArea->sFastTravels[0].nLocked==0){
+                        (*nRunning)=0;
+                    }
                     break;
                 default:
                     break;
@@ -139,6 +174,7 @@ void runArea(Player* player, int nAreaIndex){
     //DELETE ME }
 
     char cInput=' ';
+    int nRunning=1; // 0 = FALSE, 1 = TRUE. Running area; exits when 0.
 
     struct sAreaData sArea;
     switch (nAreaIndex){
@@ -151,6 +187,6 @@ void runArea(Player* player, int nAreaIndex){
         displayArea(testRow, testCol, sArea);
         printf("> ");
         scanf(" %c", &cInput);
-        processUserInputArea(&sArea, &nPlayerHunieMunie, &testRow, &testCol, cInput);
-    }while(cInput!='0');
+        processUserInputArea(&nRunning, &sArea, &nPlayerHunieMunie, &testRow, &testCol, cInput);
+    }while(cInput!='0'&&nRunning==1);
 }
