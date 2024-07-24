@@ -16,16 +16,18 @@ void displayCharacterCreation(Player player){
     printf("\t▩═══════════════════════════════════════════════════════════════════════▩\n");
     printf("\t║\tcreate the dudes face on the right side\t\t\t\t║\n");
     printf("\t║\t\t\t\t\t\t\t\t\n");
-    printf("\t║\tName : %s\n", player.strName);
-    printf("\t║\tClass : %s\n", player.strJobClass);
-    printf("\t║\n");
-    printf("\t║\tLevel : %d\n", player.nLevel);
-    printf("\t║\tHP : %d\n", player.nHealth);
-    printf("\t║\tEndurance : %d\n", player.nEndurance);
-    printf("\t║\tDexterity : %d\n", player.nDexterity);
-    printf("\t║\tStrength : %d\n", player.nStrength);
-    printf("\t║\tIntelligence : %d\n", player.nIntelligence);
-    printf("\t║\tFaith : %d\n", player.nFaith);
+    if (strcmp(player.strJobClass, "Jobless :(")){
+        printf("\t║\tName : %s\n", player.strName);
+        printf("\t║\tClass : %s\n", player.strJobClass);
+        printf("\t║\n");
+        printf("\t║\tLevel : %d\n", player.nLevel);
+        printf("\t║\tHP : %d\n", player.nHealth);
+        printf("\t║\tEndurance : %d\n", player.nEndurance);
+        printf("\t║\tDexterity : %d\n", player.nDexterity);
+        printf("\t║\tStrength : %d\n", player.nStrength);
+        printf("\t║\tIntelligence : %d\n", player.nIntelligence);
+        printf("\t║\tFaith : %d\n", player.nFaith);
+    }
     printf("\t║\n");
     printf("\t▩═════════════════════════════════════════════════════════════════════▩\n");
     printf("\t\t[1] Change Name\n");

@@ -48,13 +48,13 @@ Player setPlayer(){
    Player player;
    strcpy(player.strName, "Goofy Goober");
    strcpy(player.strJobClass, "Jobless :(");
-   player.nLevel = 1;
-   player.nHealth = 1;
-   player.nEndurance = 1;
-   player.nDexterity = 1;
-   player.nStrength = 1;
-   player.nIntelligence = 1;
-   player.nFaith = 1;
+   player.nLevel = 0;
+   player.nHealth = 0;
+   player.nEndurance = 0;
+   player.nDexterity = 0;
+   player.nStrength = 0;
+   player.nIntelligence = 0;
+   player.nFaith = 0;
 
     return player;
  }

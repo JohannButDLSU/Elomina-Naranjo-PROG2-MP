@@ -9,23 +9,23 @@ void runTitle(){
 }
 
 void displayTitle(){
+    printYBorder1();
+    printMiddleBorder1("EEEEE L     DDD   EEEEE N   N   RRRR ");
+    printMiddleBorder1("E     L     D  D  E     NN  N   R   R");
+    printMiddleBorder1("EEEEE L     D   D EEEEE N N N   RRRR ");
+    printMiddleBorder1("E     L     D  D  E     N  NN   R  R ");
+    printMiddleBorder1("EEEEE LLLLL DDD   EEEEE N   N   R   R");
+    printMiddleBorder1("^ TEMPORARY TITLE XD");
+    printYBorder1();
     printf("\n");
-    printf("\n");
-    printf("\n");
-    printf("Pretend this is the epic title!!!\n");
-    printf("\n");
-    printf("\n");
-    printf("\n");
-    printf("[1] New Game\n");
-    printf("[2] Continue\n");
-    printf("[0] Exit\n");
-    printf("[INPUT] : ");
+    printChoiceBorder1("[1] New Game");
+    printChoiceBorder1("[2] Continue");
+    printChoiceBorder1("[0] Exit");
+    printChoiceBorderless1("[INPUT] : ");
 }
 
 void processTitleInput(char* cInput){
-    // printf("\033[?25h \033[6A \033[47C");
     scanf(" %c", cInput);
-    // printf("\033[6B \033[47D");
 
     Player player;
 
