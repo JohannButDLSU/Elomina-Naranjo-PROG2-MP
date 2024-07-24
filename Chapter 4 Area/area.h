@@ -2,7 +2,7 @@
 #include "initializeAreaData.h"
 #include "../_Global Folder/player_struct_manager.h"
 
-void doorTravel(struct sAreaData* sArea, int* nPlayerPosRow, int* nPlayerPosCol);
-void displayArea(int nPlayerPosRow, int nPlayerPosCol, struct sAreaData sArea);
-void processUserInputArea(int* nRunning, struct sAreaData* sArea, int* nPlayerMoney, int* nPlayerPosRow, int* nPlayerPosCol, char cInput);
+void doorTravel(struct sAreaData* sArea, Player* player);
+void displayArea(Player* player, struct sAreaData sArea);
+void processUserInputArea(int* nRunning, struct sAreaData* sArea, Player* player, char cInput);
 void runArea(Player* player, int nAreaID);

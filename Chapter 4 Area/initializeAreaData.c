@@ -3,7 +3,6 @@
 struct sAreaData initializeStormveilCastle(){
     struct sAreaData sTempArea;
 
-    sTempArea.nCurrentFloor=0;
     strcpy(sTempArea.strAreaName,"Stormveil Castle");
     sTempArea.nTotalFloors=3;
     sTempArea.nTotalDoorPairs=2;

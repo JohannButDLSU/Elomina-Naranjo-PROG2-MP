@@ -15,6 +15,12 @@ struct sPlayer{
     int nStrength;
     int nIntelligence;
     int nFaith;
+
+    // Data for roundtable
+    int nRunes;
+    int nShards[7]; // 7 shards for the 7 areas
+    // Data for area
+    int nPlayerPos[3]; // row, column, floor
  }; typedef struct sPlayer Player;
 
  struct sJobClass{
@@ -56,6 +62,13 @@ Player setPlayer(){
    player.nIntelligence = 0;
    player.nFaith = 0;
 
+   player.nRunes=0;
+   for (int nShards=0; nShards<7; nShards++){
+      player.nShards[nShards]=0;
+   }
+   for (int nPos=0; nPos<3; nPos++){
+      player.nPlayerPos[nPos]=0;
+   }
     return player;
  }
 

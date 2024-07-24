@@ -1,8 +1,9 @@
 #pragma once
 
+#include "../_Global Folder/player_struct_manager.h"
 #include "areaStructures.h"
 
 
 void displayTreasureScreen(int nMoneyEarned);
-void runTreasureTile(int nLandedSpawnTile, struct sAreaData* sArea, int* nPlayerMoney, int* nPlayerPosRow, int* nPlayerPosCol);
-void runSpawnTile(struct sAreaData* sArea, int* nPlayerMoney, int* nPlayerPosRow, int* nPlayerPosCol);
+void runTreasureTile(int nLandedSpawnTile, struct sAreaData* sArea, Player* player);
+void runSpawnTile(struct sAreaData* sArea, Player* player);

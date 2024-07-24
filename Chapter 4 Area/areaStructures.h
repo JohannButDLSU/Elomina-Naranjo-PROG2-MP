@@ -32,7 +32,6 @@ struct sFastTravelTileData{
 };
 
 struct sAreaData{ // Area Data
-    int nCurrentFloor; // The current floor the player is in. Might need to move this to the player struct instead :/
     int nTotalFloors; // How many floors in this area
     int nTotalDoorPairs; // How many doors in this area
     int nTotalSpawnTiles; // How many spawn tiles in area

@@ -41,19 +41,25 @@ void saveCurrentGameState(int nTotalSaveFiles, int *nCursor, Player *player){
     fclose(filePointer);
 }
 
-void printFileBox(Player *arrListOfSaves, int nFileExists, int nBoxLine, int nIndex, int nSelected){
+void printFileBox(Player *arrListOfSaves, int nSaveExists, int nBoxLine, int nIndex, int nSelected){
     if (nSelected==1&&nBoxLine!=1&&nBoxLine!=2&&nBoxLine!=14){
         printc(0,15,"║ ");
     } else if (nBoxLine!=1&&nBoxLine!=2&&nBoxLine!=14){
         printc(0,8,"│ ");
     }
 
+    if (nSaveExists==0&&nBoxLine==8){
+        nBoxLine=(-1);
+    } else if(nSaveExists==0&&nBoxLine!=1&&nBoxLine!=2&&nBoxLine!=14) {
+        nBoxLine=0;
+    }   
+
     switch (nBoxLine){
         case -1:
-            printf("               No Data                 ");
+            printf("                No Data                 ");
             break;
         case 0:
-            printf("                                       ");
+            printf("                                        ");
             break;
         case 1:
             printf("                Save File %d                 ", nIndex+1);
@@ -114,17 +120,21 @@ void printFileBox(Player *arrListOfSaves, int nFileExists, int nBoxLine, int nIn
 }
 void displaySaveMenu(int nAllowSaving, Player *arrListOfSaves, int nTotalSaveFiles, int nCursor){
     int nSelected=0;
-    int nFileExists=0;
+    int nSaveExists=0;
 
     printf("\n\n");
     for (int nBoxLine=1; nBoxLine<15; nBoxLine++){
         for (int nIndex=0; nIndex<nTotalSaveFiles; nIndex++){
-            
+            // if (0!=strcmp(arrListOfSaves[nIndex].strJobClass,"EMPTY")&&0!=strcmp(arrListOfSaves[nIndex].strName,"EMPTY")){
+            if (0!=strcmp(arrListOfSaves[nIndex].strJobClass,"EMPTY")&&0!=strcmp(arrListOfSaves[nIndex].strName,"EMPTY")){
+                nSaveExists=1;
+            }
             if (nCursor==nIndex){
                 nSelected=1;
             }
-            printFileBox(arrListOfSaves, nFileExists, nBoxLine, nIndex, nSelected);
+            printFileBox(arrListOfSaves, nSaveExists, nBoxLine, nIndex, nSelected);
             nSelected=0;
+            nSaveExists=0;
         }
         printf("\n");
     }
@@ -140,7 +150,7 @@ void displaySaveMenu(int nAllowSaving, Player *arrListOfSaves, int nTotalSaveFil
     }
 
 }
-void processInputSaveMenu(int* nGameLoaded, int* nRunning, int nAllowSaving, Player *player, int nTotalSaveFiles, int* nCursor, char cInput){
+void processInputSaveMenu(Player* arrListOfSaves, int* nGameLoaded, int* nRunning, int nAllowSaving, Player *player, int nTotalSaveFiles, int* nCursor, char cInput){
 
     char cContinue;
 
@@ -165,9 +175,11 @@ void processInputSaveMenu(int* nGameLoaded, int* nRunning, int nAllowSaving, Pla
             }
             break;
         case '2':
-            loadSave(nTotalSaveFiles, nCursor, player);
-            (*nRunning)=0;
-            (*nGameLoaded)=1;
+            if (0!=strcmp(arrListOfSaves[*nCursor].strName,"EMPTY")&&0!=strcmp(arrListOfSaves[*nCursor].strJobClass,"EMPTY")){
+                loadSave(nTotalSaveFiles, nCursor, player);
+                (*nRunning)=0;
+                (*nGameLoaded)=1;
+            }
             break;
         case '0':
             cContinue=' ';
@@ -181,8 +193,8 @@ void processInputSaveMenu(int* nGameLoaded, int* nRunning, int nAllowSaving, Pla
     }
 }
 
-void runSaveMenu(int* nGameLoaded, int nSavingAllowed, Player *player){
-    int nAllowSaving=nSavingAllowed; // Depending on where the player access this function (title screen or roundtable), the player should not always be allowed to save. However, they can always load
+void runSaveMenu(int* nGameLoaded, int nAllowSaving, Player *player){
+    // Depending on where the player access this function (title screen or roundtable), the player should not always be allowed to save. However, they can always load
     // Bool: 0 = FALSE; 1 = TRUE
     int nRunning=1;
     int nTotalSaveFiles=3; // < VOLATILE! > add anymore saves to the total(3), and those beyond the 3rd will be broken and will not save
@@ -193,18 +205,12 @@ void runSaveMenu(int* nGameLoaded, int nSavingAllowed, Player *player){
     int nCursor=0;
 
     FILE *filePointer;
-    if ((filePointer=fopen("playerSaves.dat","rb"))==NULL){
+    if ((filePointer=fopen("playerSaves.dat","rb"))==NULL){ // If the binary file is empty, fill it with empty player structs 
         filePointer=fopen("playerSaves.dat","wb");
-        Player emptySave;
-        strcpy(emptySave.strName, " ");
-        strcpy(emptySave.strJobClass, " ");
-        emptySave.nLevel = 0;
-        emptySave.nHealth = 0;
-        emptySave.nEndurance = 0;
-        emptySave.nDexterity = 0;
-        emptySave.nStrength = 0;
-        emptySave.nIntelligence = 0;
-        emptySave.nFaith = 0;
+        Player emptySave=setPlayer();
+        strcpy(emptySave.strName, "EMPTY");
+        strcpy(emptySave.strJobClass, "EMPTY");
+    
         for (int nIndex=0; nIndex<nTotalSaveFiles; nIndex++){
             arrListOfSaves[nIndex]=emptySave;
         }
@@ -219,7 +225,7 @@ void runSaveMenu(int* nGameLoaded, int nSavingAllowed, Player *player){
     displaySaveMenu(nAllowSaving, arrListOfSaves, nTotalSaveFiles, nCursor);
     // cInput=getch();
     scanf(" %c", &cInput);
-    processInputSaveMenu(nGameLoaded, &nRunning, nAllowSaving, player, nTotalSaveFiles, &nCursor, cInput);
+    processInputSaveMenu(arrListOfSaves, nGameLoaded, &nRunning, nAllowSaving, player, nTotalSaveFiles, &nCursor, cInput);
     } while (nRunning==1);
     fclose(filePointer);
 }
