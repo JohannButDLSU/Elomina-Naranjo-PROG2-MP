@@ -1,5 +1,4 @@
 #pragma once
-#include "string.h"
 
 // -----------------------------------
 // the actual structs
@@ -58,7 +57,7 @@ Player setPlayer(){
    player.nFaith = 1;
 
     return player;
- };
+ }
 
 JobClass setJobClass(char* strJobClass, int nLevel, int nHealth, int nEndurance, int nDexterity, int nStrength, int nIntelligence, int nFaith){
    JobClass jobClass;
@@ -72,7 +71,7 @@ JobClass setJobClass(char* strJobClass, int nLevel, int nHealth, int nEndurance,
    jobClass.nFaith = nFaith;
 
    return jobClass;
- };
+ }
 
  Player statCopy(Player player, JobClass jobClass){
     strcpy(player.strJobClass, jobClass.strJobClass);
@@ -85,4 +84,4 @@ JobClass setJobClass(char* strJobClass, int nLevel, int nHealth, int nEndurance,
     player.nFaith = jobClass.nFaith;
 
     return player;
-};
+}

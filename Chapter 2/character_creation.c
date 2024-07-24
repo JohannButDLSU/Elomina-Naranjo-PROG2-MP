@@ -38,6 +38,9 @@ void displayCharacterCreation(Player player){
 void processCharacterCreationInput(Player* player, char* cInput){
     scanf(" %c", cInput);
 
+    int aTestInventory[24]={1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //Each index represents a weapon in MP specs, Appendix C
+    int nTestRunes;
+
     switch (*cInput)
     {
         case '1':
@@ -61,8 +64,7 @@ void processCharacterCreationInput(Player* player, char* cInput){
             *player = setPlayerJobClass(*player, cJobClassInput);
             break;
         case '3':
-            int aTestInventory[24]={1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //Each index represents a weapon in MP specs, Appendix C
-            int nTestRunes=500;
+            nTestRunes=500;
             runRoundTable(player, &nTestRunes, aTestInventory);
             // There is no "break;"" line. From roundtable, the screen should exit to the title screen and not the character creation screen
         case '0':

@@ -7,6 +7,7 @@
 #include "_Global Folder/color.c"
 
 #include "Chapter 1/title.c"
+
 #include "Chapter 2/job_class.c"
 #include "Chapter 2/character_creation.c"
 

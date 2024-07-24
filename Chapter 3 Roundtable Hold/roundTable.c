@@ -173,6 +173,10 @@ void displayRoundTable(Player *player, int *nTestRunes){
     printf("\t> ");
 }
 void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory, char cInput){
+
+    int nSavingAllowed;
+    int nDummyGameLoaded;
+
     switch (cInput){
         case '1': 
             printf("runFastTravelMenu()\n");
@@ -191,8 +195,8 @@ void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory
             runShopMenu(nTestRunes, aTestInventory);
             break;
         case '5': 
-            int nSavingAllowed=1;
-            int nDummyGameLoaded=0; // This is just a dummy variable
+            nSavingAllowed=1;
+            nDummyGameLoaded=0; // This is just a dummy variable
             printf("runSave()\n");
             runSaveMenu(&nDummyGameLoaded, nSavingAllowed, player); 
             break;

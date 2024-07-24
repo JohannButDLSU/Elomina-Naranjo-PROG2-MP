@@ -141,6 +141,9 @@ void displaySaveMenu(int nAllowSaving, Player *arrListOfSaves, int nTotalSaveFil
 
 }
 void processInputSaveMenu(int* nGameLoaded, int* nRunning, int nAllowSaving, Player *player, int nTotalSaveFiles, int* nCursor, char cInput){
+
+    char cContinue;
+
     switch (cInput){
         case 'A':
         case 'a':
@@ -167,7 +170,7 @@ void processInputSaveMenu(int* nGameLoaded, int* nRunning, int nAllowSaving, Pla
             (*nGameLoaded)=1;
             break;
         case '0':
-            char cContinue=' ';
+            cContinue=' ';
             if (nAllowSaving==1){
                 printf("\n\n\n\nYou will regret this later\n\n\n\n");
                 // getch();

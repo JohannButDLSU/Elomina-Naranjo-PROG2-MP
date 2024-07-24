@@ -27,6 +27,14 @@ void processTitleInput(char* cInput){
     scanf(" %c", cInput);
     // printf("\033[6B \033[47D");
 
+    Player player;
+
+    int nSavingAllowed;
+    int nGameLoaded;
+
+    int aTestInventory[24]={1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //Each index represents a weapon in MP specs, Appendix C
+    int nTestRunes;
+
     switch (*cInput)
     {
     case '1':
@@ -34,14 +42,13 @@ void processTitleInput(char* cInput){
         runCharacterCreation();
         break;
     case '2': // Continue Feature. Player can select a save, load, and continue their game from roundtable
-        Player player =setPlayer();
-        int nSavingAllowed=0;
-        int nGameLoaded=0; // Checks if the player player actually loaded a game or just opted to go back to the title screen. 0 = Back; 1 = Load
+        player =setPlayer();
+        nSavingAllowed=0;
+        nGameLoaded=0; // Checks if the player player actually loaded a game or just opted to go back to the title screen. 0 = Back; 1 = Load
         runSaveMenu(&nGameLoaded, nSavingAllowed, &player); // nSavingAllowed = 0. Players cannot save from the title screen; only load
         printf("Game continued!\n");
         if(nGameLoaded==1){
-            int aTestInventory[24]={1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //Each index represents a weapon in MP specs, Appendix C
-            int nTestRunes=100000;
+            nTestRunes=100000;
             runRoundTable(&player, &nTestRunes, aTestInventory);
         }
         break;
