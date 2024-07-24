@@ -42,11 +42,23 @@ void processInputFastTravelMenu(Player* player, char cInput){
         default: printf("Invalid Input\n"); break;
     }
 }
-void displayFastTravelMenu(){
+void displayFastTravelMenu(Player* player){
     printf("Fast Travel Menu\n\n");
     printf("(1) Stormveil Castle\n");
     printf("(2) Ray Lucaria Academy\n");
-    printf("(6) Elden Throne (Locked) \n"); // Find character for a lock
+    int nShardsCompleted=0;
+            for (int nShards=0; nShards<7; nShards++){
+                if (player->nShards[nShards]==1){
+                    nShardsCompleted++;
+                }
+            }
+            if (nShardsCompleted>=2){
+                printf("(6) Leyndell Royal Capital\n");
+            } else{
+                printc(0,233,"(~) Leyndell Royal Capital");
+                printf("\n");
+            }
+    printf("(7) Elden Throne (Locked) \n"); // Find character for a lock
     printf("(0) Back\n");
     printf("\n");
     printf("    > ");
@@ -54,7 +66,7 @@ void displayFastTravelMenu(){
 void runFastTravelMenu(Player* player){
     char cInput=' ';
     do{
-        displayFastTravelMenu();
+        displayFastTravelMenu(player);
         // cInput=getch();
         scanf(" %c", &cInput);
         printf("\n");

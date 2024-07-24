@@ -272,7 +272,7 @@ struct sAreaData initializeLeyndellRoyalCapital(){
     // Initialize the Door data
     // [endpoint A, endpoint B][Row coordinate, Col coordinate, Room coordinate, Locked Boolean]
     int arrDoorPairData[17][2][4]={
-        {{0,1,0,0},{7,1,1,0}},
+        {{0,1,0,0},{6,1,1,0}},
         {{0,1,1,0},{4,2,2,0}},
         {{2,4,2,0},{1,0,3,0}},
         {{0,2,3,0},{3,13,4,0}},
@@ -322,7 +322,7 @@ struct sAreaData initializeLeyndellRoyalCapital(){
     }
 
     // [row coordinate, column coordinate, floor coordinate, is it locked?]
-    int arrFastTravelTileData[2][4]={{3,1,0,1},{6,2,13,0}};
+    int arrFastTravelTileData[2][4]={{3,1,0,0},{6,2,13,1}};
     for (int nFastTravelTile=0; nFastTravelTile<(sTempArea.nTotalFastTravelTiles); nFastTravelTile++){
         sTempArea.sFastTravels[nFastTravelTile].nLocation[0]=arrFastTravelTileData[nFastTravelTile][0]; // Row
         sTempArea.sFastTravels[nFastTravelTile].nLocation[1]=arrFastTravelTileData[nFastTravelTile][1]; // Column
@@ -406,20 +406,38 @@ struct sAreaData initializeLeyndellRoyalCapital(){
             {0,0,0,2,0,0,0,0,0,0,0,2,0,0,0}
         },
         {
-            {0,0,0,0,0,0,0,0,6,6,6,6,6},
-            {0,0,0,0,0,0,0,0,6,6,6,6,6},
-            {0,0,6,6,6,6,6,6,6,6,6,6,6},
+            {2,0,0,2,0,0,0,0,6,6,6,6,6},
+            {0,0,0,2,0,0,0,0,6,6,6,6,6},
+            {2,0,6,6,6,6,6,6,6,6,6,6,6},
             {0,0,6,6,6,0,0,0,6,6,6,6,6},
+            {2,0,6,6,0,0,0,0,0,6,6,6,6},
             {0,0,6,6,0,0,0,0,0,6,6,6,6},
+            {2,0,6,6,0,0,0,0,0,6,6,6,6},
             {0,0,6,6,0,0,0,0,0,6,6,6,6},
-            {0,0,6,6,0,0,0,0,0,6,6,6,6},
-            {0,0,6,6,0,0,0,0,0,6,6,6,6},
-            {0,0,6,6,0,0,0,0,0,6,6,0,0},
+            {2,0,6,6,0,0,0,0,0,6,6,0,2},
             {0,0,6,6,6,0,0,0,6,6,6,0,0},
-            {0,0,6,6,6,6,6,6,6,6,6,0,0},
+            {2,0,6,6,6,6,6,6,6,6,6,0,2},
             {0,0,0,0,0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0,0,0,0,0}
-        }
+            {2,0,0,0,0,2,0,2,0,0,0,0,2}
+        },
+        {
+            {0,0,0},
+            {2,0,0},
+            {0,0,0}
+        },{
+            {0,0,0},
+            {0,0,2},
+            {0,0,0}
+        },
+        {
+            {6,0,0,0,6},
+            {2,0,0,0,2},
+            {0,0,0,0,0},
+            {2,0,0,0,2},
+            {0,0,0,0,0},
+            {2,0,0,0,2},
+            {6,0,0,0,6}
+        },
     };
 
     for (int nFloor=0; nFloor<(sTempArea.nTotalFloors); nFloor++){

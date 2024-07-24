@@ -8,7 +8,7 @@
 
 
 void processInputFastTravelMenu(Player* player, char cInput);
-void displayFastTravelMenu();
+void displayFastTravelMenu(Player* player);
 void runFastTravelMenu(Player* player);
 
 void processInputLevelUpMenu(int *nTestRunes, Player *player, int nLevelUpRuneCost, char cInput);
