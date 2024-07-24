@@ -1,15 +1,43 @@
 #include "roundTable.h"
 
+void runRoundTable(Player *player, int *nTestRunes, int *aTestInventory){
+    char cInput=' ';
+    do{
+        displayRoundTable(player, nTestRunes);
+        // cInput=getch();
+        scanf(" %c", &cInput);
+        printf("\n");
+        printf("DevMsg: ");
+        processInputRoundTable(player, nTestRunes, aTestInventory, cInput);
+    }while(cInput!='0');
+}
+
 //Fast Travel Menu
 void processInputFastTravelMenu(Player* player, char cInput){
     switch (cInput){
         case '1': 
-            runArea(player, 0); // Stormveil Castle
+            runArea(player, 1); // Stormveil Castle
             break;
         case '2':
-            runArea(player, 1);
+            runArea(player, 2); // Raya Lucaria
             break;
-        case '6': printf("runEldenThrone\n"); break;
+        case '6': //Leyndell Royal Capital
+            int nShardsCompleted=0;
+            for (int nShards=0; nShards<7; nShards++){
+                if (player->nShards[nShards]==1){
+                    nShardsCompleted++;
+                }
+            }
+            if (nShardsCompleted>=2){
+                printf("runLeyndellRoyalCapital\n");
+                runArea(player, 6);
+            }
+            break;
+        case '7': 
+            if (player->nShards[6]==1){
+                printf("runEldenThrone\n");
+            }
+            break;
         case '0': printf("Back to RoundTable\n"); break;
         default: printf("Invalid Input\n"); break;
     }
@@ -214,15 +242,4 @@ void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory
         case '0': printf("runTitleScreen()\n"); break;
         default: printf("Invalid Input\n"); break;
     }
-}
-void runRoundTable(Player *player, int *nTestRunes, int *aTestInventory){
-    char cInput=' ';
-    do{
-        displayRoundTable(player, nTestRunes);
-        // cInput=getch();
-        scanf(" %c", &cInput);
-        printf("\n");
-        printf("DevMsg: ");
-        processInputRoundTable(player, nTestRunes, aTestInventory, cInput);
-    }while(cInput!='0');
 }

@@ -1,6 +1,43 @@
 #include "save.h"
 #include "stdlib.h"
 
+void runSaveMenu(int* nGameLoaded, int nAllowSaving, Player *player){
+    // Depending on where the player access this function (title screen or roundtable), the player should not always be allowed to save. However, they can always load
+    // Bool: 0 = FALSE; 1 = TRUE
+    int nRunning=1;
+    int nTotalSaveFiles=3; // < VOLATILE! > add anymore saves to the total(3), and those beyond the 3rd will be broken and will not save
+    Player *arrListOfSaves;
+    arrListOfSaves=malloc(sizeof(Player)*nTotalSaveFiles);
+
+    char cInput=' ';
+    int nCursor=0;
+
+    FILE *filePointer;
+    if ((filePointer=fopen("playerSaves.dat","rb"))==NULL){ // If the binary file is empty, fill it with empty player structs 
+        filePointer=fopen("playerSaves.dat","wb");
+        Player emptySave=setPlayer();
+        strcpy(emptySave.strName, "EMPTY");
+        strcpy(emptySave.strJobClass, "EMPTY");
+    
+        for (int nIndex=0; nIndex<nTotalSaveFiles; nIndex++){
+            arrListOfSaves[nIndex]=emptySave;
+        }
+        fwrite(arrListOfSaves,sizeof(Player), nTotalSaveFiles, filePointer);
+        fclose(filePointer);
+    }
+
+    filePointer=fopen("playerSaves.dat","rb");
+    fread(arrListOfSaves, sizeof(Player), nTotalSaveFiles, filePointer);
+
+    do{
+    displaySaveMenu(nAllowSaving, arrListOfSaves, nTotalSaveFiles, nCursor);
+    // cInput=getch();
+    scanf(" %c", &cInput);
+    processInputSaveMenu(arrListOfSaves, nGameLoaded, &nRunning, nAllowSaving, player, nTotalSaveFiles, &nCursor, cInput);
+    } while (nRunning==1);
+    fclose(filePointer);
+}
+
 void loadSave(int nTotalSaveFiles, int *nCursor, Player *player){
     printf("Load the save here\n");
     Player *arrTempList;
@@ -201,39 +238,3 @@ void processInputSaveMenu(Player* arrListOfSaves, int* nGameLoaded, int* nRunnin
     }
 }
 
-void runSaveMenu(int* nGameLoaded, int nAllowSaving, Player *player){
-    // Depending on where the player access this function (title screen or roundtable), the player should not always be allowed to save. However, they can always load
-    // Bool: 0 = FALSE; 1 = TRUE
-    int nRunning=1;
-    int nTotalSaveFiles=3; // < VOLATILE! > add anymore saves to the total(3), and those beyond the 3rd will be broken and will not save
-    Player *arrListOfSaves;
-    arrListOfSaves=malloc(sizeof(Player)*nTotalSaveFiles);
-
-    char cInput=' ';
-    int nCursor=0;
-
-    FILE *filePointer;
-    if ((filePointer=fopen("playerSaves.dat","rb"))==NULL){ // If the binary file is empty, fill it with empty player structs 
-        filePointer=fopen("playerSaves.dat","wb");
-        Player emptySave=setPlayer();
-        strcpy(emptySave.strName, "EMPTY");
-        strcpy(emptySave.strJobClass, "EMPTY");
-    
-        for (int nIndex=0; nIndex<nTotalSaveFiles; nIndex++){
-            arrListOfSaves[nIndex]=emptySave;
-        }
-        fwrite(arrListOfSaves,sizeof(Player), nTotalSaveFiles, filePointer);
-        fclose(filePointer);
-    }
-
-    filePointer=fopen("playerSaves.dat","rb");
-    fread(arrListOfSaves, sizeof(Player), nTotalSaveFiles, filePointer);
-
-    do{
-    displaySaveMenu(nAllowSaving, arrListOfSaves, nTotalSaveFiles, nCursor);
-    // cInput=getch();
-    scanf(" %c", &cInput);
-    processInputSaveMenu(arrListOfSaves, nGameLoaded, &nRunning, nAllowSaving, player, nTotalSaveFiles, &nCursor, cInput);
-    } while (nRunning==1);
-    fclose(filePointer);
-}

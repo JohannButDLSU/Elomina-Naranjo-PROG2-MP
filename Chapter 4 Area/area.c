@@ -1,6 +1,40 @@
 #include "area.h"
 #include "spawnTile.h"
 
+void runArea(Player* player, int nAreaIndex){
+    char cInput=' ';
+    int nRunning=1; // 0 = FALSE, 1 = TRUE. Running area; exits when 0.
+
+    struct sAreaData sArea;
+    switch (nAreaIndex){
+        case 1:
+            sArea=initializeStormveilCastle();
+            player->nPlayerPos[0]=sArea.sFastTravels[1].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[1].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[1].nLocation[2];
+            break;
+        case 2:
+            sArea=initializeRayaLucaria();
+            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            break;
+        case 6:
+            sArea=initializeLeyndellRoyalCapital();
+            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            break;
+    }
+    do{
+        printf("Player Money: %d", player->nRunes); // Delete me
+        displayArea(player, sArea);
+        printf("> ");
+        scanf(" %c", &cInput);
+        processUserInputArea(nAreaIndex, &nRunning, &sArea, player, cInput);
+    }while(cInput!='0'&&nRunning==1);
+}
+
 void doorTravel(struct sAreaData* sArea, Player* player){
     int nLandedDoorPair=0;
     for (int nDoorPair=0; nDoorPair<(sArea->nTotalDoorPairs); nDoorPair++){
@@ -89,9 +123,15 @@ void displayArea(Player* player, struct sAreaData sArea){
                         }
                         break;
                     case 5:
-                        if (nBoxLine==0&&sArea.sFastTravels[0].nLocked==1){
+                        int nFastTravelIndex=0;
+                        for (int nFastTravelTile=0; nFastTravelTile<sArea.nTotalFastTravelTiles; nFastTravelTile++){
+                            if (sArea.sFastTravels[nFastTravelTile].nLocation[2]==player->nPlayerPos[2]){
+                                nFastTravelIndex=nFastTravelTile;
+                            }
+                        }
+                        if (nBoxLine==0&&sArea.sFastTravels[nFastTravelIndex].nLocked==1){
                             printf("╭╥╮");
-                        } else if (nBoxLine==0&&sArea.sFastTravels[0].nLocked==0){
+                        } else if (nBoxLine==0&&sArea.sFastTravels[nFastTravelIndex].nLocked==0){
                             printf("╭└╮");
                         } else if (nBoxLine==1&&nPlayerLanding==0){
                             printf("╰╨╯");
@@ -143,7 +183,7 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
         case 'E':
             switch (sArea->sFloors[player->nPlayerPos[2]].nLayout[player->nPlayerPos[0]][player->nPlayerPos[1]]){ // Logic checks what kind of tile the player is currently on
                 case 1: // Door tile
-                    doorTravel(sArea, player); // Updates the current room and player position [row][col]
+                    doorTravel(sArea, player); // Updates player position [row][col][floor]
                     break;
                 case 2: // Spawn tile
                     runSpawnTile(sArea, player);
@@ -151,14 +191,39 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
                 case 4: // Boss Tile
                     // runBossBattle();
                     printf("\n\n\nGRRRRR runBossBattle() Rawr uwu~\nLet's Assume you beat the boss and the fast trvel tile is unlocked uwu\n\n\n");
-                    for (int nFastTravelTile=0; nFastTravelTile<(sArea->nTotalFastTravelTiles); nFastTravelTile++){
-                        sArea->sFastTravels[nFastTravelTile].nLocked=0;
-                    } // Unlocks all fast travel tiles upon defeat of boss
+
+                    // Lets Assume the boss was defeated
+                    sArea->sBosses[0].nEnabled=0;
+                    int nAllBossesSlainCheck=0;
+                    for (int nBosses=0; nBosses<sArea->nTotalBossTiles; nBosses++){
+                        nAllBossesSlainCheck+=sArea->sBosses[nBosses].nEnabled; //nEnabled is an integer 0 being FALSE and 1 being TRUE. If any one boss is still alive/enabled it makes check var > 0
+                    }
+                    if (nAllBossesSlainCheck<=0){
+                        for (int nFastTravelTile=0; nFastTravelTile<(sArea->nTotalFastTravelTiles); nFastTravelTile++){
+                            sArea->sFastTravels[nFastTravelTile].nLocked=0;
+                        } // Unlocks all fast travel tiles upon defeat of boss
+                    }
                     break;
                 case 5:
-                    if (sArea->sFastTravels[0].nLocked==0){
-                        (*nRunning)=0;
-                        player->nShards[nAreaIndex]=1;
+                    int nLandedFastTravel=0;
+                    int nCounter=0;
+                    for (int nFastTravelTile=0; nFastTravelTile<sArea->nTotalFastTravelTiles; nFastTravelTile++){
+                        for (int nCoordinate=0; nCoordinate<3; nCoordinate++){
+                            if (sArea->sFastTravels[nFastTravelTile].nLocation[nCoordinate]==player->nPlayerPos[nCoordinate]){
+                                nCounter++;
+                            } else{
+                                nCounter=0;
+                            }
+                            if (nCounter==3){
+                                nLandedFastTravel=nFastTravelTile;
+                            }
+                        }
+                    }
+                    if (sArea->sFastTravels[nLandedFastTravel].nLocked==0){
+                        (*nRunning)=0; // end runArea
+                        if (sArea->sBosses[0].nEnabled==0){ // Player does not get the shard if the boss is not defeated
+                            player->nShards[nAreaIndex-1]=1;
+                        }
                     }
                     break;
                 default:
@@ -166,31 +231,4 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
             }
             break;
     }
-}
-void runArea(Player* player, int nAreaIndex){
-    char cInput=' ';
-    int nRunning=1; // 0 = FALSE, 1 = TRUE. Running area; exits when 0.
-
-    struct sAreaData sArea;
-    switch (nAreaIndex){
-        case 0:
-            sArea=initializeStormveilCastle();
-            player->nPlayerPos[0]=sArea.sFastTravels[1].nLocation[0];
-            player->nPlayerPos[1]=sArea.sFastTravels[1].nLocation[1];
-            player->nPlayerPos[2]=sArea.sFastTravels[1].nLocation[2];
-            break;
-        case 1:
-            sArea=initializeRayaLucaria();
-            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
-            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
-            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
-            break;
-    }
-    do{
-        printf("Player Money: %d", player->nRunes); // Delete me
-        displayArea(player, sArea);
-        printf("> ");
-        scanf(" %c", &cInput);
-        processUserInputArea(nAreaIndex, &nRunning, &sArea, player, cInput);
-    }while(cInput!='0'&&nRunning==1);
 }

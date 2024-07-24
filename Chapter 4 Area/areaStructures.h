@@ -17,6 +17,7 @@ struct sFloorData{
 };
 
 struct sSpawnTileData{
+    int nAreaIndex; // Index of the area
     int nLocation[3]; // [row coordinate, column coordinate, floor coordinate]
     int nActive; // bool: 0 = FALSE, 1 = TRUE. "When a spawn tile has been triggered, it remains disabled until the player leaves the area"
 };
