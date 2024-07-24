@@ -4,5 +4,5 @@
 
 void doorTravel(struct sAreaData* sArea, Player* player);
 void displayArea(Player* player, struct sAreaData sArea);
-void processUserInputArea(int* nRunning, struct sAreaData* sArea, Player* player, char cInput);
+void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea, Player* player, char cInput);
 void runArea(Player* player, int nAreaID);

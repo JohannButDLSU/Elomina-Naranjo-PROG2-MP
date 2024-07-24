@@ -113,7 +113,7 @@ void displayArea(Player* player, struct sAreaData sArea){
 
 }
 
-void processUserInputArea(int* nRunning, struct sAreaData* sArea, Player* player,  char cInput){
+void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea, Player* player,  char cInput){
     switch (cInput){
         case 'a':
         case 'A':
@@ -158,6 +158,7 @@ void processUserInputArea(int* nRunning, struct sAreaData* sArea, Player* player
                 case 5:
                     if (sArea->sFastTravels[0].nLocked==0){
                         (*nRunning)=0;
+                        player->nShards[nAreaIndex]=1;
                     }
                     break;
                 default:
@@ -178,12 +179,18 @@ void runArea(Player* player, int nAreaIndex){
             player->nPlayerPos[1]=sArea.sFastTravels[1].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[1].nLocation[2];
             break;
+        case 1:
+            sArea=initializeRayaLucaria();
+            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            break;
     }
     do{
         printf("Player Money: %d", player->nRunes); // Delete me
         displayArea(player, sArea);
         printf("> ");
         scanf(" %c", &cInput);
-        processUserInputArea(&nRunning, &sArea, player, cInput);
+        processUserInputArea(nAreaIndex, &nRunning, &sArea, player, cInput);
     }while(cInput!='0'&&nRunning==1);
 }

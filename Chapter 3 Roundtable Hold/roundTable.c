@@ -6,7 +6,9 @@ void processInputFastTravelMenu(Player* player, char cInput){
         case '1': 
             runArea(player, 0); // Stormveil Castle
             break;
-        case '2': printf("runRayaLucariaAcademy\n"); break;
+        case '2':
+            runArea(player, 1);
+            break;
         case '6': printf("runEldenThrone\n"); break;
         case '0': printf("Back to RoundTable\n"); break;
         default: printf("Invalid Input\n"); break;
@@ -160,7 +162,16 @@ void displayRoundTable(Player *player, int *nTestRunes){
     }
     printf("▐▐╱╲▌▌\n");
     
-    printf("\t▐▐╲╱▌▌        Shards  ◈ ◆ ◈ ◈ ◇ ◇                                       ▐▐╲╱▌▌\n");
+    // printf("\t▐▐╲╱▌▌        Shards  ◈ ◆ ◈ ◈ ◇ ◇                                       ▐▐╲╱▌▌\n");
+    printf("\t▐▐╲╱▌▌        Shards ");
+    for (int nShards=0; nShards<7; nShards++){
+        if (player->nShards[nShards]==1){
+            printf(" ◆");
+        } else {
+            printf(" ◇");
+        }
+    }
+    printf("                                     ▐▐╲╱▌▌\n");
     printf("\t▐▐╱╲▌▌       ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌                   ▐▐╱╲▌▌\n");
     printf("\t▐▐╲╱▌▌        1▸ Fast Travel        4▸ Shop                             ▐▐╲╱▌▌\n");
     printf("\t▐▐╱╲▌▌        2▸ Level Up           5▸ Save                             ▐▐╱╲▌▌\n");
