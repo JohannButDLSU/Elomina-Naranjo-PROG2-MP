@@ -18,9 +18,9 @@ void displayTitle(){
     printMiddleBorder1("^ TEMPORARY TITLE XD");
     printYBorder1();
     printf("\n");
-    printChoiceBorder1("[1] New Game");
-    printChoiceBorder1("[2] Continue");
-    printChoiceBorder1("[0] Exit");
+    printChoiceBorder1("[1] New Game", 4);
+    printChoiceBorder1("[2] Load Game", 4);
+    printChoiceBorder1("[0] Exit", 4);
     printChoiceBorderless1("[INPUT] : ");
 }
 

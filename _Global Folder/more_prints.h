@@ -40,13 +40,15 @@ void printMiddleBorder1(String strTextToPrint){
     printf("\n");
 }
 
-void printChoiceBorder1(String strTextToPrint){
+void printChoiceBorder1(String strTextToPrint, int nPadding){
+    for (int i = 0; i < (CHAPTER_1_BORDER_LENGTH - strlen(strTextToPrint)) / 2 - 1 - nPadding; i++) printf(" ");
     printf("║");
-    for (int i = 0; i < (CHAPTER_1_BORDER_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
+    for (int i = 0; i < nPadding; i++) printf(" ");
     printf("%s", strTextToPrint);
-    for (int i = 0; i < (CHAPTER_1_BORDER_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
     if (strlen(strTextToPrint) % 2 == 1) printf(" ");
+    for (int i = 0; i < nPadding; i++) printf(" ");
     printf("║");
+    for (int i = 0; i < (CHAPTER_1_BORDER_LENGTH - strlen(strTextToPrint)) / 2 - 1 - nPadding; i++) printf(" ");
     printf("\n");
 }
 
