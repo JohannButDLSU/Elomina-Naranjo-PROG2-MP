@@ -14,6 +14,9 @@ void runRoundTable(Player *player, int *nTestRunes, int *aTestInventory){
 
 //Fast Travel Menu
 void processInputFastTravelMenu(Player* player, char cInput){
+    // Imma put variables here again to fix da stupid bug
+    int nShardsCompleted;
+
     switch (cInput){
         case '1': 
             runArea(player, 1); // Stormveil Castle
@@ -22,7 +25,7 @@ void processInputFastTravelMenu(Player* player, char cInput){
             runArea(player, 2); // Raya Lucaria
             break;
         case '6': //Leyndell Royal Capital
-            int nShardsCompleted=0;
+            nShardsCompleted=0;
             for (int nShards=0; nShards<7; nShards++){
                 if (player->nShards[nShards]==1){
                     nShardsCompleted++;

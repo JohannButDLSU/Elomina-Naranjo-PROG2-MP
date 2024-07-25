@@ -68,6 +68,7 @@ void displayArea(Player* player, struct sAreaData sArea){
     int nUpperLowerMargin=(15-sArea.sFloors[player->nPlayerPos[2]].nDimensions[0])/2;
     int nPlayerLanding=0;
     int nAreaSizeLimit=15;
+    int nFastTravelIndex;
 
     for (int nRow=0; nRow<nAreaSizeLimit; nRow++){
         for (int nBoxLine=0; nBoxLine<2; nBoxLine++){
@@ -123,7 +124,7 @@ void displayArea(Player* player, struct sAreaData sArea){
                         }
                         break;
                     case 5:
-                        int nFastTravelIndex=0;
+                        nFastTravelIndex=0;
                         for (int nFastTravelTile=0; nFastTravelTile<sArea.nTotalFastTravelTiles; nFastTravelTile++){
                             if (sArea.sFastTravels[nFastTravelTile].nLocation[2]==player->nPlayerPos[2]){
                                 nFastTravelIndex=nFastTravelTile;
@@ -154,6 +155,9 @@ void displayArea(Player* player, struct sAreaData sArea){
 }
 
 void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea, Player* player,  char cInput){
+
+    int nLandedFastTravel;
+
     switch (cInput){
         case 'a':
         case 'A':
@@ -205,7 +209,7 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
                     }
                     break;
                 case 5:
-                    int nLandedFastTravel=0;
+                    nLandedFastTravel=0;
                     int nCounter=0;
                     for (int nFastTravelTile=0; nFastTravelTile<sArea->nTotalFastTravelTiles; nFastTravelTile++){
                         for (int nCoordinate=0; nCoordinate<3; nCoordinate++){
