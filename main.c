@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include "_Global Folder/colors.h"
 
 #include "_Global Folder/gen_struct_manager.h"
 #include "_Global Folder/player_struct_manager.h"

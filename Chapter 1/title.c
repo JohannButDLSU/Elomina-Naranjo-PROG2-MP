@@ -9,18 +9,27 @@ void runTitle(){
 }
 
 void displayTitle(){
-    printYBorder1();
-    printMiddleBorder1("EEEEE L     DDD   EEEEE N   N   RRRR ");
-    printMiddleBorder1("E     L     D  D  E     NN  N   R   R");
-    printMiddleBorder1("EEEEE L     D   D EEEEE N N N   RRRR ");
-    printMiddleBorder1("E     L     D  D  E     N  NN   R  R ");
-    printMiddleBorder1("EEEEE LLLLL DDD   EEEEE N   N   R   R");
-    printMiddleBorder1("^ TEMPORARY TITLE XD");
-    printYBorder1();
+    printYBorder1(0, WHITE);
+        printc(0, DEEP_RED, "                              ████████████  ██            ████████    ████████████  ████    ██  \n");
+        printc(0, DEEP_RED, "                             ██████████    ████          ██████████  ██████████    ██████  ████\n");
+        printc(0, DEEP_RED, "                            ████          ████          ████  ████  ████          ██████  ████\n");
+             printc(0, RED, "                           ████████      ████          ████  ████  ████████      ████  ██████\n");
+        printc(0, DEEP_RED, "                          ████          ████          ████  ████  ████          ████  ██████\n");
+        printc(0, DEEP_RED, "                         ██████████    ████████████  ██████████  ██████████    ████    ████\n");
+        printc(0, DEEP_RED, "                        ████████████  ████████████  ████████    ████████████    ██    ████\n");
+        printf("\n");
+          printc(0, ORANGE, "                               ██████████      ████████      ████████    ██        ██  ████████████\n");
+          printc(0, ORANGE, "                              ████    ████  ████    ████  ████      ██  ████    ████  ██████████  \n");
+          printc(0, ORANGE, "                             ████    ████  ████    ████  ████          ████    ████  ████        \n");
+          printc(0, YELLOW, "                            ██████████    ████    ████  ████  ████    ████    ████  ████████    \n");
+          printc(0, ORANGE, "                           ████  ████    ████    ████  ████    ████  ████    ████  ████        \n");
+          printc(0, ORANGE, "                          ████    ████  ████    ████  ████    ████  ████    ████  ██████████  \n");
+          printc(0, ORANGE, "                         ████      ████  ████████      ██████████    ████████    ████████████\n");
+    printYBorder1(0, WHITE);
     printf("\n");
-    printChoiceBorder1("[1] New Game", 4);
-    printChoiceBorder1("[2] Load Game", 4);
-    printChoiceBorder1("[0] Exit", 4);
+    printChoiceBorder1(0, WHITE, "    [1] New Game    ", 4);
+    printChoiceBorder1(0, WHITE, "    [2] Load Game    ", 4);
+    printChoiceBorder1(0, RED, "    [0] Exit    ", 4);
     printChoiceBorderless1("[INPUT] : ");
 }
 
@@ -38,15 +47,15 @@ void processTitleInput(char* cInput){
     switch (*cInput)
     {
     case '1':
-        printf("Game started!\n");
+        printf("\n\n\n\n\n");
         runCharacterCreation();
         break;
     case '2': // Continue Feature. Player can select a save, load, and continue their game from roundtable
+        printf("\n\n\n\n\n");
         player =setPlayer();
         nSavingAllowed=0;
         nGameLoaded=0; // Checks if the player player actually loaded a game or just opted to go back to the title screen. 0 = Back; 1 = Load
         runSaveMenu(&nGameLoaded, nSavingAllowed, &player); // nSavingAllowed = 0. Players cannot save from the title screen; only load
-        printf("Game continued!\n");
         if(nGameLoaded==1){
             nTestRunes=100000;
             runRoundTable(&player, &nTestRunes, aTestInventory);

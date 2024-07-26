@@ -13,23 +13,29 @@ void runCharacterCreation(){
 }
 
 void displayCharacterCreation(Player player){
-    printf("\t▩═══════════════════════════════════════════════════════════════════════▩\n");
-    printf("\t║\tcreate the dudes face on the right side\t\t\t\t║\n");
-    printf("\t║\t\t\t\t\t\t\t\t\n");
+    printYBorder2(0, 0); printYBorderPlayer();
     if (strcmp(player.strJobClass, "Jobless :(")){
-        printf("\t║\tName : %s\n", player.strName);
-        printf("\t║\tClass : %s\n", player.strJobClass);
-        printf("\t║\n");
-        printf("\t║\tLevel : %d\n", player.nLevel);
-        printf("\t║\tHP : %d\n", player.nHealth);
-        printf("\t║\tEndurance : %d\n", player.nEndurance);
-        printf("\t║\tDexterity : %d\n", player.nDexterity);
-        printf("\t║\tStrength : %d\n", player.nStrength);
-        printf("\t║\tIntelligence : %d\n", player.nIntelligence);
-        printf("\t║\tFaith : %d\n", player.nFaith);
+        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 0);
+        printMiddleBorder2(0, WHITE, player.strName);printMiddleBorderPlayer(player, 1);
+        printMiddleBorder2(0, WHITE, player.strJobClass);printMiddleBorderPlayer(player, 2);
+        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 3);
+        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 4);
+        printWintMiddleBorder2(0, WHITE, "Level : ", player.nLevel);printMiddleBorderPlayer(player, 5);
+        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 6);
+        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 7);
+        printWintMiddleBorder2(0, WHITE, "Health : ", player.nHealth);printMiddleBorderPlayer(player, 8);
+        printWintMiddleBorder2(0, WHITE, "Endurance : ", player.nEndurance);printMiddleBorderPlayer(player, 9);
+        printWintMiddleBorder2(0, WHITE, "Dexterity : ", player.nDexterity);printMiddleBorderPlayer(player, 10);
+        printWintMiddleBorder2(0, WHITE, "Strength : ", player.nStrength);printMiddleBorderPlayer(player, 11);
+        printWintMiddleBorder2(0, WHITE, "Intelligence : ", player.nIntelligence);printMiddleBorderPlayer(player, 12);
+        printWintMiddleBorder2(0, WHITE, "Faith : ", player.nFaith);printMiddleBorderPlayer(player, 13);
+        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 14);
+        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 15);
     }
-    printf("\t║\n");
-    printf("\t▩═════════════════════════════════════════════════════════════════════▩\n");
+    else{
+        printMiddleBorder2(0, WHITE, "Hey You! Get a Job Class! (Press [2])");printf("▩  Your character will appear here!  ▩\n");
+    }
+    printYBorder2(0, 0); printYBorderPlayer();
     printf("\t\t[1] Change Name\n");
     printf("\t\t[2] Change Class\n");
     printf("\t\t[3] Continue\n");
