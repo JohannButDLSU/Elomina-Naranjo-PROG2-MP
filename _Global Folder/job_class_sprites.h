@@ -143,11 +143,47 @@ const String WARRIOR_ROWS[16] = {
 
 // ----------------------HERO--------------------------
 
-#define H1 "\x1b[38;5;159m██\x1b[0m"   // BACKGROUND
-#define H2 "\x1b[38;5;17m██\x1b[0m"   // HAIR LIGHT
-#define H3 "\x1b[38;5;75m██\x1b[0m"   // HAIR NORMAL
-#define H4 "\x1b[38;5;69m██\x1b[0m"     // HEADBAND LIGHT
-#define H5 "\x1b[38;5;93m██\x1b[0m"   // HEADBAND NORMAL
-#define H6 "\x1b[38;5;63m██\x1b[0m"   // SKIN SHADOW
-#define H7 "\x1b[38;5;172m██\x1b[0m"    // SKIN NORMAL
-#define H8 "\x1b[38;5;179m██\x1b[0m"    // NECKPIECE
+#define H1 "\x1b[38;5;147m██\x1b[0m"   // BACKGROUND
+#define H2 "\x1b[38;5;183m██\x1b[0m"   // HAIR LIGHT
+#define H3 "\x1b[38;5;235m██\x1b[0m"   // HAIR NORMAL
+#define H4 "\x1b[38;5;247m██\x1b[0m"     // HEADBAND LIGHT
+#define H5 "\x1b[38;5;240m██\x1b[0m"   // HEADBAND NORMAL
+#define H6 "\x1b[38;5;138m██\x1b[0m"   // SKIN SHADOW
+#define H7 "\x1b[38;5;180m██\x1b[0m"    // SKIN NORMAL
+#define H8 "\x1b[38;5;92m██\x1b[0m"    // NECKPIECE
+
+#define HERO_ROW_0  H1 H1 H1 H2 H2 H2 H3 H3 H3 H3 H2 H2 H2 H1 H1 H1
+#define HERO_ROW_1  H1 H1 H2 H3 H3 H3 H3 H3 H3 H3 H3 H3 H3 H2 H1 H1
+#define HERO_ROW_2  H1 H1 H3 H3 H3 H3 H3 H3 H3 H3 H3 H3 H3 H3 H1 H1
+#define HERO_ROW_3  H1 H2 H3 H4 H4 H3 H4 H4 H4 H4 H3 H4 H4 H3 H2 H1
+#define HERO_ROW_4  H1 H3 H3 H5 H5 H3 H5 H5 H5 H5 H3 H5 H5 H3 H3 H1
+#define HERO_ROW_5  H1 H3 H5 H5 H3 H5 H5 H5 H5 H5 H5 H3 H5 H5 H3 H1
+#define HERO_ROW_6  H1 H3 H5 H5 H3 H5 H5 H5 H5 H5 H5 H3 H5 H5 H3 H1
+#define HERO_ROW_7  H1 H3 H3 H3 H6 H6 H6 H6 H6 H6 H6 H6 H3 H3 H3 H1
+#define HERO_ROW_8  H1 H3 H3 H3 H6 H6 H6 H6 H6 H6 H6 H6 H3 H3 H3 H1
+#define HERO_ROW_9  H1 H3 H6 H3 H6 H7 H7 H7 H7 H7 H7 H6 H3 H6 H3 H1
+#define HERO_ROW_10 H1 H3 H6 H3 H7 H7 H7 H3 H3 H7 H7 H7 H3 H6 H3 H1
+#define HERO_ROW_11 H1 H3 H3 H7 H3 H7 H7 H6 H6 H7 H7 H3 H7 H3 H3 H1
+#define HERO_ROW_12 H3 H3 H1 H6 H3 H7 H7 H7 H7 H7 H7 H3 H6 H1 H3 H3
+#define HERO_ROW_13 H3 H3 H8 H3 H6 H7 H7 H3 H3 H7 H7 H6 H3 H8 H3 H3
+#define HERO_ROW_14 H7 H7 H8 H8 H8 H6 H7 H7 H7 H7 H6 H8 H8 H8 H7 H7
+#define HERO_ROW_15 H7 H7 H7 H8 H8 H8 H8 H8 H8 H8 H8 H8 H8 H7 H7 H7
+
+const String HERO_ROWS[16] = {
+   HERO_ROW_0,
+   HERO_ROW_1,
+   HERO_ROW_2,
+   HERO_ROW_3,
+   HERO_ROW_4,
+   HERO_ROW_5,
+   HERO_ROW_6,
+   HERO_ROW_7,
+   HERO_ROW_8,
+   HERO_ROW_9,
+   HERO_ROW_10,
+   HERO_ROW_11,
+   HERO_ROW_12,
+   HERO_ROW_13,
+   HERO_ROW_14,
+   HERO_ROW_15
+};
