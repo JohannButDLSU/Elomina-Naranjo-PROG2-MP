@@ -1,7 +1,5 @@
 #include "enemy_battle.h"
 
-void runEnemyBattle()
-
 void runEnemyBattle(struct sAreaData* sArea, Player* player){
     printf("runEnemyBattle\n\n");
     printf("Name : %s\n", player->strName);

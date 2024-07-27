@@ -12,8 +12,8 @@ THIS FILE WILL CONTAIN FUNCTIONS TO MAKE OUR PRINTING EASIER !!!
 //     printf("\033[%d;%dH", nYPos, nXPos);
 // }
 // commented out, may not use bc glitchy
-void printc(int colorBG, int colorFG, char* flavorText){
-    printf("\033[1m\x1b[48;5;%dm\x1b[38;5;%dm%s\x1b[0m", colorBG, colorFG, flavorText);
+void printc(int nColorBG, int nColorFG, char* pFlavorText){
+    printf("\033[1m\x1b[48;5;%dm\x1b[38;5;%dm%s\x1b[0m", nColorBG, nColorFG, pFlavorText);
 }
 
 void printRepeatedly(int nRepetition, char* flavorText){
@@ -35,6 +35,12 @@ void printCentered(String strTextToPrint, int nLength){
     printf("\n");
 }
 
+void printcCentered(int nColorBG, int ncColorFG, String strTextToPrint, int nLength){
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
+    printc(nColorBG, ncColorFG, strTextToPrint);
+    printf("\n");
+}
+
 // BORDERS IN PRINTING, USEFUL FOR PRETTIFYING THE PRINTING OF CHAPTERS
 #define BORDER_1_LENGTH 120
 #define BORDER_2_LENGTH 70
@@ -43,8 +49,8 @@ void printCentered(String strTextToPrint, int nLength){
 
 void printYBorder1(int colorBG, int colorFG){
     for (int i = 0; i < BORDER_1_LENGTH; i++){
-        if (i == 0 || i == BORDER_1_LENGTH - 1) printf("▩");
-        else printf("═");
+        if (i == 0 || i == BORDER_1_LENGTH - 1) printc(colorBG, colorFG, "▩");
+        else printc(colorBG, colorFG, "═");
     }
     printf("\n");
 }
