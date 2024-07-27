@@ -38,17 +38,11 @@ struct sPlayerSprite{
    SpriteString strRowPixels[16];
 }; typedef struct sPlayerSprite PlayerSprite;
 
-// integer Runes -> money?
-// integer Shards -> keys after completing stage
 
 // struct Inventory -> items n shtuff, contains these:
    // int Potions -> ???
    // structs Weapons
    // struct armor
-
-struct Weapon{
-   int type;
-};
 
 // -----------------------------------
 // Initializations
