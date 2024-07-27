@@ -7,7 +7,7 @@ THIS FILE WILL CONTAIN FUNCTIONS TO MAKE OUR PRINTING EASIER !!!
 // THE GUIDE TO COLOURS - replace
 // BG \033[1m\x1b[48;5;XXXm
 // FG \x1b[38;5;XXXm
-// STOP \x1b[0m
+#define COLORSTOP "\x1b[0m"
 
 // void cursorPos(int nXPos, int nYPos){ // THIS FUNCTION MOVES CURSOR
 //     printf("\033[%d;%dH", nYPos, nXPos);
@@ -28,6 +28,12 @@ void printAllColours(){
         printc(i, 0, "looks like dis                                                                            yep");
         printf("code: %d\n", i);
     }
+}
+
+void printCentered(String strTextToPrint, int nLength){
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
+    printf("%s", strTextToPrint);
+    printf("\n");
 }
 
 // BORDERS IN PRINTING, USEFUL FOR PRETTIFYING THE PRINTING OF CHAPTERS
@@ -58,7 +64,9 @@ void printChoiceBorder1(int colorBG, int colorFG, String strTextToPrint, int nPa
     for (int i = 0; i < (BORDER_1_LENGTH - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
     printc(colorBG, colorFG, "-=+║O");
     for (int i = 0; i < nPadding; i++) printf(" ");
-    printc(colorBG, colorFG, strTextToPrint);
+    printf("%s", COLORSTOP);
+    printf("%s", strTextToPrint);
+    printf("%s", COLORSTOP);
     if (strlen(strTextToPrint) % 2 == 1) printf(" ");
     for (int i = 0; i < nPadding; i++) printf(" ");
     printc(colorBG, colorFG, "O║+=-");
@@ -112,15 +120,18 @@ void printChoiceBorder2(int colorBG, int colorFG, String strTextToPrint, int nPa
     for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
     printc(colorBG, colorFG, "-=+║O");
     for (int i = 0; i < nPadding; i++) printf(" ");
-    printc(colorBG, colorFG, strTextToPrint);
+    printf("%s", COLORSTOP);
+    printf("%s", strTextToPrint);
+    printf("%s", COLORSTOP);
     if (strlen(strTextToPrint) % 2 == 1) printf(" ");
     for (int i = 0; i < nPadding; i++) printf(" ");
     printc(colorBG, colorFG, "O║+=-");
     for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
-    // printf("\n");
+    printf("\n");
 }
 
 void printChoiceBorderless2(String strTextToPrint){
+    printf("\n");
     for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
     printf("%s", strTextToPrint);
 }

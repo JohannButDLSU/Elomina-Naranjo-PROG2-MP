@@ -15,6 +15,7 @@
 #define BRIGHT_CYAN  14
 #define BRIGHT_WHITE 15
 #define ORANGE       208
+#define DEEP_ORANGE  210
 #define DEEP_RED     124
 #define DEEP_GREEN   28
 #define DEEP_YELLOW  136
