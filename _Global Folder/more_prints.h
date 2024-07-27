@@ -134,14 +134,14 @@ void printYBorderPlayer(){
 }
 
 void printMiddleBorderPlayer(Player player, int nRow){
-    printf("▩");
+    printf("║");
 
     if (!strcmp(player.strJobClass, "Vagabond")) printf("%s", VAGABOND_ROWS[nRow]);
     if (!strcmp(player.strJobClass, "Samurai")) printf("%s", SAMURAI_ROWS[nRow]);
     if (!strcmp(player.strJobClass, "Warrior")) printf("%s", WARRIOR_ROWS[nRow]);
     if (!strcmp(player.strJobClass, "Hero")) printf("%s", HERO_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Astrologer")) printf("%s", VAGABOND_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Prophet")) printf("%s", VAGABOND_ROWS[nRow]);
+    if (!strcmp(player.strJobClass, "Astrologer")) printf("%s", ASTROLOGER_ROWS[nRow]);
+    if (!strcmp(player.strJobClass, "Prophet")) printf("%s", PROPHET_ROWS[nRow]);
 
-    printf("▩\n");
+    printf("║\n");
 }

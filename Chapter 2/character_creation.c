@@ -13,6 +13,7 @@ void runCharacterCreation(){
 }
 
 void displayCharacterCreation(Player player){
+    printf("\n");
     printYBorder2(0, 0); printYBorderPlayer();
     if (strcmp(player.strJobClass, "Jobless :(")){
         printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 0);
@@ -33,7 +34,7 @@ void displayCharacterCreation(Player player){
         printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 15);
     }
     else{
-        printMiddleBorder2(0, WHITE, "Hey You! Get a Job Class! (Press [2])");printf("▩  Your character will be here!  ▩\n");
+        printMiddleBorder2(0, WHITE, "Hey You! Get a Job Class! (Press [2])");printf("║  Your character will be here!  ║\n");
     }
     printYBorder2(0, 0); printYBorderPlayer();
     printf("\t\t[1] Change Name\n");
@@ -55,7 +56,7 @@ void processCharacterCreationInput(Player* player, char* cInput){
             printf("enter new name : ");
             char strNewName[26];
             scanf(" %[^\n]%*c", strNewName);
-            strcpy((*player).strName, strNewName);
+            strncpy((*player).strName, strNewName, 25);
             break;
         case '2':
             printf("Choose a Job Class\n");
