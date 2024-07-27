@@ -27,9 +27,9 @@ void displayTitle(){
           printc(0, ORANGE, "                         ████      ████  ████████      ██████████    ████████    ████████████\n");
     printYBorder1(0, WHITE);
     printf("\n");
-    printChoiceBorder1(0, WHITE, "    [1] New Game    ", 4);
-    printChoiceBorder1(0, WHITE, "    [2] Load Game    ", 4);
-    printChoiceBorder1(0, RED, "    [0] Exit    ", 4);
+    printChoiceBorder1(0, WHITE, "[1] New Game", 4);
+    printChoiceBorder1(0, WHITE, "[2] Load Game", 4);
+    printChoiceBorder1(0, GRAY, "[0] Exit", 4);
     printChoiceBorderless1("[INPUT] : ");
 }
 

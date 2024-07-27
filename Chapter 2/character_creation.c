@@ -13,34 +13,35 @@ void runCharacterCreation(){
 }
 
 void displayCharacterCreation(Player player){
+    printf("\n");
     printYBorder2(0, 0); printYBorderPlayer();
     if (strcmp(player.strJobClass, "Jobless :(")){
-        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 0);
-        printMiddleBorder2(0, WHITE, player.strName);printMiddleBorderPlayer(player, 1);
-        printMiddleBorder2(0, WHITE, player.strJobClass);printMiddleBorderPlayer(player, 2);
-        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 3);
-        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 4);
-        printWintMiddleBorder2(0, WHITE, "Level : ", player.nLevel);printMiddleBorderPlayer(player, 5);
-        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 6);
-        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 7);
-        printWintMiddleBorder2(0, WHITE, "Health : ", player.nHealth);printMiddleBorderPlayer(player, 8);
-        printWintMiddleBorder2(0, WHITE, "Endurance : ", player.nEndurance);printMiddleBorderPlayer(player, 9);
-        printWintMiddleBorder2(0, WHITE, "Dexterity : ", player.nDexterity);printMiddleBorderPlayer(player, 10);
-        printWintMiddleBorder2(0, WHITE, "Strength : ", player.nStrength);printMiddleBorderPlayer(player, 11);
-        printWintMiddleBorder2(0, WHITE, "Intelligence : ", player.nIntelligence);printMiddleBorderPlayer(player, 12);
-        printWintMiddleBorder2(0, WHITE, "Faith : ", player.nFaith);printMiddleBorderPlayer(player, 13);
-        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 14);
-        printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 15);
+        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 0);
+        printMiddleBorder2(0, WHITE, player.strName);                               printMiddleBorderPlayer(player, 1);
+        printMiddleBorder2(0, WHITE, player.strJobClass);                           printMiddleBorderPlayer(player, 2);
+        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 3);
+        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 4);
+        printWintMiddleBorder2(0, WHITE, "Level : ", player.nLevel);                printMiddleBorderPlayer(player, 5);
+        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 6);
+        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 7);
+        printWintMiddleBorder2(0, WHITE, "Health : ", player.nHealth);              printMiddleBorderPlayer(player, 8);
+        printWintMiddleBorder2(0, WHITE, "Endurance : ", player.nEndurance);        printMiddleBorderPlayer(player, 9);
+        printWintMiddleBorder2(0, WHITE, "Dexterity : ", player.nDexterity);        printMiddleBorderPlayer(player, 10);
+        printWintMiddleBorder2(0, WHITE, "Strength : ", player.nStrength);          printMiddleBorderPlayer(player, 11);
+        printWintMiddleBorder2(0, WHITE, "Intelligence : ", player.nIntelligence);  printMiddleBorderPlayer(player, 12);
+        printWintMiddleBorder2(0, WHITE, "Faith : ", player.nFaith);                printMiddleBorderPlayer(player, 13);
+        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 14);
+        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 15);
     }
     else{
-        printMiddleBorder2(0, WHITE, "Hey You! Get a Job Class! (Press [2])");printf("▩  Your character will be here!  ▩\n");
+        printMiddleBorder2(0, WHITE, "Hey You! Get a Job Class! (Press [2])");      printf("║  Your character will be here!  ║\n");
     }
     printYBorder2(0, 0); printYBorderPlayer();
-    printf("\t\t[1] Change Name\n");
-    printf("\t\t[2] Change Class\n");
-    printf("\t\t[3] Continue\n");
-    printf("\t\t[0] Back\n");
-    printf("\t\t[INPUT] : ");
+    printChoiceBorder2(0, WHITE, "[1] Change Name", 3);
+    printChoiceBorder2(0, WHITE, "[2] Change Class", 3);
+    printChoiceBorder2(0, GREEN, "[3] Continue", 3);
+    printChoiceBorder2(0, GRAY, "[0] Back", 3);
+    printChoiceBorderless2("[INPUT] : ");
 }
 
 void processCharacterCreationInput(Player* player, char* cInput){
@@ -52,26 +53,43 @@ void processCharacterCreationInput(Player* player, char* cInput){
     switch (*cInput)
     {
         case '1':
-            printf("enter new name : ");
+            printf("\n");
+            printCentered("Enter a new name!", BORDER_2_LENGTH);
+            printChoiceBorderless2("[INPUT] : ");
+
             char strNewName[26];
             scanf(" %[^\n]%*c", strNewName);
-            strcpy((*player).strName, strNewName);
+            strncpy((*player).strName, strNewName, 25);
+
             break;
         case '2':
-            printf("Choose a Job Class\n");
-            printf("[1] Vagabond\n");
-            printf("[2] Samurai\n");
-            printf("[3] Warrior\n");
-            printf("[4] Hero\n");
-            printf("[5] Astrologer\n");
-            printf("[6] Prophet\n");
-            printf("[0] Back\n");
-            printf("[INPUT] : ");
+            printf("\n");
+            printCentered("   Choose a Job Class!", BORDER_2_LENGTH);
+            printf("\n");
+            printChoiceBorder2(0, DEEP_MAGENTA, "[1] Vagabond", 3);
+            printChoiceBorder2(0, DEEP_YELLOW, "[2] Samurai", 3);
+            printChoiceBorder2(0, DEEP_CYAN, "[3] Warrior", 3);
+            printChoiceBorder2(0, BLUE, "[4] Hero", 5);
+            printChoiceBorder2(0, MAGENTA, "[5] Astrologer", 2);
+            printChoiceBorder2(0, DEEP_ORANGE, "[6] Prophet", 3);
+            printf("\n");
+            printChoiceBorder2(0, GRAY, "[0] Back", 3);
+            printChoiceBorderless2("[INPUT] : ");
             char cJobClassInput = ' ';
             scanf(" %c", &cJobClassInput);
             *player = setPlayerJobClass(*player, cJobClassInput);
             break;
         case '3':
+            if (strcmp(player->strJobClass, "Jobless :(") == 0){
+                printf("\n");
+                printCentered("You need to have a Job Class to proceed!", BORDER_2_LENGTH);
+                break;
+            }
+            else if (strcmp(player->strName, "Unnamed Bozo xD") == 0){
+                printf("\n");
+                printCentered("You are an unnamed bozo! Choose a name to proceed.", BORDER_2_LENGTH);
+                break;
+            }
             nTestRunes=500;
             runRoundTable(player, &nTestRunes, aTestInventory);
             // There is no "break;"" line. From roundtable, the screen should exit to the title screen and not the character creation screen

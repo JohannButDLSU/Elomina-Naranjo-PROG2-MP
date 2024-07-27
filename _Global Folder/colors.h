@@ -15,6 +15,7 @@
 #define BRIGHT_CYAN  14
 #define BRIGHT_WHITE 15
 #define ORANGE       208
+#define DEEP_ORANGE  210
 #define DEEP_RED     124
 #define DEEP_GREEN   28
 #define DEEP_YELLOW  136
@@ -23,3 +24,5 @@
 #define DEEP_CYAN    24
 #define DARK_GRAY    239
 #define LIGHT_GRAY   250
+
+#define COLORSTOP "\x1b[0m"
