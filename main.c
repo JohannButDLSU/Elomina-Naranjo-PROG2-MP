@@ -4,6 +4,7 @@
 #include "_Global Folder/colors.h"
 
 #include "_Global Folder/gen_struct_manager.h"
+#include "_Global Folder/job_class_sprites.h"
 #include "_Global Folder/player_struct_manager.h"
 #include "_Global Folder/more_prints.h"
 
@@ -22,6 +23,7 @@
 #include "Chapter 4 Area/spawnTile.c"
 
 int main(){
+    printAllColours();
     runTitle();
     return 0;
 }

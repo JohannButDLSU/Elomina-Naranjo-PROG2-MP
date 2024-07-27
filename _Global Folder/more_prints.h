@@ -4,6 +4,11 @@ THIS FILE WILL CONTAIN FUNCTIONS TO MAKE OUR PRINTING EASIER !!!
 =================================================================
 */
 
+// THE GUIDE TO COLOURS - replace
+// BG \033[1m\x1b[48;5;XXXm
+// FG \x1b[38;5;XXXm
+// STOP \x1b[0m
+
 // void cursorPos(int nXPos, int nYPos){ // THIS FUNCTION MOVES CURSOR
 //     printf("\033[%d;%dH", nYPos, nXPos);
 // }
@@ -132,8 +137,8 @@ void printMiddleBorderPlayer(Player player, int nRow){
     printf("▩");
 
     if (!strcmp(player.strJobClass, "Vagabond")) printf("%s", VAGABOND_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Samurai")) printf("%s", VAGABOND_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Warrior")) printf("%s", VAGABOND_ROWS[nRow]);
+    if (!strcmp(player.strJobClass, "Samurai")) printf("%s", SAMURAI_ROWS[nRow]);
+    if (!strcmp(player.strJobClass, "Warrior")) printf("%s", WARRIOR_ROWS[nRow]);
     if (!strcmp(player.strJobClass, "Hero")) printf("%s", VAGABOND_ROWS[nRow]);
     if (!strcmp(player.strJobClass, "Astrologer")) printf("%s", VAGABOND_ROWS[nRow]);
     if (!strcmp(player.strJobClass, "Prophet")) printf("%s", VAGABOND_ROWS[nRow]);

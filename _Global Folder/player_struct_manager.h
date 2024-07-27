@@ -1,41 +1,5 @@
 #pragma once
 
-#define VAGABOND_ROW_0  "████████████0███████████████████"
-#define VAGABOND_ROW_1  "█████████████1██████████████████"
-#define VAGABOND_ROW_2  "██████████████2█████████████████"
-#define VAGABOND_ROW_3  "███████████████3████████████████"
-#define VAGABOND_ROW_4  "████████████████████████████████"
-#define VAGABOND_ROW_5  "████████████████████████████████"
-#define VAGABOND_ROW_6  "████████████████████████████████"
-#define VAGABOND_ROW_7  "vagabond████████████████████████"
-#define VAGABOND_ROW_8  "████████████████████████████████"
-#define VAGABOND_ROW_9  "████████████████████████████████"
-#define VAGABOND_ROW_10 "████████████████████████████████"
-#define VAGABOND_ROW_11 "████████████████████████████████"
-#define VAGABOND_ROW_12 "████████████████████████████████"
-#define VAGABOND_ROW_13 "████████████████████████████████"
-#define VAGABOND_ROW_14 "████████████████████████████████"
-#define VAGABOND_ROW_15 "████████████████████████████████"
-
-const String VAGABOND_ROWS[16] = {
-   VAGABOND_ROW_0,
-   VAGABOND_ROW_1,
-   VAGABOND_ROW_2,
-   VAGABOND_ROW_3,
-   VAGABOND_ROW_4,
-   VAGABOND_ROW_5,
-   VAGABOND_ROW_6,
-   VAGABOND_ROW_7,
-   VAGABOND_ROW_8,
-   VAGABOND_ROW_9,
-   VAGABOND_ROW_10,
-   VAGABOND_ROW_11,
-   VAGABOND_ROW_12,
-   VAGABOND_ROW_13,
-   VAGABOND_ROW_14,
-   VAGABOND_ROW_15,
-};
-
 // -----------------------------------
 // the actual structs
 // -----------------------------------

@@ -33,7 +33,7 @@ void displayCharacterCreation(Player player){
         printMiddleBorder2(0, WHITE, "");printMiddleBorderPlayer(player, 15);
     }
     else{
-        printMiddleBorder2(0, WHITE, "Hey You! Get a Job Class! (Press [2])");printf("▩  Your character will appear here!  ▩\n");
+        printMiddleBorder2(0, WHITE, "Hey You! Get a Job Class! (Press [2])");printf("▩  Your character will be here!  ▩\n");
     }
     printYBorder2(0, 0); printYBorderPlayer();
     printf("\t\t[1] Change Name\n");
