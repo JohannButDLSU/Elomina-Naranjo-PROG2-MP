@@ -14,7 +14,7 @@ void runRoundTable(Player *player, int *nTestRunes, int *aTestInventory){
 
 //Fast Travel Menu
 void processInputFastTravelMenu(Player* player, char cInput){
-    // Imma put variables here again to fix da stupid bug
+    // Imma put variables here again to fix da stupig 
     int nShardsCompleted;
 
     switch (cInput){

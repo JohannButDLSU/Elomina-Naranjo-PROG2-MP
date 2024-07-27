@@ -7,6 +7,7 @@
 #include "_Global Folder/job_class_sprites.h"
 #include "_Global Folder/player_struct_manager.h"
 #include "_Global Folder/more_prints.h"
+#include "_Global Folder/enemy_details.h"
 
 #include "Chapter 1/title.c"
 
@@ -21,6 +22,8 @@
 #include "Chapter 4 Area/area.c"
 #include "Chapter 4 Area/initializeAreaData.c"
 #include "Chapter 4 Area/spawnTile.c"
+
+#include "Chapter 5/enemy_battle.c"
 
 int main(){
     printAllColours();
