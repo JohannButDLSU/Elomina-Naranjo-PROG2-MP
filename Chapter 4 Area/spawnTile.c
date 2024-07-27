@@ -13,8 +13,6 @@ void runTreasureTile(int nLandedSpawnTile, struct sAreaData* sArea, Player* play
     char cInput=' ';
     int nMoneyEarned=15;
     (player->nRunes)+=nMoneyEarned;
-    sArea->sFloors[player->nPlayerPos[2]].nLayout[player->nPlayerPos[0]][player->nPlayerPos[1]]=3;
-    sArea->sSpawns[nLandedSpawnTile].nActive=0;
 
     do{
         displayTreasureScreen(nMoneyEarned);
@@ -23,15 +21,8 @@ void runTreasureTile(int nLandedSpawnTile, struct sAreaData* sArea, Player* play
 }
 
 void runSpawnTile(struct sAreaData* sArea, Player* player){
-    // First check which spawn tile it is based on coordinates
-    int nLandedSpawnTile=0;
-    for (int nSpawnTile=0; nSpawnTile<(sArea->nTotalSpawnTiles); nSpawnTile++){
-        if (sArea->sSpawns[nSpawnTile].nLocation[0]==(player->nPlayerPos[0])&&sArea->sSpawns[nSpawnTile].nLocation[1]==(player->nPlayerPos[1])&&sArea->sSpawns[nSpawnTile].nLocation[2]==(player->nPlayerPos[2])){
-            nLandedSpawnTile=nSpawnTile; // Get the index of the spawntile the player landed on
-        }
-    }
-
-    if (sArea->sSpawns[nLandedSpawnTile].nActive==1){
-        runTreasureTile(nLandedSpawnTile, sArea, player);
-    }
+    // Randomize 75% Enemy 25% treasure
+    // runTreasureTile(nLandedSpawnTile, sArea, player);
+    runEnemyBattle(sArea, player);
+    sArea->sFloors[player->nPlayerPos[2]].nLayout[player->nPlayerPos[0]][player->nPlayerPos[1]]=3;
 }

@@ -3,6 +3,7 @@
 #include "string.h"
 #include "_Global Folder/colors.h"
 
+#include "_Global Folder/areaStructures.h"
 #include "_Global Folder/gen_struct_manager.h"
 #include "_Global Folder/job_class_sprites.h"
 #include "_Global Folder/player_struct_manager.h"
@@ -18,7 +19,6 @@
 #include "Chapter 3 Roundtable Hold/shop.c"
 #include "Chapter 3 Roundtable Hold/save.c"
 
-#include "Chapter 4 Area/areaStructures.h"
 #include "Chapter 4 Area/area.c"
 #include "Chapter 4 Area/initializeAreaData.c"
 #include "Chapter 4 Area/spawnTile.c"
@@ -26,7 +26,7 @@
 #include "Chapter 5/enemy_battle.c"
 
 int main(){
-    printAllColours();
+    // printAllColours();
     runTitle();
     return 0;
 }

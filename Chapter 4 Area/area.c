@@ -1,5 +1,4 @@
 #include "area.h"
-#include "spawnTile.h"
 
 void runArea(Player* player, int nAreaIndex){
     char cInput=' ';
@@ -8,23 +7,29 @@ void runArea(Player* player, int nAreaIndex){
     struct sAreaData sArea;
     switch (nAreaIndex){
         case 1:
+            sArea.nAreaIndex=nAreaIndex;
             sArea=initializeStormveilCastle();
+            // Player Spawn Coordinates
             player->nPlayerPos[0]=sArea.sFastTravels[1].nLocation[0];
             player->nPlayerPos[1]=sArea.sFastTravels[1].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[1].nLocation[2];
             break;
         case 2:
+            sArea.nAreaIndex=nAreaIndex;
             sArea=initializeRayaLucaria();
+            // Player Spawn Coordinates
             player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
             player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
             break;
-        case 6:
-            sArea=initializeLeyndellRoyalCapital();
-            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
-            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
-            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
-            break;
+        // case 6:
+        //     sArea.nAreaIndex=nAreaIndex;
+        //     sArea=initializeLeyndellRoyalCapital();
+        //     // Player Spawn Coordinates
+        //     player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+        //     player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+        //     player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+        //     break;
     }
     do{
         printf("Player Money: %d", player->nRunes); // Delete me
@@ -191,6 +196,8 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
                     break;
                 case 2: // Spawn tile
                     runSpawnTile(sArea, player);
+                    break;
+                case 3: // Consumed spawn tile
                     break;
                 case 4: // Boss Tile
                     // runBossBattle();
