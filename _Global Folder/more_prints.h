@@ -7,7 +7,6 @@ THIS FILE WILL CONTAIN FUNCTIONS TO MAKE OUR PRINTING EASIER !!!
 // THE GUIDE TO COLOURS - replace
 // BG \033[1m\x1b[48;5;XXXm
 // FG \x1b[38;5;XXXm
-#define COLORSTOP "\x1b[0m"
 
 // void cursorPos(int nXPos, int nYPos){ // THIS FUNCTION MOVES CURSOR
 //     printf("\033[%d;%dH", nYPos, nXPos);

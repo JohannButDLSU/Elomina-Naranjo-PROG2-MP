@@ -24,3 +24,5 @@
 #define DEEP_CYAN    24
 #define DARK_GRAY    239
 #define LIGHT_GRAY   250
+
+#define COLORSTOP "\x1b[0m"

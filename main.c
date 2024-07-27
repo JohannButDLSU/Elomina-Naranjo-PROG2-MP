@@ -26,7 +26,7 @@
 #include "Chapter 5/enemy_battle.c"
 
 int main(){
-    printAllColours();
+    // printAllColours();
     runTitle();
     return 0;
 }
