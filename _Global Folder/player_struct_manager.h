@@ -18,7 +18,7 @@ struct sPlayer{
 
    // Data for roundtable
    int nRunes;
-   int nShards[7]; // 7 shards for the 7 areas
+   int nShards[6]; // 6 shards for the 6 areas
    // Data for area
    int nPlayerPos[3]; // row, column, floor
 }; typedef struct sPlayer Player;

@@ -12,6 +12,8 @@ THIS FILE WILL CONTAIN FUNCTIONS TO MAKE OUR PRINTING EASIER !!!
 //     printf("\033[%d;%dH", nYPos, nXPos);
 // }
 // commented out, may not use bc glitchy
+#pragma once // Redefinition when I call this .h file in other .c files
+
 void printc(int nColorBG, int nColorFG, char* pFlavorText){
     printf("\033[1m\x1b[48;5;%dm\x1b[38;5;%dm%s\x1b[0m", nColorBG, nColorFG, pFlavorText);
 }

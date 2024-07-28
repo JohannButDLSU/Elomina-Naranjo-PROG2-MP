@@ -8,4 +8,7 @@ void initializeDoorPairTile(int (*arrDoorPairData)[2][4], struct sAreaData* sTem
 void initializeFloorLayout(int (*nFloorLayout)[15][15], struct sAreaData* sTempArea);
 struct sAreaData initializeStormveilCastle();
 struct sAreaData initializeRayaLucaria();
+struct sAreaData initializeRedmaneCastle();
+struct sAreaData initializeVolcanoManor();
 struct sAreaData initializeLeyndellRoyalCapital();
+struct sAreaData initializeEldenThrone();

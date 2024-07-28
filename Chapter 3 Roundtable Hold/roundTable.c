@@ -24,21 +24,28 @@ void processInputFastTravelMenu(Player* player, char cInput){
         case '2':
             runArea(player, 2); // Raya Lucaria
             break;
-        case '6': //Leyndell Royal Capital
+        case '3':
+            runArea(player, 3); // Redmane Castle
+            break;
+        case '4':
+            runArea(player, 4); // Volcano Manor
+            break;
+        case '5': //Leyndell Royal Capital
             nShardsCompleted=0;
-            for (int nShards=0; nShards<7; nShards++){
+            for (int nShards=0; nShards<6; nShards++){
                 if (player->nShards[nShards]==1){
                     nShardsCompleted++;
                 }
             }
             if (nShardsCompleted>=2){
                 printf("runLeyndellRoyalCapital\n");
-                runArea(player, 6);
+                runArea(player, 5);
             }
             break;
-        case '7': 
-            if (player->nShards[6]==1){
+        case '6': 
+            if (player->nShards[4]==1){
                 printf("runEldenThrone\n");
+                runArea(player, 6);
             }
             break;
         case '0': printf("Back to RoundTable\n"); break;
@@ -49,19 +56,28 @@ void displayFastTravelMenu(Player* player){
     printf("Fast Travel Menu\n\n");
     printf("(1) Stormveil Castle\n");
     printf("(2) Ray Lucaria Academy\n");
+    printf("(3) Redmane Castle\n");
+    printf("(4) Volcano Manor\n");
+    // Print Leyndell Royal Capital
     int nShardsCompleted=0;
-            for (int nShards=0; nShards<7; nShards++){
-                if (player->nShards[nShards]==1){
-                    nShardsCompleted++;
-                }
-            }
-            if (nShardsCompleted>=2){
-                printf("(6) Leyndell Royal Capital\n");
-            } else{
-                printc(0,233,"(~) Leyndell Royal Capital");
-                printf("\n");
-            }
-    printf("(7) Elden Throne (Locked) \n"); // Find character for a lock
+    for (int nShards=0; nShards<7; nShards++){
+        if (player->nShards[nShards]==1){
+            nShardsCompleted++;
+        }
+    }
+    if (nShardsCompleted>=2){
+        printf("(5) Leyndell Royal Capital\n");
+    } else{
+        printc(0,233,"(~) Leyndell Royal Capital (Locked)");
+        printf("\n");
+    }
+
+    //Print Elden Throne
+    if (player->nShards[4]==1){
+        printf("(6) Elden Throne\n");
+    } else{
+        printc(0,233,"(~) Elden Throne (Locked)\n"); // Find character for a lock
+    }
     printf("(0) Back\n");
     printf("\n");
     printf("    > ");
@@ -75,7 +91,7 @@ void runFastTravelMenu(Player* player){
         printf("\n");
         printf("DevMsg: ");
         processInputFastTravelMenu(player, cInput);
-    }while(cInput!='0'&&cInput!='1'&&cInput!='2'&&cInput!='3'&&cInput!='4'&&cInput!='5'&&cInput!='6');
+    }while(cInput!='0'&&cInput!='1'&&cInput!='2'&&cInput!='3'&&cInput!='4'&&cInput!='5'&&cInput!='6'&&cInput!='7');
 }
 
 //Level Up Menu (Subscreen)
@@ -207,14 +223,14 @@ void displayRoundTable(Player *player, int *nTestRunes){
     
     // printf("\t▐▐╲╱▌▌        Shards  ◈ ◆ ◈ ◈ ◇ ◇                                       ▐▐╲╱▌▌\n");
     printf("\t▐▐╲╱▌▌        Shards ");
-    for (int nShards=0; nShards<7; nShards++){
+    for (int nShards=0; nShards<6; nShards++){
         if (player->nShards[nShards]==1){
             printf(" ◆");
         } else {
             printf(" ◇");
         }
     }
-    printf("                                     ▐▐╲╱▌▌\n");
+    printf("                                       ▐▐╲╱▌▌\n");
     printf("\t▐▐╱╲▌▌       ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌                   ▐▐╱╲▌▌\n");
     printf("\t▐▐╲╱▌▌        1▸ Fast Travel        4▸ Shop                             ▐▐╲╱▌▌\n");
     printf("\t▐▐╱╲▌▌        2▸ Level Up           5▸ Save                             ▐▐╱╲▌▌\n");

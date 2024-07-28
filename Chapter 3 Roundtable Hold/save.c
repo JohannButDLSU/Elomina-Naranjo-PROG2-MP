@@ -122,14 +122,14 @@ void printFileBox(Player *arrListOfSaves, int nSaveExists, int nBoxLine, int nIn
             break;
         case 7:
             printf("   ");
-            for (int nShards=0; nShards<7; nShards++){
+            for (int nShards=0; nShards<6; nShards++){
                 if (arrListOfSaves[nIndex].nShards[nShards]==1){
                     printf(" ◆");
                 } else {
                     printf(" ◇");
                 }
             }
-            printf("                       ");   
+            printf("                         ");   
             break;
         case 8:
         printf("                                        ");

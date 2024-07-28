@@ -10,9 +10,9 @@ void runArea(Player* player, int nAreaIndex){
             sArea.nAreaIndex=nAreaIndex;
             sArea=initializeStormveilCastle();
             // Player Spawn Coordinates
-            player->nPlayerPos[0]=sArea.sFastTravels[1].nLocation[0];
-            player->nPlayerPos[1]=sArea.sFastTravels[1].nLocation[1];
-            player->nPlayerPos[2]=sArea.sFastTravels[1].nLocation[2];
+            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
             break;
         case 2:
             sArea.nAreaIndex=nAreaIndex;
@@ -22,14 +22,38 @@ void runArea(Player* player, int nAreaIndex){
             player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
             break;
-        // case 6:
-        //     sArea.nAreaIndex=nAreaIndex;
-        //     sArea=initializeLeyndellRoyalCapital();
-        //     // Player Spawn Coordinates
-        //     player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
-        //     player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
-        //     player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
-        //     break;
+        case 3:
+            sArea.nAreaIndex=nAreaIndex;
+            sArea=initializeRedmaneCastle();
+            // Player Spawn Coordinates
+            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            break;
+        case 4:
+            sArea.nAreaIndex=nAreaIndex;
+            sArea=initializeVolcanoManor();
+            // Player Spawn Coordinates
+            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            break;
+        case 5:
+            sArea.nAreaIndex=nAreaIndex;
+            sArea=initializeLeyndellRoyalCapital();
+            // Player Spawn Coordinates
+            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            break;
+        case 6:
+            sArea.nAreaIndex=nAreaIndex;
+            sArea=initializeEldenThrone();
+            // Player Spawn Coordinates
+            player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
+            player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
+            player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            break;
     }
     do{
         printf("Player Money: %d", player->nRunes); // Delete me
@@ -200,20 +224,34 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
                 case 3: // Consumed spawn tile
                     break;
                 case 4: // Boss Tile
-                    // runBossBattle();
-                    printf("\n\n\nGRRRRR runBossBattle() Rawr uwu~\nLet's Assume you beat the boss and the fast trvel tile is unlocked uwu\n\n\n");
+                    int nLandedBossTile=0;
+                    for (int nBossTile=0; nBossTile<sArea->nTotalBossTiles; nBossTile++){
+                        if (sArea->sBosses[nBossTile].nLocation[0]==player->nPlayerPos[0]&&sArea->sBosses[nBossTile].nLocation[1]==player->nPlayerPos[1]&&sArea->sBosses[nBossTile].nLocation[2]==player->nPlayerPos[2]){
+                            nLandedBossTile=nBossTile;
+                        }
+                    }
+                
+                    if (sArea->sBosses[nLandedBossTile].nEnabled==1){
+                        // runBossBattle();
+                        printf("\n\n\nGRRRRR runBossBattle() Rawr uwu~\nLet's Assume you beat the boss and the fast trvel tile is unlocked uwu\n\n\n");
+                        sArea->sBosses[nLandedBossTile].nEnabled=0; // Whether you win or lose a boss, it will be deactivated or uninteractible again because the player either wins and deactivates the boss or loses and goes back to rountable                    
+                        if (strcmp(sArea->strAreaName,"Elden Throne")==0&&sArea->sBosses[0].nEnabled==0&&sArea->sBosses[1].nEnabled==0){ // In the Elden Throne, there are 2 bosses that come one after the other. The fast travel only opens when both are slain
+                            sArea->sBosses[1].nEnabled=1;
+                            // runBossBattle(Elden Beast);
+                            sArea->sBosses[1].nEnabled=0;
+                        }
+                    }
 
-                    // Lets Assume the boss was defeated
-                    sArea->sBosses[0].nEnabled=0;
                     int nAllBossesSlainCheck=0;
                     for (int nBosses=0; nBosses<sArea->nTotalBossTiles; nBosses++){
                         nAllBossesSlainCheck+=sArea->sBosses[nBosses].nEnabled; //nEnabled is an integer 0 being FALSE and 1 being TRUE. If any one boss is still alive/enabled it makes check var > 0
                     }
+
                     if (nAllBossesSlainCheck<=0){
                         for (int nFastTravelTile=0; nFastTravelTile<(sArea->nTotalFastTravelTiles); nFastTravelTile++){
                             sArea->sFastTravels[nFastTravelTile].nLocked=0;
-                        } // Unlocks all fast travel tiles upon defeat of boss
-                    }
+                        } // Unlocks all fast travel tiles upon defeat of all bosses
+                     }
                     break;
                 case 5:
                     nLandedFastTravel=0;
@@ -234,6 +272,9 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
                         (*nRunning)=0; // end runArea
                         if (sArea->sBosses[0].nEnabled==0){ // Player does not get the shard if the boss is not defeated
                             player->nShards[nAreaIndex-1]=1;
+                        }
+                        if (strcmp(sArea->strAreaName,"Elden Throne")==0){
+                            runCreditsTile();
                         }
                     }
                     break;
