@@ -1,20 +1,9 @@
 #pragma once
+#include "weapon_details.h"
 
 // -----------------------------------
 // the actual structs
 // -----------------------------------
-struct sWeapon{
-   int nWeaponIndex;
-   int nBaseCost;
-   int nHealth;
-   int nEndurance;
-   int nDexterity;
-   int nStrength;
-   int nIntelligence;
-   int nFaith;
-   char strName[31];
-}; typedef struct sWeapon Weapon;
-
 struct sPlayer{
    String strName;
    String strJobClass;
@@ -36,6 +25,10 @@ struct sPlayer{
    // Battle var
    Weapon sEquipedWeapon; //Equppied weapon
    int nPotions; // How many potions the player has
+
+   //Inventory
+   int nInventorySize;
+   // int *nInventory;
 }; typedef struct sPlayer Player;
 
  struct sJobClass{
@@ -83,6 +76,9 @@ Player setPlayer(){
       player.nPlayerPos[nPos]=0;
    }
     return player;
+
+   player.sEquipedWeapon=initializeEmptyWeapon();
+   player.nPotions=0;
  }
 
 JobClass setJobClass(char* strJobClass, int nLevel, int nHealth, int nEndurance, int nDexterity, int nStrength, int nIntelligence, int nFaith){
