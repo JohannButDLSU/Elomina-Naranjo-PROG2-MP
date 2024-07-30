@@ -3,6 +3,17 @@
 // -----------------------------------
 // the actual structs
 // -----------------------------------
+struct sWeapon{
+   int nWeaponIndex;
+   int nBaseCost;
+   int nHealth;
+   int nEndurance;
+   int nDexterity;
+   int nStrength;
+   int nIntelligence;
+   int nFaith;
+   char strName[31];
+}; typedef struct sWeapon Weapon;
 
 struct sPlayer{
    String strName;
@@ -21,6 +32,10 @@ struct sPlayer{
    int nShards[6]; // 6 shards for the 6 areas
    // Data for area
    int nPlayerPos[3]; // row, column, floor
+
+   // Battle var
+   Weapon sEquipedWeapon; //Equppied weapon
+   int nPotions; // How many potions the player has
 }; typedef struct sPlayer Player;
 
  struct sJobClass{
