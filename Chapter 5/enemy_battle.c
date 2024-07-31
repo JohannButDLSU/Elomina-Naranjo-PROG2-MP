@@ -32,13 +32,13 @@ void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
    
     // I will not str playerHealthBar !!! bc I typedef'd it so I treat it more like a ui image
     Bar playerHealthBar = "████████████████████████████████████████████████████████████████████████████████████████████████████";
-    playerHealthBar[(int) ((float)player->nHealth / (float)player->nMaxHealth * 100)] = '\0';
+    playerHealthBar[(int) ((float)player->nHealth / (float)player->nMaxHealth * 100) + 1] = '\0';
     Bar enemyHealthBar =  "████████████████████████████████████████████████████████████████████████████████████████████████████";
-    enemyHealthBar[(int) ((float)enemy->nHealth / (float)enemy->nMaxHealth * 100)] = '\0';
+    enemyHealthBar[(int) ((float)enemy->nHealth / (float)enemy->nMaxHealth * 100) + 1] = '\0';
 
     printf("Player : %s", player->strName);
     printf("\n");
-    printf ("%s", playerHealthBar);
+    printc(0, DEEP_GREEN, playerHealthBar);
     printf("\n");
     printf ("HP: %d / %d", player->nHealth, player->nMaxHealth);
     printf("\n");
@@ -46,7 +46,7 @@ void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     printf("\n");
     printf("Enemy : %s", enemy->strName);
     printf("\n");
-    printf ("%s", enemyHealthBar);
+    printc(0, DEEP_RED, enemyHealthBar);
     printf("\n");
     printf ("HP: %d / %d", enemy->nHealth, enemy->nMaxHealth);
     printf("\n");
