@@ -2,19 +2,18 @@
 
 void runInventoryMenu(Player* player){
     char cInput=' ';
-    int nWeaponSelectedIndex=0;
     int nPage=0;
     int aCursorPos[2]={0,0};
     int nNumRow=3, nNumCol=8;
-    
+
     do{
-        displayInventory(nPage, player, nWeaponSelectedIndex, aCursorPos, nNumRow, nNumCol);
+        displayInventory(nPage, player, aCursorPos, nNumRow, nNumCol);
         // cInput=getch();
         scanf(" %c", &cInput);
-        processInputInventoryMenu(&nPage, player, &nWeaponSelectedIndex, cInput, aCursorPos, nNumRow, nNumCol);
+        processInputInventoryMenu(&nPage, player, cInput, aCursorPos, nNumRow, nNumCol);
     }while(cInput!='0');
 }
-void displayInventory(int nPage, Player* player, int nTestWeaponSelectedIndex, int *aCursorPos, int nNumRow, int nNumCol){
+void displayInventory(int nPage, Player* player, int *aCursorPos, int nNumRow, int nNumCol){
     printRepeatedly(7,"\t");
     printf("Inventory\n\n");
 
@@ -129,7 +128,7 @@ void displayInventory(int nPage, Player* player, int nTestWeaponSelectedIndex, i
     printRepeatedly(5,"\t");
     printf("    > ");
 }
-void processInputInventoryMenu(int* nPage, Player* player,  int *nTestWeaponSelectedIndex, char cInput, int *aCursorPos, int nNumRow, int nNumCol){
+void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCursorPos, int nNumRow, int nNumCol){
     switch (cInput){
         case 'w':
         case 'W':

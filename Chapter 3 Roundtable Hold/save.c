@@ -135,7 +135,7 @@ void printFileBox(Player *arrListOfSaves, int nSaveExists, int nBoxLine, int nIn
         printf("                                        ");
             break;
         case 9:
-            fprintf(stdout,"       LVL %3d      RUNES %6d ❖      ",arrListOfSaves[nIndex].nHealth,arrListOfSaves[nIndex].nEndurance);
+            fprintf(stdout,"       LVL %3d      RUNES ❖ %6d      ",arrListOfSaves[nIndex].nHealth,arrListOfSaves[nIndex].nEndurance);
             break;
         case 10:
             printf("                                        ");

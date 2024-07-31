@@ -255,7 +255,7 @@ void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory
             runInventoryMenu(player);
             break;
         case '4': 
-            runShopMenu(nTestRunes, aTestInventory);
+            runShopMenu(player);
             break;
         case '5': 
             nSavingAllowed=1;

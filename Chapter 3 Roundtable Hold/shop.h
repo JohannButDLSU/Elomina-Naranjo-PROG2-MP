@@ -1,6 +1,8 @@
 #pragma once
 #include "../_Global Folder/weapon_details.h"
+#include "inventory.h"
 
-void runShopMenu(int *nTestRunes, int *aTestInventory);
-void displayShop(int *nTestRunes, int nTestWeaponSelectedIndex, int *aCursorPos, int *inventory, int nNumRow, int nNumCol);
-void processInputShopMenu(int *nTestRunes, int *aTestInventory, int *aShopItems,  int *nTestWeaponSelectedIndex, char cInput, int *aCursorPos, int nNumRow, int nNumCol);
+void runShopMenu(Player* player);
+void runSell(Player* player);
+void displayShop(Player* player, int *aCursorPos, int nNumRow, int nNumCol);
+void processInputShopMenu(Player* player, char cInput, int *aCursorPos, int nNumRow, int nNumCol);

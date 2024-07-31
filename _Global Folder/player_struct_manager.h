@@ -79,7 +79,7 @@ Player setPlayer(){
    player.nPotions=0;
 
    player.nInventorySize=0;
-   player.nInventory=malloc(sizeof(int)*player.nInventorySize);
+   player.nInventory=malloc(sizeof(int));
    return player;
  }
 
