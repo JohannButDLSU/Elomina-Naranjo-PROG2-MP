@@ -23,12 +23,12 @@ struct sPlayer{
    int nPlayerPos[3]; // row, column, floor
 
    // Battle var
-   Weapon sEquipedWeapon; //Equppied weapon
+   Weapon sEquippedWeapon; //Equppied weapon
    int nPotions; // How many potions the player has
 
    //Inventory
    int nInventorySize;
-   // int *nInventory;
+   int *nInventory;
 }; typedef struct sPlayer Player;
 
  struct sJobClass{
@@ -75,10 +75,12 @@ Player setPlayer(){
    for (int nPos=0; nPos<3; nPos++){
       player.nPlayerPos[nPos]=0;
    }
-    return player;
-
-   player.sEquipedWeapon=initializeEmptyWeapon();
+   player.sEquippedWeapon=initializeEmptyWeapon();
    player.nPotions=0;
+
+   player.nInventorySize=0;
+   player.nInventory=malloc(sizeof(int)*player.nInventorySize);
+   return player;
  }
 
 JobClass setJobClass(char* strJobClass, int nLevel, int nHealth, int nEndurance, int nDexterity, int nStrength, int nIntelligence, int nFaith){

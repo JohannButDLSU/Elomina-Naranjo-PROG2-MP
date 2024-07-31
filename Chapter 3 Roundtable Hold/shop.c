@@ -21,7 +21,7 @@ void displayShop(int *nTestRunes, int nTestWeaponSelectedIndex, int *aCursorPos,
     printf("Shop\n");
     printf("<> %d\n\n", *nTestRunes);
     // printf("<Weapons Stats go here>\n\n");
-    printf("%s                  Cost: ❖ %9d\n", weaponNames[0], nWeaponStats[0][1]);
+    printf("%s                  Cost: ❖ %9d\n", strWeaponNames[0], nWeaponStats[0][1]);
     printf("Dexterity Requirement: %4d\n", nWeaponStats[0][4]);
     printf("HTP :%4d      END :%4d     STR :%4d\n", nWeaponStats[0][2], nWeaponStats[0][3], nWeaponStats[0][5]);
     printf("INT :%4d      FTH :%4d\n\n", nWeaponStats[0][6], nWeaponStats[0][7]);

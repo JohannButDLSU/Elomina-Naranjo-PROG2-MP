@@ -1,5 +1,7 @@
 #pragma once
+#include "../_Global Folder/player_struct_manager.h"
+#include "../_Global Folder/weapon_details.h"
 
-void runInventoryMenu(int *aTestInventory);
-void displayInventory(int nTestWeaponSelectedIndex, int *aCursorPos, int *inventory, int nNumRow, int nNumCol);
-void processInputInventoryMenu(int *aTestInventory, int *nTestWeaponSelectedIndex, char cInput, int *aCursorPos, int nNumRow, int nNumCol);
+void runInventoryMenu(Player* player);
+void displayInventory(Player* player, int nTestWeaponSelectedIndex, int *aCursorPos, int nNumRow, int nNumCol);
+void processInputInventoryMenu(Player* player, int *nTestWeaponSelectedIndex, char cInput, int *aCursorPos, int nNumRow, int nNumCol);

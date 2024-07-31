@@ -7,7 +7,6 @@ void runRoundTable(Player *player, int *nTestRunes, int *aTestInventory){
         // cInput=getch();
         scanf(" %c", &cInput);
         printf("\n");
-        printf("DevMsg: ");
         processInputRoundTable(player, nTestRunes, aTestInventory, cInput);
     }while(cInput!='0');
 }
@@ -89,7 +88,6 @@ void runFastTravelMenu(Player* player){
         // cInput=getch();
         scanf(" %c", &cInput);
         printf("\n");
-        printf("DevMsg: ");
         processInputFastTravelMenu(player, cInput);
     }while(cInput!='0'&&cInput!='1'&&cInput!='2'&&cInput!='3'&&cInput!='4'&&cInput!='5'&&cInput!='6'&&cInput!='7');
 }
@@ -165,7 +163,6 @@ void runLevelUpMenu(int *nTestRunes, Player *player){
             // cInput=getch();
             scanf(" %c", &cInput);
             printf("\n");
-            printf("DevMsg: ");
             processInputLevelUpMenu(nTestRunes, player, nLevelUpRuneCost, cInput);
             
         }while(cInput!='0');
@@ -249,19 +246,15 @@ void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory
 
     switch (cInput){
         case '1': 
-            printf("runFastTravelMenu()\n");
             runFastTravelMenu(player); 
             break;
         case '2': 
-            printf("runLevelUp()\n");
             runLevelUpMenu(nTestRunes, player);
             break;
         case '3': 
-            printf("runInventory()\n"); 
-            runInventoryMenu(aTestInventory);
+            runInventoryMenu(player);
             break;
         case '4': 
-            printf("runShopMenu()\n");
             runShopMenu(nTestRunes, aTestInventory);
             break;
         case '5': 
@@ -270,7 +263,6 @@ void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory
             printf("runSave()\n");
             runSaveMenu(&nDummyGameLoaded, nSavingAllowed, player); 
             break;
-        case '0': printf("runTitleScreen()\n"); break;
         default: printf("Invalid Input\n"); break;
     }
 }
