@@ -46,12 +46,6 @@ void displayCharacterCreation(Player player){
 
 void processCharacterCreationInput(Player* player, char* cInput){
     scanf(" %c", cInput);
-
-    // Yo these can prolly be placed as part of the player's thing. in player_struct_manager.h
-
-    int aTestInventory[24]={1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //Each index represents a weapon in MP specs, Appendix C
-    int nTestRunes;
-
     switch (*cInput)
     {
         case '1':
@@ -114,8 +108,7 @@ void processCharacterCreationInput(Player* player, char* cInput){
                 scanf(" %c", &tempInput);
 
                 if (tempInput == '1'){
-                    nTestRunes=500;
-                    runRoundTable(player, &nTestRunes, aTestInventory); // There is no "break;"" line. From roundtable, the screen should exit to the title screen and not the character creation screen
+                    runRoundTable(player); // There is no "break;"" line. From roundtable, the screen should exit to the title screen and not the character creation screen
                 }
                 if (tempInput == '0'){
                     *cInput = '3';

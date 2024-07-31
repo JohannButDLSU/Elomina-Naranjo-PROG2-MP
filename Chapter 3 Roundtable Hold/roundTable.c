@@ -1,13 +1,16 @@
 #include "roundTable.h"
 
-void runRoundTable(Player *player, int *nTestRunes, int *aTestInventory){
+void runRoundTable(Player *player){
     char cInput=' ';
+    //TEST
+    player->nRunes=10000;
+    //TEST
     do{
-        displayRoundTable(player, nTestRunes);
+        displayRoundTable(player);
         // cInput=getch();
         scanf(" %c", &cInput);
         printf("\n");
-        processInputRoundTable(player, nTestRunes, aTestInventory, cInput);
+        processInputRoundTable(player, cInput);
     }while(cInput!='0');
 }
 
@@ -93,56 +96,54 @@ void runFastTravelMenu(Player* player){
 }
 
 //Level Up Menu (Subscreen)
-void processInputLevelUpMenu(int *nTestRunes, Player *player, int nLevelUpRuneCost, char cInput){
-    if ((*nTestRunes)>=nLevelUpRuneCost){
+void processInputLevelUpMenu(Player *player, int nLevelUpRuneCost, char cInput){
+    if ((player->nRunes)>=nLevelUpRuneCost){
         switch (cInput){
             case '1':
                 printf("Upgrade Health\n");
                 player->nHealth++;
-                (*nTestRunes)-=nLevelUpRuneCost;
+                (player->nRunes)-=nLevelUpRuneCost;
                 //Upgrade Health here
                 break;
             case '2':
                 printf("Upgrade Endurance\n");
                 player->nEndurance++;
-                (*nTestRunes)-=nLevelUpRuneCost;
+                (player->nRunes)-=nLevelUpRuneCost;
                 //Upgrade Endurance here
                 break;
             case '3':
                 printf("Upgrade Dexterity\n");
                 player->nDexterity++;
-                (*nTestRunes)-=nLevelUpRuneCost;
+                (player->nRunes)-=nLevelUpRuneCost;
                 //Upgrade Dexterity here
                 break;
             case '4':
                 printf("Upgrade Strength\n");
                 player->nStrength++;
-                (*nTestRunes)-=nLevelUpRuneCost;
+                (player->nRunes)-=nLevelUpRuneCost;
                 break;
             case '5':
                 printf("Upgrade Intelligence\n");
                 player->nIntelligence++;
-                (*nTestRunes)-=nLevelUpRuneCost;
+                (player->nRunes)-=nLevelUpRuneCost;
                 break;
             case '6':
                 printf("Upgrade Faith\n");
                 player->nFaith++;
-                (*nTestRunes)-=nLevelUpRuneCost;
+                (player->nRunes)-=nLevelUpRuneCost;
                 break;
             case '0':
-                printf("Back to Roundtable\n");
-                //Go Back to Roundtable
                 break;
             default:
                 printf("Invalid Input\n"); break;
         }
     } else if (cInput!='0'){
-        printf("You do not have enough <> runes for that\n");
+        printf("You do not have enough ❖ runes for that\n");
     }
 }
-void displayLevelUpMenu(int nLevelUpRuneCost, int *nTestRunes, Player *player){
+void displayLevelUpMenu(int nLevelUpRuneCost, Player *player){
     printf("Level Up Menu\n");
-    printf("%d ❖ Runes\n", *nTestRunes);
+    printf("%d ❖ Runes\n", player->nRunes);
     printf("\n");
     printf("Level Up Cost : %d ❖\n", nLevelUpRuneCost);
     printf("(1) Health          (%d) + 1\n", player->nHealth);
@@ -154,42 +155,38 @@ void displayLevelUpMenu(int nLevelUpRuneCost, int *nTestRunes, Player *player){
     printf("(0) Back\n");
     printf("    > ");
 }
-void runLevelUpMenu(int *nTestRunes, Player *player){
+void runLevelUpMenu(Player *player){
     char cInput=' ';
 
         do{
             int nLevelUpRuneCost=(player->nLevel*100)/2;
-            displayLevelUpMenu(nLevelUpRuneCost, nTestRunes, player);
+            displayLevelUpMenu(nLevelUpRuneCost, player);
             // cInput=getch();
             scanf(" %c", &cInput);
             printf("\n");
-            processInputLevelUpMenu(nTestRunes, player, nLevelUpRuneCost, cInput);
+            processInputLevelUpMenu(player, nLevelUpRuneCost, cInput);
             
         }while(cInput!='0');
 }
 
 //RoundTable
-void displayRoundTable(Player *player, int *nTestRunes){
+void displayRoundTable(Player *player){
     int nNameSpace=strlen(player->strName);
     int nJobClassSpace=strlen(player->strJobClass);
     int nLevelSpace=9;
-    int nRunesSpace=9;
-    int nIncrement=100000000;
+    int nRunesSpace=0;
+    int nIncrement=1;
 
     printf("\t▜▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▙▟▛\n");
     printf("\t▐▐╱╲▌▌╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳╳▐▐╱╲▌▌\n");
     printf("\t▐▐╲╱▌▛▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▜▐╲╱▌▌\n");
     printf("\t▐▐╱╲▌▌             𐂂   𝑹 𝑶 𝑼 𝑵 𝑫 ◌ 𝑻 𝑨 𝑩 𝑳 𝑬   𓅃                        ▐▐╱╲▌▌\n");
-    printf("\t▐▐╲╱▌▌       ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌   ❖ %d", *nTestRunes); // Runes should be maxxed at 999,999,999
-    while(((*nTestRunes)/nIncrement)<=0){
-        if (((*nTestRunes)/nIncrement)<=0){
-            nIncrement/=10;
-            nRunesSpace-=1;
-        }
-    }
-    for (int nSpacing=0; nSpacing<(14-nRunesSpace); nSpacing++){
-        printf(" ");
-    }
+    printf("\t▐▐╲╱▌▌       ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌   ❖ %d", player->nRunes); // Runes should be maxxed at 999,999,999
+    while(((player->nRunes)/nIncrement)>0&&player->nRunes!=nIncrement&&(player->nRunes>=(10*nIncrement))){
+        nIncrement*=10;
+        nRunesSpace++;
+    };
+    printRepeatedly(13-nRunesSpace," ");
     printf("▐▐╲╱▌▌\n");
 
     printf("\t▐▐╱╲▌▌        Name    %s", player->strName);
@@ -239,7 +236,7 @@ void displayRoundTable(Player *player, int *nTestRunes){
     printf("\n");
     printf("\t> ");
 }
-void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory, char cInput){
+void processInputRoundTable(Player *player, char cInput){
 
     int nSavingAllowed;
     int nDummyGameLoaded;
@@ -249,7 +246,7 @@ void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory
             runFastTravelMenu(player); 
             break;
         case '2': 
-            runLevelUpMenu(nTestRunes, player);
+            runLevelUpMenu(player);
             break;
         case '3': 
             runInventoryMenu(player);

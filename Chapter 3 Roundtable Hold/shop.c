@@ -2,11 +2,6 @@
 
 void runShopMenu(Player* player){
     char cInput=' ';
-    //TEST
-    player->nRunes=10000;
-    //TEST
-    int aShopItems[24]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}; //Each index represents a weapon in MP specs, Appendix C
-    int nTestWeaponSelectedIndex=0;
     int aCursorPos[2]={0,0};
     int nNumRow=6, nNumCol=4;
 
@@ -24,8 +19,74 @@ void runSell(Player* player){
     int aCursorPos[2]={0,0};
     int nPage=0;
     do{
+        printRepeatedly(7,"\t");
+        printf("Sell an item\n\n");
         displayInventory(nPage, player, aCursorPos, nNumRow, nNumCol);
+        printRepeatedly(5,"\t");
+        printf("(1) Sell item\n");
+        printRepeatedly(5,"\t");
+        printf("(2) Unequip weapon\n");
+        printRepeatedly(5,"\t");
+        printf("(0) Return to shop\n");
+        printRepeatedly(5,"\t");
+        printf("> ");
+        scanf(" %c", &cInput);
+        processInputSellMenu(&nPage, player, cInput, aCursorPos, nNumRow, nNumCol);
     }while(cInput!='0');
+}
+
+void processInputSellMenu(int* nPage, Player* player, char cInput, int *aCursorPos, int nNumRow, int nNumCol){
+    switch (cInput){
+        case 'w':
+        case 'W':
+            if (aCursorPos[0]>0) aCursorPos[0]-=1; 
+            break;
+        case 'a':
+        case 'A':
+            if (aCursorPos[1]>0) aCursorPos[1]-=1; 
+            break;
+        case 's':
+        case 'S':
+            if (aCursorPos[0]<(nNumRow-1)) aCursorPos[0]+=1; 
+            break;
+        case 'd':
+        case 'D':
+            if (aCursorPos[1]<(nNumCol-1)) aCursorPos[1]+=1; 
+            break;
+        case 'e':
+        case 'E':
+            if (((*(nPage)+1)*(nNumCol*nNumRow))<(player->nInventorySize)){
+                (*nPage)+=1;
+            }
+            break;
+        case 'q':
+        case 'Q':
+            if (((*nPage)-1)>=0){
+                (*nPage)-=1;
+            }
+            break; 
+        case '1': 
+            if (((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){ 
+                player->nRunes+=nWeaponStats[player->nInventory[(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1][1]/2;
+                for (int nItem=((aCursorPos[0]*nNumCol)+aCursorPos[1]); nItem<(player->nInventorySize-1); nItem++){
+                    player->nInventory[nItem]=player->nInventory[nItem+1];
+                }
+                player->nInventorySize-=1;
+                player->nInventory=realloc(player->nInventory, player->nInventorySize);
+            };
+            break;
+        case '2':
+            if(player->sEquippedWeapon.nWeaponIndex!=-1){
+                player->nInventorySize+=1;
+                player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                player->nInventory[player->nInventorySize-1]=player->sEquippedWeapon.nWeaponIndex;
+                player->sEquippedWeapon=initializeEmptyWeapon();
+            }
+            break;
+        case '0':
+            break;
+        default: printf("Invalid Input\n"); break;
+    }
 }
 
 void displayShop(Player* player, int *aCursorPos, int nNumRow, int nNumCol){
@@ -124,7 +185,6 @@ void displayShop(Player* player, int *aCursorPos, int nNumRow, int nNumCol){
     printf("    > ");
 }
 void processInputShopMenu(Player* player, char cInput, int *aCursorPos, int nNumRow, int nNumCol){
-    // int* nTempInventory;
     switch (cInput){
         case 'a':
         case 'A':

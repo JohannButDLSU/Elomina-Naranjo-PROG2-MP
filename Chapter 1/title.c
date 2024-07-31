@@ -57,8 +57,7 @@ void processTitleInput(char* cInput){
         nGameLoaded=0; // Checks if the player player actually loaded a game or just opted to go back to the title screen. 0 = Back; 1 = Load
         runSaveMenu(&nGameLoaded, nSavingAllowed, &player); // nSavingAllowed = 0. Players cannot save from the title screen; only load
         if(nGameLoaded==1){
-            nTestRunes=100000;
-            runRoundTable(&player, &nTestRunes, aTestInventory);
+            runRoundTable(&player);
         }
         break;
     case '0':

@@ -7,16 +7,23 @@ void runInventoryMenu(Player* player){
     int nNumRow=3, nNumCol=8;
 
     do{
+        printRepeatedly(7,"\t");
+        printf("Inventory\n\n");
         displayInventory(nPage, player, aCursorPos, nNumRow, nNumCol);
         // cInput=getch();
+        printRepeatedly(5,"\t");
+        printf("(1) Equip Weapon\n");
+        printRepeatedly(5,"\t");
+        printf("(2) Unequip Weapon\n");
+        printRepeatedly(5,"\t");
+        printf("(0) Back\n");
+        printRepeatedly(5,"\t");
+        printf("    > ");
         scanf(" %c", &cInput);
         processInputInventoryMenu(&nPage, player, cInput, aCursorPos, nNumRow, nNumCol);
     }while(cInput!='0');
 }
 void displayInventory(int nPage, Player* player, int *aCursorPos, int nNumRow, int nNumCol){
-    printRepeatedly(7,"\t");
-    printf("Inventory\n\n");
-
     printRepeatedly(5,"\t");
     printf("Page %d\n", nPage+1);
     printRepeatedly(5,"\t");
@@ -121,12 +128,6 @@ void displayInventory(int nPage, Player* player, int *aCursorPos, int nNumRow, i
     printRepeatedly(5,"\t");
     printRepeatedly((nNumCol*5)+4,"━");
     printf("\n");
-    printRepeatedly(5,"\t");
-    printf("(1) Select Weapon\n");
-    printRepeatedly(5,"\t");
-    printf("(0) Back\n");
-    printRepeatedly(5,"\t");
-    printf("    > ");
 }
 void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCursorPos, int nNumRow, int nNumCol){
     switch (cInput){
@@ -160,8 +161,28 @@ void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCu
             break; 
         case '1': 
             if (((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){ 
+                if(player->sEquippedWeapon.nWeaponIndex!=-1){
+                    player->nInventorySize+=1;
+                    player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                    player->nInventory[player->nInventorySize-1]=player->sEquippedWeapon.nWeaponIndex;
+                }
                 player->sEquippedWeapon=setWeaponStats(strWeaponNames[player->nInventory[(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1], nWeaponStats[player->nInventory[(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1]);
+                for (int nItem=((aCursorPos[0]*nNumCol)+aCursorPos[1]); nItem<(player->nInventorySize-1); nItem++){
+                    player->nInventory[nItem]=player->nInventory[nItem+1];
+                }
+                player->nInventorySize-=1;
+                player->nInventory=realloc(player->nInventory, player->nInventorySize);
             };
+            break;
+        case '2':
+            if(player->sEquippedWeapon.nWeaponIndex!=-1){
+                player->nInventorySize+=1;
+                player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                player->nInventory[player->nInventorySize-1]=player->sEquippedWeapon.nWeaponIndex;
+                player->sEquippedWeapon=initializeEmptyWeapon();
+            }
+            break;
+        case '0':
             break;
         default: printf("Invalid Input\n"); break;
     }

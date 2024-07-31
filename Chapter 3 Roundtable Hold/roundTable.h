@@ -11,10 +11,10 @@ void processInputFastTravelMenu(Player* player, char cInput);
 void displayFastTravelMenu(Player* player);
 void runFastTravelMenu(Player* player);
 
-void processInputLevelUpMenu(int *nTestRunes, Player *player, int nLevelUpRuneCost, char cInput);
-void displayLevelUpMenu(int nLevelUpRuneCost, int *nTestRunes, Player *player);
-void runLevelUpMenu(int *nTestRunes, Player *player);
+void processInputLevelUpMenu(Player *player, int nLevelUpRuneCost, char cInput);
+void displayLevelUpMenu(int nLevelUpRuneCost, Player *player);
+void runLevelUpMenu(Player *player);
 
-void runRoundTable(Player *player, int *nTestRunes, int *aTestInventory);
-void displayRoundTable(Player *player, int *nTestRunes);
-void processInputRoundTable(Player *player, int *nTestRunes, int *aTestInventory, char cInput);
+void runRoundTable(Player *player);
+void displayRoundTable(Player *player);
+void processInputRoundTable(Player *player, char cInput);

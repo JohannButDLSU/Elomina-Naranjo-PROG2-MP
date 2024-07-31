@@ -77,7 +77,7 @@ Player setPlayer(){
    player.nPotions=0;
 
    player.nInventorySize=0;
-   player.nInventory=malloc(sizeof(int));
+   player.nInventory=calloc(player.nInventorySize, sizeof(int));
    player.nMaxHealth = player.nHealth;
    return player;
  }
