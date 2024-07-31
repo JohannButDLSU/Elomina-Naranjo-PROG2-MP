@@ -1,6 +1,6 @@
 #include "enemy_battle.h"
 
-void runEnemyBattle(struct sAreaData* sArea, Player* player, Enemy enemy){
+void runEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
 
     displayEnemyBattle(sArea, player, enemy);
     processEnemyBattle(sArea, player, enemy);
@@ -8,11 +8,12 @@ void runEnemyBattle(struct sAreaData* sArea, Player* player, Enemy enemy){
 
 }
 
-void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy enemy){
-    player->nHealth -= enemyAttack(sArea->nAreaIndex, enemy);
+void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
+    player->nHealth -= enemyAttack(sArea->nAreaIndex, *enemy);
+    enemy->nHealth -= 15;
 }
 
-void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy enemy){
+void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     // apparently supposed to show the following
 
     /*
@@ -28,13 +29,27 @@ void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy enemy){
 
         System Messages
     */
+   
+    // I will not str playerHealthBar !!! bc I typedef'd it so I treat it more like a ui image
+    Bar playerHealthBar = "████████████████████████████████████████████████████████████████████████████████████████████████████";
+    playerHealthBar[(int) ((float)player->nHealth / (float)player->nMaxHealth * 100)] = '\0';
+    Bar enemyHealthBar =  "████████████████████████████████████████████████████████████████████████████████████████████████████";
+    enemyHealthBar[(int) ((float)enemy->nHealth / (float)enemy->nMaxHealth * 100)] = '\0';
 
-    Bar playerHealthBar;
-    Bar enemyHealthBar;
-
-    printf("Name : %s\n", player->strName);
-    printf("HP   : %d\n", player->nHealth);
-    printf("Enemy Name : %s\n", enemy.strName);
-    printf("Enemy Type : %d\n", enemy.nType);
-    printf("Enemy Health : %d\n", enemy.nHealth);
+    printf("Player : %s", player->strName);
+    printf("\n");
+    printf ("%s", playerHealthBar);
+    printf("\n");
+    printf ("HP: %d / %d", player->nHealth, player->nMaxHealth);
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("Enemy : %s", enemy->strName);
+    printf("\n");
+    printf ("%s", enemyHealthBar);
+    printf("\n");
+    printf ("HP: %d / %d", enemy->nHealth, enemy->nMaxHealth);
+    printf("\n");
+    printf("\n");
+    printf("\n");
 }
