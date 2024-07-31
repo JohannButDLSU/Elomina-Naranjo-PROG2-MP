@@ -23,6 +23,6 @@ void runTreasureTile(int nLandedSpawnTile, struct sAreaData* sArea, Player* play
 void runSpawnTile(struct sAreaData* sArea, Player* player){
     // Randomize 75% Enemy 25% treasure
     // runTreasureTile(nLandedSpawnTile, sArea, player);
-    runEnemyBattle(sArea, player);
+    runEnemyBattle(sArea, player); // hi zivv could u find a way to put enemy here? I don't wanna mess up chap4 too hard, but I tried to put logic in chap5
     sArea->sFloors[player->nPlayerPos[2]].nLayout[player->nPlayerPos[0]][player->nPlayerPos[1]]=3;
 }

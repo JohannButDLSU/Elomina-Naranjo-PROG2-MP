@@ -186,6 +186,7 @@ void displayArea(Player* player, struct sAreaData sArea){
 void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea, Player* player,  char cInput){
 
     int nLandedFastTravel;
+    int nLandedBossTile;
 
     switch (cInput){
         case 'a':
@@ -224,7 +225,7 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
                 case 3: // Consumed spawn tile
                     break;
                 case 4: // Boss Tile
-                    int nLandedBossTile=0;
+                    nLandedBossTile=0;
                     for (int nBossTile=0; nBossTile<sArea->nTotalBossTiles; nBossTile++){
                         if (sArea->sBosses[nBossTile].nLocation[0]==player->nPlayerPos[0]&&sArea->sBosses[nBossTile].nLocation[1]==player->nPlayerPos[1]&&sArea->sBosses[nBossTile].nLocation[2]==player->nPlayerPos[2]){
                             nLandedBossTile=nBossTile;
