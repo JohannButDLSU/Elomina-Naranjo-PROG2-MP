@@ -62,26 +62,27 @@ Enemy initializeEnemy(int nRoomIndex, int nType){ // nRoomIndex shud be based on
         if (nType == 2) strcpy(toReturn.strName, "Godrick Archer");
         if (nType == 3) strcpy(toReturn.strName, "Godrick Knight");
     }
-    if (nRoomIndex == 2){
+    else if (nRoomIndex == 2){
         if (nType == 1) strcpy(toReturn.strName, "Living Jar");
         if (nType == 2) strcpy(toReturn.strName, "Glintstone Sorcerer");
         if (nType == 3) strcpy(toReturn.strName, "Battlemage");
     }
-    if (nRoomIndex == 3){
+    else if (nRoomIndex == 3){
         if (nType == 1) strcpy(toReturn.strName, "Radahn Soldier");
         if (nType == 2) strcpy(toReturn.strName, "Radahn Archer");
         if (nType == 3) strcpy(toReturn.strName, "Radahn Knight");
     }
-    if (nRoomIndex == 4){
+    else if (nRoomIndex == 4){
         if (nType == 1) strcpy(toReturn.strName, "Man-Serpent");
         if (nType == 2) strcpy(toReturn.strName, "Mage-Serpent");
         if (nType == 3) strcpy(toReturn.strName, "Abductor Virgin");
     }
-    if (nRoomIndex == 5){
+    else if (nRoomIndex == 5){
         if (nType == 1) strcpy(toReturn.strName, "Leyndell Soldier");
         if (nType == 2) strcpy(toReturn.strName, "Leyndell Archer");
         if (nType == 3) strcpy(toReturn.strName, "Leyndell Knight");
     }
+    else strcpy(toReturn.strName, "ERROR???");
     return toReturn;
 }
 
