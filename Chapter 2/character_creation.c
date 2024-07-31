@@ -130,7 +130,7 @@ void processCharacterCreationInput(Player* player, char* cInput){
     }
 }
 
-Player setPlayerJobClass(Player player, int cInput){
+Player setPlayerJobClass(Player player, int cInput){ // this was made before I put the sprite in player LMAO I giv up
     JobClass vagabond = setJobClass("Vagabond", 9, 15, 11, 13, 14, 9, 9);
     JobClass samurai = setJobClass("Samurai", 9, 12, 13, 15, 12, 9, 8);
     JobClass warrior = setJobClass("Warrior", 8, 11, 11, 16, 10, 10, 8);

@@ -19,6 +19,7 @@ struct sEnemy{
     String strName;
     int nType;
 
+    int nMaxHealth;
     int nHealth; // random at start
     // I won't put attack here since it's basically a random int based on nType
 
@@ -83,6 +84,7 @@ Enemy initializeEnemy(int nRoomIndex, int nType){ // nRoomIndex shud be based on
         if (nType == 3) strcpy(toReturn.strName, "Leyndell Knight");
     }
     else strcpy(toReturn.strName, "ERROR???");
+    toReturn.nMaxHealth = toReturn.nHealth;
     return toReturn;
 }
 

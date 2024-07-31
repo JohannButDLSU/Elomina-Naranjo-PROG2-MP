@@ -7,8 +7,10 @@
 struct sPlayer{
    String strName;
    String strJobClass;
+   SpriteString spriteRows[16];
 
    int nLevel; 
+   int nMaxHealth;
    int nHealth;
    int nEndurance;
    int nDexterity;
@@ -41,10 +43,6 @@ struct sPlayer{
    int nIntelligence;
    int nFaith;
 }; typedef struct sJobClass JobClass;
-
-struct sPlayerSprite{
-   SpriteString strRowPixels[16];
-}; typedef struct sPlayerSprite PlayerSprite;
 
 
 // struct Inventory -> items n shtuff, contains these:
@@ -80,6 +78,7 @@ Player setPlayer(){
 
    player.nInventorySize=0;
    player.nInventory=malloc(sizeof(int));
+   player.nMaxHealth = player.nHealth;
    return player;
  }
 
@@ -106,6 +105,8 @@ Player statCopy(Player player, JobClass jobClass){
    player.nStrength = jobClass.nStrength;
    player.nIntelligence = jobClass.nIntelligence;
    player.nFaith = jobClass.nFaith;
+
+   player.nMaxHealth = player.nHealth;
 
    return player;
 }

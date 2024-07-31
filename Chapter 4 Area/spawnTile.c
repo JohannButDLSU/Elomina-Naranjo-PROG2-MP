@@ -28,7 +28,7 @@ void runSpawnTile(struct sAreaData* sArea, Player* player){
     int nEnemyType = (rand() % (3 - 1 + 1) + 1);
 
     enemy = initializeEnemy(sArea->nAreaIndex + 1, nEnemyType);
-    runEnemyBattle(sArea, player, &enemy);
+    runEnemyBattle(sArea, player, enemy);
     // runEnemyBattle(sArea, player); // hi zivv could u find a way to put enemy here? I don't wanna mess up chap4 too hard, but I tried to put logic in chap5
     sArea->sFloors[player->nPlayerPos[2]].nLayout[player->nPlayerPos[0]][player->nPlayerPos[1]]=3;
 }
