@@ -40,8 +40,10 @@ void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
         default:
             break;
     }
+    player->nBattleCurrentHealth -= enemyAttack(sArea->nAreaIndex, *enemy);
 
-    
+    if (player->nBattleCurrentHealth <= 0) printf("\nYou Died.\n");
+    if (enemy->nHealth <= 0) printf("\nEnemy Felled.\n");
 }
 
 void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
@@ -55,7 +57,7 @@ void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     printf("\n");
     printc(0, DEEP_GREEN, playerHealthBar); printf(" %%");
     printf("\n");
-    printf ("HP: %4d / %4d", player->nBattleCurrentHealth, player->nBattleMaxHealth);
+    printf("HP: %4d / %4d", player->nBattleCurrentHealth, player->nBattleMaxHealth);
     printf("\n");
     printf("\n");
     printf("\n");
@@ -63,7 +65,7 @@ void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     printf("\n");
     printc(0, DEEP_RED, enemyHealthBar); printf(" %%");
     printf("\n");
-    printf ("HP: %4d / %4d", enemy->nHealth, enemy->nMaxHealth);
+    printf("HP: %4d / %4d", enemy->nHealth, enemy->nMaxHealth);
     printf("\n");
     printf("\n");
     printf("\n");
