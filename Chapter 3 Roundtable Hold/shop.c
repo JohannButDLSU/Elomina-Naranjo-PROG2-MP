@@ -21,7 +21,7 @@ void runSell(Player* player){
     do{
         printRepeatedly(7,"\t");
         printf("Sell an item\n\n");
-        displayInventory(nPage, player, aCursorPos, nNumRow, nNumCol);
+        displayInventory(1, nPage, player, aCursorPos, nNumRow, nNumCol);
         printRepeatedly(5,"\t");
         printf("(1) Sell item\n");
         printRepeatedly(5,"\t");
@@ -36,6 +36,7 @@ void runSell(Player* player){
 }
 
 void processInputSellMenu(int* nPage, Player* player, char cInput, int *aCursorPos, int nNumRow, int nNumCol){
+    char cContinue=' ';
     switch (cInput){
         case 'w':
         case 'W':
@@ -67,6 +68,13 @@ void processInputSellMenu(int* nPage, Player* player, char cInput, int *aCursorP
             break; 
         case '1': 
             if (((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){ 
+                printf("\n\n");
+                printRepeatedly(5,"\t");
+                printf("       You sold your %s...\n", strWeaponNames[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1]);
+                printRepeatedly(5,"\t");
+                printf("       for ❖ %6d\n", nWeaponStats[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1][1]/2);
+                scanf(" %c", &cContinue);
+                printf("\n\n");
                 player->nRunes+=nWeaponStats[player->nInventory[(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1][1]/2;
                 for (int nItem=((aCursorPos[0]*nNumCol)+aCursorPos[1]); nItem<(player->nInventorySize-1); nItem++){
                     player->nInventory[nItem]=player->nInventory[nItem+1];
@@ -95,7 +103,7 @@ void displayShop(Player* player, int *aCursorPos, int nNumRow, int nNumCol){
     printf("❖ %d\n", player->nRunes);
     printRepeatedly(5,"\t");
     printf("┏");
-    printRepeatedly((nNumCol*12),"━");
+    printRepeatedly((nNumCol*13)-1,"━");
     printf("┓\n");
 
     for (int nRow=0; nRow<nNumRow; nRow++){
@@ -128,43 +136,43 @@ void displayShop(Player* player, int *aCursorPos, int nNumRow, int nNumCol){
             printf(" ┆");
             switch ((nRow*2)+nBoxLine){
                 case 0:
-                    printf("            Shop            ");
+                    printf("              Shop             ");
                     break;
                 case 1:
-                    printf("╟┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╢");
+                    printf("╟┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄╢");
                     break;
                 case 2:
                     printf("  %s", strWeaponNames[(aCursorPos[0]*nNumCol)+aCursorPos[1]]);
-                    nPadding=26-strlen(strWeaponNames[(aCursorPos[0]*nNumCol)+aCursorPos[1]]);
+                    nPadding=29-strlen(strWeaponNames[(aCursorPos[0]*nNumCol)+aCursorPos[1]]);
                     printRepeatedly(nPadding," ");
                     // printf(" %36s", strWeaponNames[(aCursorPos[0]*nNumCol)+aCursorPos[1]]);
                     break;
                 case 3:
-                    printf("                            ");
+                    printf("                               ");
                     break;
                 case 4:
-                    printf(" Rune Cost: ❖ %6d        ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][1]);
+                    printf("  Rune Cost: ❖ %6d          ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][1]);
                     break;
                 case 5:
-                    printf("                            ");
+                    printf("                               ");
                     break;
                 case 6:
-                    printf(" Dexterity Requirement: %3d ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][4]);
+                    printf("  Dexterity Requirement: %3d   ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][4]);
                     break;
                 case 7:
-                    printf("                            ");
+                    printf("                               ");
                     break;
                 case 8:
-                    printf(" HTP: %3d        END: %3d   ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][2], nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][3]);
+                    printf("  HTP: %3d       END: %3d      ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][2], nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][3]);
                     break;
                 case 9:
-                    printf(" STR: %3d        INT: %3d   ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][5], nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][6]);
+                    printf("  STR: %3d       INT: %3d      ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][5], nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][6]);
                     break;
                 case 10:
-                    printf(" FTH: %3d                   ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][7]);
+                    printf("  FTH: %3d                     ", nWeaponStats[(aCursorPos[0]*nNumCol)+aCursorPos[1]][7]);
                     break;
                 case 11:
-                    printf("                            ");
+                    printf("                               ");
                     break;
             }
             printf(" ┃\n");
@@ -172,7 +180,7 @@ void displayShop(Player* player, int *aCursorPos, int nNumRow, int nNumCol){
     }
     printRepeatedly(5,"\t");
     printf("┗");
-    printRepeatedly((nNumCol*12),"━");
+    printRepeatedly((nNumCol*13)-1,"━");
     printf("┛\n");
 
     printRepeatedly(5,"\t");

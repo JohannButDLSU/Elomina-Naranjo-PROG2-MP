@@ -40,10 +40,6 @@ void processTitleInput(char* cInput){
 
     int nSavingAllowed;
     int nGameLoaded;
-
-    int aTestInventory[24]={1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; //Each index represents a weapon in MP specs, Appendix C
-    int nTestRunes;
-
     switch (*cInput)
     {
     case '1':
@@ -52,7 +48,7 @@ void processTitleInput(char* cInput){
         break;
     case '2': // Continue Feature. Player can select a save, load, and continue their game from roundtable
         printf("\n\n\n\n\n");
-        player =setPlayer();
+        player=setPlayer();
         nSavingAllowed=0;
         nGameLoaded=0; // Checks if the player player actually loaded a game or just opted to go back to the title screen. 0 = Back; 1 = Load
         runSaveMenu(&nGameLoaded, nSavingAllowed, &player); // nSavingAllowed = 0. Players cannot save from the title screen; only load

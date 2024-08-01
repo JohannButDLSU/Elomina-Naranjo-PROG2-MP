@@ -9,7 +9,7 @@ void runInventoryMenu(Player* player){
     do{
         printRepeatedly(7,"\t");
         printf("Inventory\n\n");
-        displayInventory(nPage, player, aCursorPos, nNumRow, nNumCol);
+        displayInventory(0, nPage, player, aCursorPos, nNumRow, nNumCol);
         // cInput=getch();
         printRepeatedly(5,"\t");
         printf("(1) Equip Weapon\n");
@@ -23,7 +23,7 @@ void runInventoryMenu(Player* player){
         processInputInventoryMenu(&nPage, player, cInput, aCursorPos, nNumRow, nNumCol);
     }while(cInput!='0');
 }
-void displayInventory(int nPage, Player* player, int *aCursorPos, int nNumRow, int nNumCol){
+void displayInventory(int nDisplaySellingPrice, int nPage, Player* player, int *aCursorPos, int nNumRow, int nNumCol){
     printRepeatedly(5,"\t");
     printf("Page %d\n", nPage+1);
     printRepeatedly(5,"\t");
@@ -94,6 +94,10 @@ void displayInventory(int nPage, Player* player, int *aCursorPos, int nNumRow, i
     } else{
         printRepeatedly(5,"\t");
         printf("       Name :   %s\n", strWeaponNames[player->nInventory[(nPage*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1]);
+        if (nDisplaySellingPrice==1){
+            printRepeatedly(5,"\t");
+            printf("       Selling Price :  ❖ %6d\n", nWeaponStats[player->nInventory[(nPage*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1][1]/2);
+        }
         printRepeatedly(5,"\t");
         printRepeatedly((nNumCol*5)+4,"┄");
         printf("\n");
@@ -160,7 +164,7 @@ void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCu
             }
             break; 
         case '1': 
-            if (((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){ 
+            if (((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){
                 if(player->sEquippedWeapon.nWeaponIndex!=-1){
                     player->nInventorySize+=1;
                     player->nInventory=realloc(player->nInventory, player->nInventorySize);
