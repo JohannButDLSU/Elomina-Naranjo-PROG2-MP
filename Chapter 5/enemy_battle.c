@@ -11,16 +11,37 @@ void runEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
 
 void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     char cInput = ' ';
-    scanf("%d", &cInput);
+    scanf(" %c", &cInput);
     switch (cInput)
     {
-    case '1':
-        
-        break;
-    
-    default:
-        break;
+        case '1':
+            printf("[1] Physical\n");
+            printf("[2] Sorcery\n");
+            printf("[3] Incantation\n");
+            printf("[INPUT] : ");
+            char cInput2;
+            scanf(" %c", &cInput2);
+            switch (cInput2)
+            {
+                case '1':
+                    enemy->nHealth -= (player->nStrength + player->sEquippedWeapon.nStrength) * (1 - enemy->fPhysDef);
+                    break;
+                case '2':
+                    enemy->nHealth -= (player->nIntelligence + player->sEquippedWeapon.nIntelligence) * (1 - enemy->fSorcDef);
+                    break;
+                case '3':
+                    enemy->nHealth -= (player->nFaith + player->sEquippedWeapon.nFaith) * (1 - enemy->fIncaDef);
+                    break;
+                default:
+                    printf("ERROR cInput2 IS %c!!!\n", cInput2);
+                    break;
+            }
+            break;
+        default:
+            break;
     }
+
+    
 }
 
 void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
@@ -32,17 +53,17 @@ void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
 
     printf("Player : %s", player->strName);
     printf("\n");
-    printc(0, DEEP_GREEN, playerHealthBar); printf("%");
+    printc(0, DEEP_GREEN, playerHealthBar); printf(" %%");
     printf("\n");
-    printf ("HP: %3d / %3d", player->nBattleCurrentHealth, player->nBattleMaxHealth);
+    printf ("HP: %4d / %4d", player->nBattleCurrentHealth, player->nBattleMaxHealth);
     printf("\n");
     printf("\n");
     printf("\n");
     printf("Enemy : %s", enemy->strName);
     printf("\n");
-    printc(0, DEEP_RED, enemyHealthBar); printf("%");
+    printc(0, DEEP_RED, enemyHealthBar); printf(" %%");
     printf("\n");
-    printf ("HP: %3d / %3d", enemy->nHealth, enemy->nMaxHealth);
+    printf ("HP: %4d / %4d", enemy->nHealth, enemy->nMaxHealth);
     printf("\n");
     printf("\n");
     printf("\n");
