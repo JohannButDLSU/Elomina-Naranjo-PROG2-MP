@@ -4,6 +4,10 @@ void runArea(Player* player, int nAreaIndex){
     char cInput=' ';
     int nRunning=1; // 0 = FALSE, 1 = TRUE. Running area; exits when 0.
 
+    // at the START of the area is where I'll make the battle health of the player, so here xddd
+    player->nBattleMaxHealth = (100 * (player->nMaxHealth + player->sEquippedWeapon.nHealth) / 2);
+    player->nBattleCurrentHealth = player->nBattleMaxHealth;
+
     struct sAreaData sArea;
     switch (nAreaIndex){
         case 1:

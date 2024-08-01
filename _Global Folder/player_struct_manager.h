@@ -10,13 +10,17 @@ struct sPlayer{
    SpriteString spriteRows[16];
 
    int nLevel; 
-   int nMaxHealth;
    int nHealth;
    int nEndurance;
    int nDexterity;
    int nStrength;
    int nIntelligence;
    int nFaith;
+
+   // For the battle
+   int nMaxHealth;
+   int nBattleMaxHealth;
+   int nBattleCurrentHealth;
 
    // Data for roundtable
    int nRunes;
