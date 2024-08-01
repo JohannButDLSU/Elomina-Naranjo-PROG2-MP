@@ -11,6 +11,9 @@ void runEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
 
 void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     char cInput = ' ';
+    int nDodge = 0; // 1 is u dodged, 0 is u didn't
+    int nDodgeRate = 0;
+
     scanf(" %c", &cInput);
     switch (cInput)
     {
@@ -18,7 +21,9 @@ void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
             printf("[1] Physical\n");
             printf("[2] Sorcery\n");
             printf("[3] Incantation\n");
-            printf("[INPUT] : ");
+            
+            printf("[INPUT] : "
+            );
             char cInput2;
             scanf(" %c", &cInput2);
             switch (cInput2)
@@ -37,10 +42,17 @@ void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
                     break;
             }
             break;
+        case '2':
+            nDodgeRate = 20 + ((player->nEndurance + player->sEquippedWeapon.nEndurance) / 2);
+            if ((rand() % (99 - 0) + 0) < nDodgeRate) nDodge = 1;
+            else (nDodge = 0);
+            break;
         default:
             break;
     }
-    player->nBattleCurrentHealth -= enemyAttack(sArea->nAreaIndex, *enemy);
+    if (!nDodge) player->nBattleCurrentHealth -= enemyAttack(sArea->nAreaIndex, *enemy);
+
+    // Print the battle output here :)
 
     if (player->nBattleCurrentHealth <= 0) printf("\nYou Died.\n");
     if (enemy->nHealth <= 0) printf("\nEnemy Felled.\n");
@@ -69,7 +81,8 @@ void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     printf("\n");
     printf("\n");
     printf("\n");
-    printf("What do?\n");
+    printf("Choose a battle option\n");
+    printf("(Enemy will deal %d damage)\n", enemyAttack(sArea->nAreaIndex, *enemy));
     printf("[1] Attack\n");
     printf("[2] Dodge\n");
     printf("[3] Drink Potion\n");
