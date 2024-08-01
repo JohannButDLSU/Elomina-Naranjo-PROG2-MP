@@ -11,19 +11,22 @@ void runEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
 
 void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     char cInput = ' ';
+
     int nDodge = 0; // 1 is u dodged, 0 is u didn't
-    int nDodgeRate = 0;
+    int nDodgeRate = -1;
+
+    int nCanPotion = 1; // 1 is yes, 0 is no
+    int nPotionHeal = -1;
 
     scanf(" %c", &cInput);
     switch (cInput)
     {
-        case '1':
+        case '1': // Attack
             printf("[1] Physical\n");
             printf("[2] Sorcery\n");
             printf("[3] Incantation\n");
             
-            printf("[INPUT] : "
-            );
+            printf("[INPUT] : ");
             char cInput2;
             scanf(" %c", &cInput2);
             switch (cInput2)
@@ -42,20 +45,42 @@ void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
                     break;
             }
             break;
-        case '2':
+        case '2': // Dodge
             nDodgeRate = 20 + ((player->nEndurance + player->sEquippedWeapon.nEndurance) / 2);
-            if ((rand() % (99 - 0) + 0) < nDodgeRate) nDodge = 1;
+            if ((rand() % (99 - 0 + 1) + 0) < nDodgeRate) nDodge = 1;
             else (nDodge = 0);
             break;
+        case '3': // Drink Potion
+            if (nCanPotion == 0) return; // guard clause
+            nPotionHeal = (rand() % (50 - 25 + 1)) + 25;
+            nPotionHeal = (int) (((float)nPotionHeal * (float)player->nBattleMaxHealth) / 100);
+            player->nBattleCurrentHealth += nPotionHeal;
+            player->nPotions --;
+            printf("\nyou healed %d !\n", nPotionHeal);
+            break;
         default:
+            return;
             break;
     }
     if (!nDodge) player->nBattleCurrentHealth -= enemyAttack(sArea->nAreaIndex, *enemy);
 
+    // Checks
+    if (player->nBattleCurrentHealth >= player->nBattleMaxHealth) player->nBattleCurrentHealth = player->nBattleMaxHealth;
+
     // Print the battle output here :)
 
     if (player->nBattleCurrentHealth <= 0) printf("\nYou Died.\n");
-    if (enemy->nHealth <= 0) printf("\nEnemy Felled.\n");
+    else if (enemy->nHealth <= 0) printf("\nEnemy Felled.\n");
+
+
+    // to do:
+    //  - end of battle screen
+    //  - kick player back to roundtable if they lose (need zivv to connect sArea and nRunning)
+    //  - center everything
+    //  - 8 potions only
+    //  - SHOW rewards after killing
+    //  - SHOW damage u dealt and enemy after the turn
+    //  - PROLLY A LOT MORE AUGHHH
 }
 
 void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
