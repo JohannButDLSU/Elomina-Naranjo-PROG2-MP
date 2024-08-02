@@ -80,13 +80,16 @@ void processInputSellMenu(int* nPage, Player* player, char cInput, int *aCursorP
                     player->nInventory[nItem]=player->nInventory[nItem+1];
                 }
                 player->nInventorySize-=1;
-                player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                // player->nInventory=realloc(player->nInventory, player->nInventorySize);
             };
+            if (player->nInventorySize%((nNumRow*nNumCol))==0&&(*nPage)>0){
+                (*nPage)-=1;
+            }
             break;
         case '2':
             if(player->sEquippedWeapon.nWeaponIndex!=-1){
                 player->nInventorySize+=1;
-                player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                // player->nInventory=realloc(player->nInventory, player->nInventorySize);
                 player->nInventory[player->nInventorySize-1]=player->sEquippedWeapon.nWeaponIndex;
                 player->sEquippedWeapon=initializeEmptyWeapon();
             }

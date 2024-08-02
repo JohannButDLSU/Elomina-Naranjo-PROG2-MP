@@ -37,17 +37,28 @@ void runSaveMenu(int* nGameLoaded, int nAllowSaving, Player *player){
 
 void loadSave(char (*saveSlots)[31], int *nCursor, Player *player){
     Player sStoredOnFile;
-    FILE *filePointer;
-    filePointer=fopen(saveSlots[*nCursor],"rb");
-    fread(&sStoredOnFile, sizeof(Player), 1, filePointer);
+    FILE *filePointer; // Create  a file pointer
+    filePointer=fopen(saveSlots[*nCursor],"rb"); //open a file with the filename stored in string array saveSlots
+    fread(&sStoredOnFile, sizeof(Player), 1, filePointer); // read from the filepointer at position/bit 0 (store at address of this var, with the sizeof(data type), how many of that data type, from which file pointer?)
     (*player)=sStoredOnFile;
+
+    int nItemIndex=0;
+    player->nInventory=malloc(sizeof(int)*player->nInventorySize);
+    for (int nItem=0; nItem<player->nInventorySize; nItem++){
+        fread(&nItemIndex, sizeof(int), 1, filePointer);
+        player->nInventory[nItem]=nItemIndex;
+    }
+
     fclose(filePointer);
 }
 
 void saveCurrentGameState(char (*saveSlots)[31], int *nCursor, Player *player){
     FILE *filePointer;
     filePointer=fopen(saveSlots[*nCursor],"wb");
-    fwrite(player, (sizeof(Player)+(sizeof(int)*player->nInventorySize)), 1, filePointer);
+    fwrite(player, sizeof(Player), 1, filePointer);
+    for (int nItem=0; nItem<player->nInventorySize; nItem++){
+        fwrite(&player->nInventory[nItem], sizeof(int), 1, filePointer);
+    }
     fclose(filePointer);
 }
 
@@ -66,32 +77,32 @@ void printFileBox(Player sStoredOnFile, int nSaveExists, int nBoxLine, int nInde
 
     switch (nBoxLine){
         case -1:
-            printf("                No Data                 ");
+            printf("                No Data                ");
             break;
         case 0:
-            printf("                                        ");
+            printf("                                       ");
             break;
         case 1:
-            printf("                Save File %d                 ", nIndex+1);
+            printf("                Save File %d                ", nIndex+1);
             break;
         case 2:
             if (nSelected==1){
-                printc(0,15,"╔══════════════════════════════════════════╗");
+                printc(0,15,"╔═════════════════════════════════════════╗");
             } else {
-                printc(0,8,"┌──────────────────────────────────────────┐");
+                printc(0,8,"┌─────────────────────────────────────────┐");
             }
             break;
         case 3:
-            fprintf(stdout,"Name    : %-*s",30,sStoredOnFile.strName);
+            fprintf(stdout,"Name   : %-*s",30,sStoredOnFile.strName);
             break;
         case 4:
-            fprintf(stdout,"Class   : %-*s",30,sStoredOnFile.strJobClass);
+            fprintf(stdout,"Class  : %-*s",30,sStoredOnFile.strJobClass);
             break;
         case 5:
-            printf("                                        ");
+            printf("                                       ");
             break;
         case 6:
-            printf("    Shards                              ");
+            printf("    Shards                             ");
             break;
         case 7:
             printf("   ");
@@ -102,31 +113,31 @@ void printFileBox(Player sStoredOnFile, int nSaveExists, int nBoxLine, int nInde
                     printf(" ◇");
                 }
             }
-            printf("                         ");   
+            printf("                        ");   
             break;
         case 8:
-        printf("                                        ");
+        printf("                                       ");
             break;
         case 9:
-            fprintf(stdout,"       LVL %3d      RUNES ❖ %6d      ",sStoredOnFile.nHealth,sStoredOnFile.nEndurance);
+            fprintf(stdout,"       LVL %3d      RUNES ❖ %6d     ",sStoredOnFile.nHealth,sStoredOnFile.nEndurance);
             break;
         case 10:
-            printf("                                        ");
+            printf("                                       ");
             break;
         case 11:
-            fprintf(stdout,"       HTP %3d❤️     END %3d🗿           ",sStoredOnFile.nHealth,sStoredOnFile.nEndurance);
+            fprintf(stdout,"       HTP %3d❤️     END %3d🗿          ",sStoredOnFile.nHealth,sStoredOnFile.nEndurance);
             break;
         case 12:
-            fprintf(stdout,"       FTH %3d🕯️     DEX %3d⚡          ",sStoredOnFile.nFaith,sStoredOnFile.nDexterity);
+            fprintf(stdout,"       FTH %3d🕯️     DEX %3d⚡         ",sStoredOnFile.nFaith,sStoredOnFile.nDexterity);
             break;
         case 13:
-            fprintf(stdout,"       STR %3d💪    INT %3d🧠           ",sStoredOnFile.nFaith,sStoredOnFile.nDexterity);
+            fprintf(stdout,"       STR %3d💪    INT %3d🧠          ",sStoredOnFile.nFaith,sStoredOnFile.nDexterity);
             break;
         case 14:
             if (nSelected==1){
-                printc(0,15,"╚══════════════════════════════════════════╝");
+                printc(0,15,"╚═════════════════════════════════════════╝");
             } else {
-                printc(0,8,"└──────────────────────────────────────────┘");
+                printc(0,8,"└─────────────────────────────────────────┘");
             }
             break;
     }
@@ -219,7 +230,8 @@ void processInputSaveMenu(int *nOminousMessage, char (*saveSlots)[31], int* nGam
         case '0':
             cContinue=' ';
             if (nAllowSaving==1&&(*nOminousMessage)==1){
-                printf("\n\n\n\nYou will regret this later\n\n\n\n");
+                
+                printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tYou will regret this later.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                 // getch();
                 scanf(" %c", &cContinue);
             }
