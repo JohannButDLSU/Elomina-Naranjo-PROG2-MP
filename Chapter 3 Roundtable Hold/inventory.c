@@ -28,7 +28,7 @@ void displayInventory(int nDisplaySellingPrice, int nPage, Player* player, int *
     printf("Page %d\n", nPage+1);
     printRepeatedly(5,"\t");
     printf("┏");
-    printRepeatedly((nNumCol*5)+2,"━");
+    printRepeatedly((nNumCol*6)+2,"━");
     printf("┓\n");
     for (int nRow=0; nRow<nNumRow; nRow++){
         for (int nBoxLine=0; nBoxLine<3; nBoxLine++){
@@ -43,33 +43,35 @@ void displayInventory(int nDisplaySellingPrice, int nPage, Player* player, int *
                 if (aCursorPos[0]==nRow&&aCursorPos[1]==nCol){
                     switch (nBoxLine){
                         case 0:
-                            printf("┏━━━┓");
+                            printc(0,227,"┏━━━━┓");
                             break;
                         case 1:
                             if ((nPage*nNumCol*nNumRow)+(nRow*nNumCol)+nCol<player->nInventorySize){
-                                printf("┃ %d ┃", player->nInventory[(nPage*nNumCol*nNumRow)+(nRow*nNumCol)+nCol]);
+                                printc(0,227,"┃");
+                                printf(" %02d ", player->nInventory[(nPage*nNumCol*nNumRow)+(nRow*nNumCol)+nCol]);
+                                printc(0,227,"┃");
                             } else{
-                                printf("┃   ┃");
+                                printc(0,227,"┃    ┃");
                             }
                             break;
                         case 2:
-                            printf("┗━━━┛");
+                            printc(0,227,"┗━━━━┛");
                             break;
                     }
                 } else{
                     switch (nBoxLine){
                         case 0:
-                            printf("┌┄┄┄┐");
+                            printf("┌┄┄┄┄┐");
                             break;
                         case 1:
                             if ((nPage*nNumCol*nNumRow)+(nRow*nNumCol)+nCol<player->nInventorySize){
-                                printf("┆ %d ┆", player->nInventory[(nPage*nNumCol*nNumRow)+(nRow*nNumCol)+nCol]);
+                                printf("┆ %02d ┆", player->nInventory[(nPage*nNumCol*nNumRow)+(nRow*nNumCol)+nCol]);
                             } else{
-                                printf("┆   ┆");
+                                printf("┆    ┆");
                             }
                             break;
                         case 2:
-                            printf("└┄┄┄┘");
+                            printf("└┄┄┄┄┘");
                             break;
                     }
                 }
@@ -84,12 +86,12 @@ void displayInventory(int nDisplaySellingPrice, int nPage, Player* player, int *
     }
     printRepeatedly(5,"\t");
     printf("┗");
-    printRepeatedly((nNumCol*5)+2,"━");
+    printRepeatedly((nNumCol*6)+2,"━");
     printf("┛\n");
 
     if ((nPage*nNumCol*nNumRow)+(nNumCol*aCursorPos[0])+aCursorPos[1]>=player->nInventorySize){
         printRepeatedly(5,"\t");
-        printRepeatedly((nNumCol*5)+4,".");
+        printRepeatedly((nNumCol*6)+4,".");
         printf("\n");
     } else{
         printRepeatedly(5,"\t");
@@ -99,7 +101,7 @@ void displayInventory(int nDisplaySellingPrice, int nPage, Player* player, int *
             printf("       Selling Price :  ❖ %6d\n", nWeaponStats[player->nInventory[(nPage*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1][1]/2);
         }
         printRepeatedly(5,"\t");
-        printRepeatedly((nNumCol*5)+4,"┄");
+        printRepeatedly((nNumCol*6)+4,"┄");
         printf("\n");
         printRepeatedly(5,"\t");
         printf("       HTP %3d❤️      END %3d🗿\n", nWeaponStats[player->nInventory[(nPage*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1][2], nWeaponStats[player->nInventory[(nPage*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1][3]);
@@ -110,27 +112,31 @@ void displayInventory(int nDisplaySellingPrice, int nPage, Player* player, int *
     }
 
     printRepeatedly(5,"\t");
-    printRepeatedly((nNumCol*5)+4,"┄");
+    printRepeatedly((nNumCol*6)+4,"┄");
     printf("\n");
 
     if (strcmp(player->sEquippedWeapon.strName,"EMPTY")==0){
         printRepeatedly(5,"\t");
-        printf("                 ┌┄┄┄┐\n");
+        printf("                 ┌┄┄┄┄┐\n");
         printRepeatedly(5,"\t");
-        printf("Weapon Equipped  ┆   ┆ : No weapon\n");
+        printf("Weapon Equipped  ┆    ┆ : No weapon\n");
         printRepeatedly(5,"\t");
-        printf("                 └┄┄┄┘\n");
+        printf("                 └┄┄┄┄┘\n");
     } else{
         printRepeatedly(5,"\t");
-        printf("                 ┏━━━┓\n");
+        printc(0,214,"                 ┏━━━━┓\n");
         printRepeatedly(5,"\t");
-        printf("Weapon Equipped  ┃ %d ┃ : %s\n",player->sEquippedWeapon.nWeaponIndex, player->sEquippedWeapon.strName);
+        printf("Weapon Equipped  ");
+        printc(0,214,"┃");
+        printf(" %02d ",player->sEquippedWeapon.nWeaponIndex);
+        printc(0,214,"┃");
+        printf(" : %s\n",player->sEquippedWeapon.strName);
         printRepeatedly(5,"\t");
-        printf("                 ┗━━━┛\n");
+        printc(0,214,"                 ┗━━━━┛\n");
     }
 
     printRepeatedly(5,"\t");
-    printRepeatedly((nNumCol*5)+4,"━");
+    printRepeatedly((nNumCol*6)+4,"━");
     printf("\n");
 }
 void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCursorPos, int nNumRow, int nNumCol){
@@ -164,30 +170,27 @@ void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCu
             }
             break; 
         case '1': 
-            // Equip the item the cursor is on
-            // from the cursor, make the item turn into the next item up until the second to the last item
-            // reduce inventory size
-
-            // increase inventory size
-            // place equipped weapon onto last inventory slot
-            // Equip the item the cursor is on
-            // from the cursor, make the item turn into the next item up until the second to the last item
-            // reduce inventory size
-            if (((*nPage)*nNumCol*nNumRow)+((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){
-                if(player->sEquippedWeapon.nWeaponIndex!=(-1)){
-                    player->nInventorySize+=1;
+            if(player->nDexterity>=nWeaponStats[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1][4]){
+                if (((*nPage)*nNumCol*nNumRow)+((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){
+                    if(player->sEquippedWeapon.nWeaponIndex!=(-1)){
+                        player->nInventorySize+=1;
+                        // player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                        player->nInventory[player->nInventorySize-1]=player->sEquippedWeapon.nWeaponIndex;
+                    }
+                    player->sEquippedWeapon=setWeaponStats(strWeaponNames[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1], nWeaponStats[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1]);
+                    for (int nItem=(((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]); nItem<(player->nInventorySize-1); nItem++){
+                        player->nInventory[nItem]=player->nInventory[nItem+1];
+                    }
+                    player->nInventorySize-=1;
                     // player->nInventory=realloc(player->nInventory, player->nInventorySize);
-                    player->nInventory[player->nInventorySize-1]=player->sEquippedWeapon.nWeaponIndex;
+                };
+                if (player->nInventorySize%((nNumRow*nNumCol))==0&&(*nPage)>0){
+                    (*nPage)-=1;
                 }
-                player->sEquippedWeapon=setWeaponStats(strWeaponNames[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1], nWeaponStats[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1]);
-                for (int nItem=(((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]); nItem<(player->nInventorySize-1); nItem++){
-                    player->nInventory[nItem]=player->nInventory[nItem+1];
-                }
-                player->nInventorySize-=1;
-                // player->nInventory=realloc(player->nInventory, player->nInventorySize);
-            };
-            if (player->nInventorySize%((nNumRow*nNumCol))==0&&(*nPage)>0){
-                (*nPage)-=1;
+            } else{
+                printRepeatedly(3,"\n");
+                printRepeatedly(5,"\t");
+                printf("You do not have the dexterity needed to wield that one\n\n\n");
             }
             break;
         case '2':

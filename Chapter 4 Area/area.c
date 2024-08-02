@@ -179,11 +179,11 @@ void displayArea(Player* player, struct sAreaData sArea){
                         }
                         break;
                     case 6:
-                        printf("░░░");
+                        printc(0,8,"░░░");
                         break;
                     }
                 } else{
-                    printf("░░░");
+                    printc(0,8,"░░░");
                 }
             }
         printf("\n");
