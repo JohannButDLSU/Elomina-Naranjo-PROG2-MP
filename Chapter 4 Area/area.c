@@ -247,9 +247,9 @@ void processUserInputArea(int*nCollectedRunes, int* nRunning, struct sAreaData* 
 
                         enemy = initializeEnemy(sArea->nAreaIndex, nEnemyType);
                         runEnemyBattle(sArea, player, &enemy);
-                            if (player->nBattleCurrentHealth<=0){
-                                (*nRunning)=0;
-                            }
+                        if (player->nBattleCurrentHealth<=0){
+                            (*nRunning)=0;
+                        }
                         sArea->sBosses[nLandedBossTile].nEnabled=0; // Whether you win or lose a boss, it will be deactivated or uninteractible again because the player either wins and deactivates the boss or loses and goes back to rountable                    
                         if (strcmp(sArea->strAreaName,"Elden Throne")==0&&sArea->sBosses[0].nEnabled==0&&sArea->sBosses[1].nEnabled==0){ // In the Elden Throne, there are 2 bosses that come one after the other. The fast travel only opens when both are slain
                             sArea->sBosses[1].nEnabled=1;

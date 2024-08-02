@@ -70,8 +70,13 @@ void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     if (player->nBattleCurrentHealth >= player->nBattleMaxHealth) player->nBattleCurrentHealth = player->nBattleMaxHealth;
 
     if (player->nBattleCurrentHealth <= 0) printf("\nYou Died.\n");
-    else if (enemy->nHealth <= 0) printf("\nEnemy Felled.\n");
-
+    else if (enemy->nHealth <= 0){
+        printf("\nEnemy Felled.\n");
+        if (strcmp(enemy->strName, "Radagon") == 0){
+            *enemy = initializeEnemy(6, 5);
+            runEnemyBattle(sArea, player, enemy);
+        }
+    }
 
     // to end of battle screen after u win
 }

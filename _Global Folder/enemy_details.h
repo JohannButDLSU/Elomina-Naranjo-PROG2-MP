@@ -126,9 +126,7 @@ Enemy initializeEnemy(int nRoomIndex, int nType){ // nRoomIndex shud be based on
             toReturn.fSorcDef = 0.25;
             toReturn.fIncaDef = 0.40;
         }
-    }
-    else if (nRoomIndex == 7){
-        if (nType == 4){
+        if (nType == 5){
             strcpy(toReturn.strName, "Elden Beast");
             toReturn.nHealth = 1250;
             toReturn.fPhysDef = 0.25;
@@ -160,6 +158,7 @@ int enemyAttack(int nRoomIndex, Enemy enemy){ // This will be formatted like pla
         nMax = 130;
         break;
     case 4:
+    case 5:
         if (strcmp(enemy.strName, "Godrick") == 0){
             nMin = 150;
             nMax = 300;
@@ -188,12 +187,12 @@ int enemyAttack(int nRoomIndex, Enemy enemy){ // This will be formatted like pla
             nMin = 450;
             nMax = 900;
         }
-        
+
         break;
     default:
         printf("\nenemyAttack() error. Enemy type is %d\n", enemy.nType);
         break;
     }
 
-    return (rand() % (nMax - nMin + 1) + nMin);
+    return (rand() % (nMax - nMin + 1) + nMin) * nRoomIndex;
 }

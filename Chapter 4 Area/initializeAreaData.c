@@ -236,7 +236,7 @@ struct sAreaData initializeRedmaneCastle(){
     initializeDoorPairTile(arrDoorPairData, &sTempArea);
 
     // [row coordinate, column coordinate, floor coordinaate, is it Enabled?]
-    int arrBossTileData[1][4]={{2,3,6,0}};
+    int arrBossTileData[1][4]={{2,3,6,1}};
     initializeBossTile(arrBossTileData, &sTempArea);
 
     // [row coordinate, column coordinate, floor coordinate, is it locked?]
@@ -329,7 +329,7 @@ struct sAreaData initializeVolcanoManor(){
     initializeDoorPairTile(arrDoorPairData, &sTempArea);
 
     // [row coordinate, column coordinate, floor coordinaate, is it Enabled?]
-    int arrBossTileData[1][4]={{3,2,6,0}};
+    int arrBossTileData[1][4]={{3,2,6,1}};
     initializeBossTile(arrBossTileData, &sTempArea);
 
     // [row coordinate, column coordinate, floor coordinate, is it locked?]
