@@ -46,6 +46,7 @@ void displayCharacterCreation(Player player){
 
 void processCharacterCreationInput(Player* player, char* cInput){
     scanf(" %c", cInput);
+    
     switch (*cInput)
     {
         case '1':
@@ -53,9 +54,10 @@ void processCharacterCreationInput(Player* player, char* cInput){
             printCentered("Enter a new name!", BORDER_2_LENGTH);
             printChoiceBorderless("[INPUT] : ", BORDER_2_LENGTH);
 
-            char strNewName[26];
+            String strNewName;
             scanf(" %[^\n]%*c", strNewName);
-            strncpy(player->strName, strNewName, 25);
+            strNewName[25] = '\0';
+            strcpy(player->strName, strNewName);
 
             break;
         case '2':
