@@ -58,7 +58,7 @@ void processEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
             nPotionHeal = (nPotionHeal * player->nBattleMaxHealth) / 100;
             player->nBattleCurrentHealth += nPotionHeal;
             player->nPotions --;
-            printf("\nyou healed %d !\n", nPotionHeal);
+            nDodge = 1;
             break;
         default:
             return;
@@ -107,7 +107,7 @@ void displayEnemyBattle(struct sAreaData* sArea, Player* player, Enemy* enemy){
     printMiddleBorder(0, DEEP_GREEN, playerHealthBar, BORDER_5_LENGTH); printMiddleBorder(0, DEEP_RED, enemyHealthBar, BORDER_5_LENGTH);                                                            printf("\n");
     printWintMiddleBorder(0, WHITE, "Current Health : ", player->nBattleCurrentHealth, BORDER_5_LENGTH); printWintMiddleBorder(0, WHITE, "Current Health : ", enemy->nHealth, BORDER_5_LENGTH);     printf("\n");
     printWintMiddleBorder(0, WHITE, "Max Health : ", player->nBattleMaxHealth, BORDER_5_LENGTH); printWintMiddleBorder(0, WHITE, "Max Health : ", enemy->nMaxHealth, BORDER_5_LENGTH);              printf("\n");
-    printMiddleBorder(0, WHITE, "", BORDER_5_LENGTH); printMiddleBorder(0, WHITE, "", BORDER_5_LENGTH);                                                                                             printf("\n");
+    printWintMiddleBorder(0, WHITE, "Potions : ", player->nPotions, BORDER_5_LENGTH); printMiddleBorder(0, WHITE, "", BORDER_5_LENGTH);                                                                                             printf("\n");
     printMiddleBorder(0, 0, "Choose a battle option", BORDER_5_LENGTH); printWintMiddleBorder(0, WHITE, "Enemy damage this turn : ", enemyAttack(sArea->nAreaIndex, *enemy), BORDER_5_LENGTH);      printf("\n");
     printYBorder(0, WHITE, BORDER_5_LENGTH); printYBorder(0, WHITE, BORDER_5_LENGTH);                                                                                                               printf("\n");
     printf("\n");
