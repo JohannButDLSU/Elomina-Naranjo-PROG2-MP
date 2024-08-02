@@ -6,9 +6,10 @@
 #include "_Global Folder/areaStructures.h"
 #include "_Global Folder/gen_struct_manager.h"
 #include "_Global Folder/job_class_sprites.h"
+#include "_Global Folder/enemy_sprites.h"
 #include "_Global Folder/player_struct_manager.h"
-#include "_Global Folder/more_prints.h"
 #include "_Global Folder/enemy_details.h"
+#include "_Global Folder/more_prints.h"
 #include "_Global Folder/weapon_details.h"
 
 #include "Chapter 1/title.c"

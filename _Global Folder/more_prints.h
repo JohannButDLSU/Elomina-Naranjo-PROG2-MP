@@ -49,11 +49,12 @@ void printcCentered(int nColorBG, int ncColorFG, String strTextToPrint, int nLen
 #define BORDER_2_LENGTH 86
 #define BORDER_5_LENGTH 60
 #define BORDER_PLAYER_SPRITE_LENGTH 34 // 32 for sprite + 2 for borders
+#define BORDER_5_PLAYER_PADDING_LENGTH (BORDER_5_LENGTH - BORDER_PLAYER_SPRITE_LENGTH) / 2
 
 void printYBorder(int colorBG, int colorFG, int nLength){
     for (int i = 0; i < nLength; i++){
-        if (i == 0 || i == nLength - 1) printf("▩");
-        else printf("═");
+        if (i == 0 || i == nLength - 1) printc(colorBG, colorFG, "▩");
+        else printc(colorBG, colorFG, "═");
     }
     // printf("\n");
 }
@@ -112,18 +113,29 @@ void printYBorderPlayer(){
         if (i == 0 || i == BORDER_PLAYER_SPRITE_LENGTH - 1) printf("▩");
         else printf("═");
     }
-    printf("\n");
 }
 
 void printMiddleBorderPlayer(Player player, int nRow){
     printf("║");
 
     if (!strcmp(player.strJobClass, "Vagabond")) printf("%s", VAGABOND_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Samurai")) printf("%s", SAMURAI_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Warrior")) printf("%s", WARRIOR_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Hero")) printf("%s", HERO_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Astrologer")) printf("%s", ASTROLOGER_ROWS[nRow]);
-    if (!strcmp(player.strJobClass, "Prophet")) printf("%s", PROPHET_ROWS[nRow]);
+    else if (!strcmp(player.strJobClass, "Samurai")) printf("%s", SAMURAI_ROWS[nRow]);
+    else if (!strcmp(player.strJobClass, "Warrior")) printf("%s", WARRIOR_ROWS[nRow]);
+    else if (!strcmp(player.strJobClass, "Hero")) printf("%s", HERO_ROWS[nRow]);
+    else if (!strcmp(player.strJobClass, "Astrologer")) printf("%s", ASTROLOGER_ROWS[nRow]);
+    else if (!strcmp(player.strJobClass, "Prophet")) printf("%s", PROPHET_ROWS[nRow]);
+    else printf("▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩");
 
-    printf("║\n");
+    printf("║");
+}
+
+void printMiddleBorderEnemy(Enemy enemy, int nRow){
+    printf("║");
+
+    if (enemy.nType == 1) printf("%s", ENEMY_1_ROWS[nRow]);
+    else if (enemy.nType == 2) printf("%s", ENEMY_2_ROWS[nRow]);
+    else if (enemy.nType == 3) printf("%s", ENEMY_3_ROWS[nRow]);
+    else printf("▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩");
+
+    printf("║");
 }
