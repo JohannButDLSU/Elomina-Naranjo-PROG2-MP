@@ -185,6 +185,8 @@ void processInputSaveMenu(int *nOminousMessage, char (*saveSlots)[31], int* nGam
     Player sStoredOnFile;
     char cContinue;
 
+    FILE *filePointer;
+
     switch (cInput){
         case 'A':
         case 'a':
@@ -205,7 +207,6 @@ void processInputSaveMenu(int *nOminousMessage, char (*saveSlots)[31], int* nGam
             }
             break;
         case '2':
-            FILE *filePointer;
             filePointer=fopen(saveSlots[*nCursor],"rb");
             fread(&sStoredOnFile, sizeof(Player), 1, filePointer);
             if (0!=strcmp(sStoredOnFile.strName,"EMPTY")&&0!=strcmp(sStoredOnFile.strJobClass,"EMPTY")){

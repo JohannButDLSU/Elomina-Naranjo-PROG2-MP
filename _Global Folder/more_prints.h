@@ -44,8 +44,10 @@ void printcCentered(int nColorBG, int ncColorFG, String strTextToPrint, int nLen
 }
 
 // BORDERS IN PRINTING, USEFUL FOR PRETTIFYING THE PRINTING OF CHAPTERS
+// 120 WILL BE LIKE FULL SCREEN TYPE BEAT
 #define BORDER_1_LENGTH 120
-#define BORDER_2_LENGTH 70
+#define BORDER_2_LENGTH 86
+#define BORDER_5_LENGTH 54
 #define BORDER_PLAYER_SPRITE_LENGTH 34 // 32 for sprite + 2 for borders
 
 
@@ -86,25 +88,25 @@ void printChoiceBorderless1(String strTextToPrint){
     printf("%s", strTextToPrint);
 }
 
-void printYBorder2(int colorBG, int colorFG){
-    for (int i = 0; i < BORDER_2_LENGTH; i++){
-        if (i == 0 || i == BORDER_2_LENGTH - 1) printf("▩");
+void printYBorder2(int colorBG, int colorFG, int nLength){
+    for (int i = 0; i < nLength; i++){
+        if (i == 0 || i == nLength - 1) printf("▩");
         else printf("═");
     }
     // printf("\n");
 }
 
-void printMiddleBorder2(int colorBG, int colorFG, String strTextToPrint){
+void printMiddleBorder2(int colorBG, int colorFG, String strTextToPrint, int nLength){
     printf("║");
-    for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
     printc(colorBG, colorFG, strTextToPrint);
-    for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
     if (strlen(strTextToPrint) % 2 == 1) printf(" ");
     printf("║");
     // printf("\n");
 }
 
-void printWintMiddleBorder2(int colorBG, int colorFG, String strTextToPrint, int nInt){
+void printWintMiddleBorder2(int colorBG, int colorFG, String strTextToPrint, int nInt, int nLength){
 
     int nExtraPadding;
     if (nInt < 10) nExtraPadding = 1;

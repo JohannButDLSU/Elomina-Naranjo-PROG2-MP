@@ -4,9 +4,11 @@ void runArea(Player* player, int nAreaIndex){
     char cInput=' ';
     int nRunning=1; // 0 = FALSE, 1 = TRUE. Running area; exits when 0.
 
-    // at the START of the area is where I'll make the battle health of the player, so here xddd
+    // at the START of the area is where I'll initialize player stuff, so here xddd
+    // will include health, potions
     player->nBattleMaxHealth = (100 * (player->nMaxHealth + player->sEquippedWeapon.nHealth) / 2);
     player->nBattleCurrentHealth = player->nBattleMaxHealth;
+    player->nPotions = 8;
 
     struct sAreaData sArea;
     switch (nAreaIndex){
