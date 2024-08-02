@@ -9,7 +9,7 @@ void runSpawnTile(int* nCollectedRunes, int* nRunning, struct sAreaData* sArea, 
         Enemy enemy;
         int nEnemyType = (rand() % (3 - 1 + 1) + 1);
 
-        enemy = initializeEnemy(sArea->nAreaIndex + 1, nEnemyType);
+        enemy = initializeEnemy(sArea->nAreaIndex, nEnemyType);
         runEnemyBattle(sArea, player, &enemy);
     }
     if (player->nBattleCurrentHealth<=0){

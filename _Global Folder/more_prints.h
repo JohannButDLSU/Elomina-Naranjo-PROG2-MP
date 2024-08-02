@@ -135,6 +135,7 @@ void printMiddleBorderEnemy(Enemy enemy, int nRow){
     if (enemy.nType == 1) printf("%s", ENEMY_1_ROWS[nRow]);
     else if (enemy.nType == 2) printf("%s", ENEMY_2_ROWS[nRow]);
     else if (enemy.nType == 3) printf("%s", ENEMY_3_ROWS[nRow]);
+    else if (enemy.nType == 4) printf("%s", ENEMY_4_ROWS[nRow]);
     else printf("▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩▩");
 
     printf("║");

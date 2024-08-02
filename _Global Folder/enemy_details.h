@@ -62,26 +62,79 @@ Enemy initializeEnemy(int nRoomIndex, int nType){ // nRoomIndex shud be based on
         if (nType == 1) strcpy(toReturn.strName, "Godrick Soldier");
         if (nType == 2) strcpy(toReturn.strName, "Godrick Archer");
         if (nType == 3) strcpy(toReturn.strName, "Godrick Knight");
+        if (nType == 4){
+            strcpy(toReturn.strName, "Godrick");
+            toReturn.nHealth = 200;
+            toReturn.fPhysDef = 0.35;
+            toReturn.fSorcDef = 0.2;
+            toReturn.fIncaDef = 0.15;
+        }
     }
     else if (nRoomIndex == 2){
         if (nType == 1) strcpy(toReturn.strName, "Living Jar");
         if (nType == 2) strcpy(toReturn.strName, "Glintstone Sorcerer");
         if (nType == 3) strcpy(toReturn.strName, "Battlemage");
+        if (nType == 4){
+            strcpy(toReturn.strName, "Rennala");
+            toReturn.nHealth = 400;
+            toReturn.fPhysDef = 0.15;
+            toReturn.fSorcDef = 0.35;
+            toReturn.fIncaDef = 0.25;
+        }
     }
     else if (nRoomIndex == 3){
         if (nType == 1) strcpy(toReturn.strName, "Radahn Soldier");
         if (nType == 2) strcpy(toReturn.strName, "Radahn Archer");
         if (nType == 3) strcpy(toReturn.strName, "Radahn Knight");
+        if (nType == 4){
+            strcpy(toReturn.strName, "Radahn");
+            toReturn.nHealth = 600;
+            toReturn.fPhysDef = 0.15;
+            toReturn.fSorcDef = 0.25;
+            toReturn.fIncaDef = 0.30;
+        }
     }
     else if (nRoomIndex == 4){
         if (nType == 1) strcpy(toReturn.strName, "Man-Serpent");
         if (nType == 2) strcpy(toReturn.strName, "Mage-Serpent");
         if (nType == 3) strcpy(toReturn.strName, "Abductor Virgin");
+        if (nType == 4){
+            strcpy(toReturn.strName, "Rykard");
+            toReturn.nHealth = 600;
+            toReturn.fPhysDef = 0.15;
+            toReturn.fSorcDef = 0.25;
+            toReturn.fIncaDef = 0.30;
+        }
     }
     else if (nRoomIndex == 5){
         if (nType == 1) strcpy(toReturn.strName, "Leyndell Soldier");
         if (nType == 2) strcpy(toReturn.strName, "Leyndell Archer");
         if (nType == 3) strcpy(toReturn.strName, "Leyndell Knight");
+        if (nType == 4){
+            strcpy(toReturn.strName, "Morgott");
+            toReturn.nHealth = 800;
+            toReturn.fPhysDef = 0.35;
+            toReturn.fSorcDef = 0.3;
+            toReturn.fIncaDef = 0.2;
+        }
+    }
+    else if (nRoomIndex == 6){
+        if (nType == 4){
+            strcpy(toReturn.strName, "Radagon");
+            toReturn.nHealth = 1000;
+            toReturn.fPhysDef = 0.35;
+            toReturn.fSorcDef = 0.25;
+            toReturn.fIncaDef = 0.40;
+        }
+    }
+    else if (nRoomIndex == 7){
+        if (nType == 4){
+            strcpy(toReturn.strName, "Elden Beast");
+            toReturn.nHealth = 1250;
+            toReturn.fPhysDef = 0.25;
+            toReturn.fSorcDef = 0.50;
+            toReturn.fIncaDef = 0.40;
+        }
     }
     else strcpy(toReturn.strName, "ERROR???");
     toReturn.nMaxHealth = toReturn.nHealth;
@@ -106,8 +159,39 @@ int enemyAttack(int nRoomIndex, Enemy enemy){ // This will be formatted like pla
         nMin = 120;
         nMax = 130;
         break;
+    case 4:
+        if (strcmp(enemy.strName, "Godrick") == 0){
+            nMin = 150;
+            nMax = 300;
+        }
+        if (strcmp(enemy.strName, "Rennala") == 0){
+            nMin = 200;
+            nMax = 300;
+        }
+        if (strcmp(enemy.strName, "Radahn") == 0){
+            nMin = 200;
+            nMax = 400;
+        }
+        if (strcmp(enemy.strName, "Rykard") == 0){
+            nMin = 250;
+            nMax = 350;
+        }
+        if (strcmp(enemy.strName, "Morgott") == 0){
+            nMin = 250;
+            nMax = 500;
+        }
+        if (strcmp(enemy.strName, "Radagon") == 0){
+            nMin = 300;
+            nMax = 600;
+        }
+        if (strcmp(enemy.strName, "Elden Beast") == 0){
+            nMin = 450;
+            nMax = 900;
+        }
+        
+        break;
     default:
-        printf("\nenemyAttack() error\n");
+        printf("\nenemyAttack() error. Enemy type is %d\n", enemy.nType);
         break;
     }
 
