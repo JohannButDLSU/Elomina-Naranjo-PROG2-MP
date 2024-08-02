@@ -14,34 +14,34 @@ void runCharacterCreation(){
 
 void displayCharacterCreation(Player player){
     printf("\n");
-    printYBorder2(0, 0); printYBorderPlayer();
+    printYBorder(0, 0, BORDER_2_LENGTH); printYBorderPlayer();
     if (strcmp(player.strJobClass, "Jobless :(")){
-        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 0);
-        printMiddleBorder2(0, WHITE, player.strName);                               printMiddleBorderPlayer(player, 1);
-        printMiddleBorder2(0, WHITE, player.strJobClass);                           printMiddleBorderPlayer(player, 2);
-        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 3);
-        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 4);
-        printWintMiddleBorder2(0, WHITE, "Level : ", player.nLevel);                printMiddleBorderPlayer(player, 5);
-        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 6);
-        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 7);
-        printWintMiddleBorder2(0, WHITE, "Health : ", player.nHealth);              printMiddleBorderPlayer(player, 8);
-        printWintMiddleBorder2(0, WHITE, "Endurance : ", player.nEndurance);        printMiddleBorderPlayer(player, 9);
-        printWintMiddleBorder2(0, WHITE, "Dexterity : ", player.nDexterity);        printMiddleBorderPlayer(player, 10);
-        printWintMiddleBorder2(0, WHITE, "Strength : ", player.nStrength);          printMiddleBorderPlayer(player, 11);
-        printWintMiddleBorder2(0, WHITE, "Intelligence : ", player.nIntelligence);  printMiddleBorderPlayer(player, 12);
-        printWintMiddleBorder2(0, WHITE, "Faith : ", player.nFaith);                printMiddleBorderPlayer(player, 13);
-        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 14);
-        printMiddleBorder2(0, WHITE, "");                                           printMiddleBorderPlayer(player, 15);
+        printMiddleBorder(0, WHITE, "", BORDER_2_LENGTH);                                           printMiddleBorderPlayer(player, 0);
+        printMiddleBorder(0, WHITE, player.strName, BORDER_2_LENGTH);                               printMiddleBorderPlayer(player, 1);
+        printMiddleBorder(0, WHITE, player.strJobClass, BORDER_2_LENGTH);                           printMiddleBorderPlayer(player, 2);
+        printMiddleBorder(0, WHITE, "", BORDER_2_LENGTH);                                           printMiddleBorderPlayer(player, 3);
+        printMiddleBorder(0, WHITE, "", BORDER_2_LENGTH);                                           printMiddleBorderPlayer(player, 4);
+        printWintMiddleBorder(0, WHITE, "Level : ", player.nLevel, BORDER_2_LENGTH);                printMiddleBorderPlayer(player, 5);
+        printMiddleBorder(0, WHITE, "", BORDER_2_LENGTH);                                           printMiddleBorderPlayer(player, 6);
+        printMiddleBorder(0, WHITE, "", BORDER_2_LENGTH);                                           printMiddleBorderPlayer(player, 7);
+        printWintMiddleBorder(0, WHITE, "Health : ", player.nHealth, BORDER_2_LENGTH);              printMiddleBorderPlayer(player, 8);
+        printWintMiddleBorder(0, WHITE, "Endurance : ", player.nEndurance, BORDER_2_LENGTH);        printMiddleBorderPlayer(player, 9);
+        printWintMiddleBorder(0, WHITE, "Dexterity : ", player.nDexterity, BORDER_2_LENGTH);        printMiddleBorderPlayer(player, 10);
+        printWintMiddleBorder(0, WHITE, "Strength : ", player.nStrength, BORDER_2_LENGTH);          printMiddleBorderPlayer(player, 11);
+        printWintMiddleBorder(0, WHITE, "Intelligence : ", player.nIntelligence, BORDER_2_LENGTH);  printMiddleBorderPlayer(player, 12);
+        printWintMiddleBorder(0, WHITE, "Faith : ", player.nFaith, BORDER_2_LENGTH);                printMiddleBorderPlayer(player, 13);
+        printMiddleBorder(0, WHITE, "", BORDER_2_LENGTH);                                           printMiddleBorderPlayer(player, 14);
+        printMiddleBorder(0, WHITE, "", BORDER_2_LENGTH);                                           printMiddleBorderPlayer(player, 15);
     }
     else{
-        printMiddleBorder2(0, WHITE, "Hey You! Get a Job Class! (Press [2])");      printf("║  Your character will be here!  ║\n");
+        printMiddleBorder(0, WHITE, "Hey You! Get a Job Class! (Press [2])", BORDER_2_LENGTH);      printf("║  Your character will be here!  ║\n");
     }
-    printYBorder2(0, 0); printYBorderPlayer();
-    printChoiceBorder2(0, WHITE, "[1] Change Name", 3);
-    printChoiceBorder2(0, WHITE, "[2] Change Class", 3);
-    printChoiceBorder2(0, GREEN, "[3] Continue", 3);
-    printChoiceBorder2(0, GRAY, "[0] Back", 3);
-    printChoiceBorderless2("[INPUT] : ");
+    printYBorder(0, 0, BORDER_2_LENGTH); printYBorderPlayer();
+    printChoiceBorder(0, WHITE, "[1] Change Name", 3, BORDER_2_LENGTH);
+    printChoiceBorder(0, WHITE, "[2] Change Class", 3, BORDER_2_LENGTH);
+    printChoiceBorder(0, GREEN, "[3] Continue", 3, BORDER_2_LENGTH);
+    printChoiceBorder(0, GRAY, "[0] Back", 3, BORDER_2_LENGTH);
+    printChoiceBorderless("[INPUT] : ", BORDER_2_LENGTH);
 }
 
 void processCharacterCreationInput(Player* player, char* cInput){
@@ -51,7 +51,7 @@ void processCharacterCreationInput(Player* player, char* cInput){
         case '1':
             printf("\n");
             printCentered("Enter a new name!", BORDER_2_LENGTH);
-            printChoiceBorderless2("[INPUT] : ");
+            printChoiceBorderless("[INPUT] : ", BORDER_2_LENGTH);
 
             char strNewName[26];
             scanf(" %[^\n]%*c", strNewName);
@@ -62,15 +62,15 @@ void processCharacterCreationInput(Player* player, char* cInput){
             printf("\n");
             printCentered("   Choose a Job Class!", BORDER_2_LENGTH);
             printf("\n");
-            printChoiceBorder2(0, DEEP_MAGENTA, "[1] Vagabond", 3);
-            printChoiceBorder2(0, DEEP_YELLOW, "[2] Samurai", 3);
-            printChoiceBorder2(0, DEEP_CYAN, "[3] Warrior", 3);
-            printChoiceBorder2(0, BLUE, "[4] Hero", 5);
-            printChoiceBorder2(0, MAGENTA, "[5] Astrologer", 2);
-            printChoiceBorder2(0, DEEP_ORANGE, "[6] Prophet", 3);
+            printChoiceBorder(0, DEEP_MAGENTA, "[1] Vagabond", 3, BORDER_2_LENGTH);
+            printChoiceBorder(0, DEEP_YELLOW, "[2] Samurai", 3, BORDER_2_LENGTH);
+            printChoiceBorder(0, DEEP_CYAN, "[3] Warrior", 3, BORDER_2_LENGTH);
+            printChoiceBorder(0, BLUE, "[4] Hero", 5, BORDER_2_LENGTH);
+            printChoiceBorder(0, MAGENTA, "[5] Astrologer", 2, BORDER_2_LENGTH);
+            printChoiceBorder(0, DEEP_ORANGE, "[6] Prophet", 3, BORDER_2_LENGTH);
             printf("\n");
-            printChoiceBorder2(0, GRAY, "[0] Back", 3);
-            printChoiceBorderless2("[INPUT] : ");
+            printChoiceBorder(0, GRAY, "[0] Back", 3, BORDER_2_LENGTH);
+            printChoiceBorderless("[INPUT] : ", BORDER_2_LENGTH);
             char cJobClassInput = ' ';
             scanf(" %c", &cJobClassInput);
             *player = setPlayerJobClass(*player, cJobClassInput);
@@ -99,10 +99,10 @@ void processCharacterCreationInput(Player* player, char* cInput){
                 printcCentered(0, WHITE, strToPrint, BORDER_2_LENGTH);
 
                 printf("\n");
-                printChoiceBorder2(0, GREEN, "[1] Proceed", 3);
-                printChoiceBorder2(0, GRAY, "[0] Go back", 3);
+                printChoiceBorder(0, GREEN, "[1] Proceed", 3, BORDER_2_LENGTH);
+                printChoiceBorder(0, GRAY, "[0] Go back", 3, BORDER_2_LENGTH);
                 printf("\n");
-                printChoiceBorderless2("[INPUT] : ");
+                printChoiceBorderless("[INPUT] : ", BORDER_2_LENGTH);
 
                 char tempInput;
                 scanf(" %c", &tempInput);

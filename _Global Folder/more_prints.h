@@ -50,45 +50,7 @@ void printcCentered(int nColorBG, int ncColorFG, String strTextToPrint, int nLen
 #define BORDER_5_LENGTH 54
 #define BORDER_PLAYER_SPRITE_LENGTH 34 // 32 for sprite + 2 for borders
 
-
-void printYBorder1(int colorBG, int colorFG){
-    for (int i = 0; i < BORDER_1_LENGTH; i++){
-        if (i == 0 || i == BORDER_1_LENGTH - 1) printc(colorBG, colorFG, "▩");
-        else printc(colorBG, colorFG, "═");
-    }
-    printf("\n");
-}
-
-void printMiddleBorder1(int colorBG, int colorFG, String strTextToPrint){
-    printf("║");
-    for (int i = 0; i < (BORDER_1_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
-    printc(colorBG, colorFG, strTextToPrint);
-    for (int i = 0; i < (BORDER_1_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
-    if (strlen(strTextToPrint) % 2 == 1) printf(" ");
-    printf("║");
-    printf("\n");
-}
-
-void printChoiceBorder1(int colorBG, int colorFG, String strTextToPrint, int nPadding){
-    for (int i = 0; i < (BORDER_1_LENGTH - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
-    printc(colorBG, colorFG, "-=+║O");
-    for (int i = 0; i < nPadding; i++) printf(" ");
-    printf("%s", COLORSTOP);
-    printf("%s", strTextToPrint);
-    printf("%s", COLORSTOP);
-    if (strlen(strTextToPrint) % 2 == 1) printf(" ");
-    for (int i = 0; i < nPadding; i++) printf(" ");
-    printc(colorBG, colorFG, "O║+=-");
-    for (int i = 0; i < (BORDER_1_LENGTH - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
-    printf("\n");
-}
-
-void printChoiceBorderless1(String strTextToPrint){
-    for (int i = 0; i < (BORDER_1_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
-    printf("%s", strTextToPrint);
-}
-
-void printYBorder2(int colorBG, int colorFG, int nLength){
+void printYBorder(int colorBG, int colorFG, int nLength){
     for (int i = 0; i < nLength; i++){
         if (i == 0 || i == nLength - 1) printf("▩");
         else printf("═");
@@ -96,7 +58,7 @@ void printYBorder2(int colorBG, int colorFG, int nLength){
     // printf("\n");
 }
 
-void printMiddleBorder2(int colorBG, int colorFG, String strTextToPrint, int nLength){
+void printMiddleBorder(int colorBG, int colorFG, String strTextToPrint, int nLength){
     printf("║");
     for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
     printc(colorBG, colorFG, strTextToPrint);
@@ -106,7 +68,7 @@ void printMiddleBorder2(int colorBG, int colorFG, String strTextToPrint, int nLe
     // printf("\n");
 }
 
-void printWintMiddleBorder2(int colorBG, int colorFG, String strTextToPrint, int nInt, int nLength){
+void printWintMiddleBorder(int colorBG, int colorFG, String strTextToPrint, int nInt, int nLength){
 
     int nExtraPadding;
     if (nInt < 10) nExtraPadding = 1;
@@ -115,9 +77,9 @@ void printWintMiddleBorder2(int colorBG, int colorFG, String strTextToPrint, int
 
     printf("║");
 
-    for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 2; i++) printf(" ");
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 2; i++) printf(" ");
     printc(colorBG, colorFG, strTextToPrint); printf("%d", nInt);
-    for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - nExtraPadding; i++) printf(" ");
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - nExtraPadding; i++) printf(" ");
 
     if (strlen(strTextToPrint) % 2 == 1) printf(" ");
 
@@ -125,8 +87,8 @@ void printWintMiddleBorder2(int colorBG, int colorFG, String strTextToPrint, int
     // printf("\n");
 }
 
-void printChoiceBorder2(int colorBG, int colorFG, String strTextToPrint, int nPadding){
-    for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
+void printChoiceBorder(int colorBG, int colorFG, String strTextToPrint, int nPadding, int nLength){
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
     printc(colorBG, colorFG, "-=+║O");
     for (int i = 0; i < nPadding; i++) printf(" ");
     printf("%s", COLORSTOP);
@@ -135,13 +97,13 @@ void printChoiceBorder2(int colorBG, int colorFG, String strTextToPrint, int nPa
     if (strlen(strTextToPrint) % 2 == 1) printf(" ");
     for (int i = 0; i < nPadding; i++) printf(" ");
     printc(colorBG, colorFG, "O║+=-");
-    for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 5 - nPadding; i++) printf(" ");
     printf("\n");
 }
 
-void printChoiceBorderless2(String strTextToPrint){
+void printChoiceBorderless(String strTextToPrint, int nLength){
     printf("\n");
-    for (int i = 0; i < (BORDER_2_LENGTH - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
+    for (int i = 0; i < (nLength - strlen(strTextToPrint)) / 2 - 1; i++) printf(" ");
     printf("%s", strTextToPrint);
 }
 

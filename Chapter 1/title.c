@@ -9,7 +9,8 @@ void runTitle(){
 }
 
 void displayTitle(){
-    printYBorder1(0, WHITE);
+    printYBorder(0, WHITE, BORDER_1_LENGTH);
+    printf("\n");
         printc(0, DEEP_RED, "                              ████████████  ██            ████████    ████████████  ████    ██  \n");
         printc(0, DEEP_RED, "                             ██████████    ████          ██████████  ██████████    ██████  ████\n");
         printc(0, DEEP_RED, "                            ████          ████          ████  ████  ████          ██████  ████\n");
@@ -25,12 +26,12 @@ void displayTitle(){
           printc(0, ORANGE, "                           ████  ████    ████    ████  ████    ████  ████    ████  ████        \n");
           printc(0, ORANGE, "                          ████    ████  ████    ████  ████    ████  ████    ████  ██████████  \n");
           printc(0, ORANGE, "                         ████      ████  ████████      ██████████    ████████    ████████████\n");
-    printYBorder1(0, WHITE);
+    printYBorder(0, WHITE, BORDER_1_LENGTH);
     printf("\n");
-    printChoiceBorder1(0, WHITE, "[1] New Game", 4);
-    printChoiceBorder1(0, WHITE, "[2] Load Game", 4);
-    printChoiceBorder1(0, GRAY, "[0] Exit", 4);
-    printChoiceBorderless1("[INPUT] : ");
+    printChoiceBorder(0, WHITE, "[1] New Game", 4, BORDER_1_LENGTH);
+    printChoiceBorder(0, WHITE, "[2] Load Game", 4, BORDER_1_LENGTH);
+    printChoiceBorder(0, GRAY, "[0] Exit", 4, BORDER_1_LENGTH);
+    printChoiceBorderless("[INPUT] : ", BORDER_1_LENGTH);
 }
 
 void processTitleInput(char* cInput){
