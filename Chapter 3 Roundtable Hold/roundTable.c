@@ -3,7 +3,7 @@
 void runRoundTable(Player *player){
     char cInput=' ';
     //TEST
-    player->nRunes=10000;
+    player->nRunes=999999;
     //TEST
     do{
         displayRoundTable(player);

@@ -37,17 +37,28 @@ void runSaveMenu(int* nGameLoaded, int nAllowSaving, Player *player){
 
 void loadSave(char (*saveSlots)[31], int *nCursor, Player *player){
     Player sStoredOnFile;
-    FILE *filePointer;
-    filePointer=fopen(saveSlots[*nCursor],"rb");
-    fread(&sStoredOnFile, sizeof(Player), 1, filePointer);
+    FILE *filePointer; // Create  a file pointer
+    filePointer=fopen(saveSlots[*nCursor],"rb"); //open a file with the filename stored in string array saveSlots
+    fread(&sStoredOnFile, sizeof(Player), 1, filePointer); // read from the filepointer at position/bit 0 (store at address of this var, with the sizeof(data type), how many of that data type, from which file pointer?)
     (*player)=sStoredOnFile;
+
+    int nItemIndex=0;
+    player->nInventory=malloc(sizeof(int)*player->nInventorySize);
+    for (int nItem=0; nItem<player->nInventorySize; nItem++){
+        fread(&nItemIndex, sizeof(int), 1, filePointer);
+        player->nInventory[nItem]=nItemIndex;
+    }
+
     fclose(filePointer);
 }
 
 void saveCurrentGameState(char (*saveSlots)[31], int *nCursor, Player *player){
     FILE *filePointer;
     filePointer=fopen(saveSlots[*nCursor],"wb");
-    fwrite(player, (sizeof(Player)+(sizeof(int)*player->nInventorySize)), 1, filePointer);
+    fwrite(player, sizeof(Player), 1, filePointer);
+    for (int nItem=0; nItem<player->nInventorySize; nItem++){
+        fwrite(&player->nInventory[nItem], sizeof(int), 1, filePointer);
+    }
     fclose(filePointer);
 }
 

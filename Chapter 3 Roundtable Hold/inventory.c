@@ -32,11 +32,11 @@ void displayInventory(int nDisplaySellingPrice, int nPage, Player* player, int *
     printf("┓\n");
     for (int nRow=0; nRow<nNumRow; nRow++){
         for (int nBoxLine=0; nBoxLine<3; nBoxLine++){
-            printRepeatedly(3,"\t");
+            printRepeatedly(2,"\t");
             if (nBoxLine==1&&(nNumRow/2)==nRow&&player->nInventorySize>(nNumRow*nNumCol)&&nPage>0){
-                printf("(Q) next page < ");
+                printf("    (Q) previous page < ");
             } else{
-                printRepeatedly(2,"\t");
+                printRepeatedly(3,"\t");
             }
             printf("┃ ");
             for (int nCol=0; nCol<nNumCol; nCol++){
@@ -75,7 +75,7 @@ void displayInventory(int nDisplaySellingPrice, int nPage, Player* player, int *
                 }
             }
             printf(" ┃");
-            if (nBoxLine==1&&(nNumRow/2)==nRow&&player->nInventorySize>(nNumRow*nNumCol)){
+            if (nBoxLine==1&&(nNumRow/2)==nRow&&player->nInventorySize>((nNumRow*nNumCol)+(nPage*nNumRow*nNumCol))){
                 printf(" > (E) next page\n");
             } else{
                 printf("\n");
@@ -164,24 +164,33 @@ void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCu
             }
             break; 
         case '1': 
-            if (((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){
-                if(player->sEquippedWeapon.nWeaponIndex!=-1){
+            // Equip the item the cursor is on
+            // from the cursor, make the item turn into the next item up until the second to the last item
+            // reduce inventory size
+
+            // increase inventory size
+            // place equipped weapon onto last inventory slot
+            // Equip the item the cursor is on
+            // from the cursor, make the item turn into the next item up until the second to the last item
+            // reduce inventory size
+            if (((*nPage)*nNumCol*nNumRow)+((aCursorPos[0]*nNumCol)+aCursorPos[1])<player->nInventorySize){
+                if(player->sEquippedWeapon.nWeaponIndex!=(-1)){
                     player->nInventorySize+=1;
-                    player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                    // player->nInventory=realloc(player->nInventory, player->nInventorySize);
                     player->nInventory[player->nInventorySize-1]=player->sEquippedWeapon.nWeaponIndex;
                 }
-                player->sEquippedWeapon=setWeaponStats(strWeaponNames[player->nInventory[(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1], nWeaponStats[player->nInventory[(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1]);
-                for (int nItem=((aCursorPos[0]*nNumCol)+aCursorPos[1]); nItem<(player->nInventorySize-1); nItem++){
+                player->sEquippedWeapon=setWeaponStats(strWeaponNames[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1], nWeaponStats[player->nInventory[((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]]-1]);
+                for (int nItem=(((*nPage)*nNumCol*nNumRow)+(aCursorPos[0]*nNumCol)+aCursorPos[1]); nItem<(player->nInventorySize-1); nItem++){
                     player->nInventory[nItem]=player->nInventory[nItem+1];
                 }
                 player->nInventorySize-=1;
-                player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                // player->nInventory=realloc(player->nInventory, player->nInventorySize);
             };
             break;
         case '2':
             if(player->sEquippedWeapon.nWeaponIndex!=-1){
                 player->nInventorySize+=1;
-                player->nInventory=realloc(player->nInventory, player->nInventorySize);
+                // player->nInventory=realloc(player->nInventory, player->nInventorySize);
                 player->nInventory[player->nInventorySize-1]=player->sEquippedWeapon.nWeaponIndex;
                 player->sEquippedWeapon=initializeEmptyWeapon();
             }
