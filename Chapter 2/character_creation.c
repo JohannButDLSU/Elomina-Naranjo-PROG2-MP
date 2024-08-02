@@ -55,7 +55,7 @@ void processCharacterCreationInput(Player* player, char* cInput){
 
             char strNewName[26];
             scanf(" %[^\n]%*c", strNewName);
-            strncpy((*player).strName, strNewName, 25);
+            strncpy(player->strName, strNewName, 25);
 
             break;
         case '2':
