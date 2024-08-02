@@ -29,9 +29,9 @@
 #include "Chapter 5/enemy_battle.c"
 
 int main(){
-    system("cls"); // Remove this if error
-    system("chcp 65001"); // Remove this if error
-    system("cls"); // Remove this if error
+    // system("cls"); // Remove this if error
+    // system("chcp 65001"); // Remove this if error
+    // system("cls"); // Remove this if error
     // printAllColours();
     runTitle();
     return 0;
