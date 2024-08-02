@@ -13,61 +13,64 @@ void runArea(Player* player, int nAreaIndex){
     struct sAreaData sArea;
     switch (nAreaIndex){
         case 1:
-            sArea.nAreaIndex=nAreaIndex;
             sArea=initializeStormveilCastle();
             // Player Spawn Coordinates
             player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
             player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            sArea.nAreaIndex=nAreaIndex;
             break;
         case 2:
-            sArea.nAreaIndex=nAreaIndex;
             sArea=initializeRayaLucaria();
             // Player Spawn Coordinates
             player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
             player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            sArea.nAreaIndex=nAreaIndex;
             break;
         case 3:
-            sArea.nAreaIndex=nAreaIndex;
             sArea=initializeRedmaneCastle();
             // Player Spawn Coordinates
             player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
             player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            sArea.nAreaIndex=nAreaIndex;
             break;
         case 4:
-            sArea.nAreaIndex=nAreaIndex;
             sArea=initializeVolcanoManor();
             // Player Spawn Coordinates
             player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
             player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            sArea.nAreaIndex=nAreaIndex;
             break;
         case 5:
-            sArea.nAreaIndex=nAreaIndex;
             sArea=initializeLeyndellRoyalCapital();
             // Player Spawn Coordinates
             player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
             player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            sArea.nAreaIndex=nAreaIndex;
             break;
         case 6:
-            sArea.nAreaIndex=nAreaIndex;
             sArea=initializeEldenThrone();
             // Player Spawn Coordinates
             player->nPlayerPos[0]=sArea.sFastTravels[0].nLocation[0];
             player->nPlayerPos[1]=sArea.sFastTravels[0].nLocation[1];
             player->nPlayerPos[2]=sArea.sFastTravels[0].nLocation[2];
+            sArea.nAreaIndex=nAreaIndex;
             break;
     }
+
+    int nCollectedRunes=0;
     do{
-        printf("Player Money: %d", player->nRunes); // Delete me
+        printf("Runes: ❖ %d", nCollectedRunes); // Delete me
         displayArea(player, sArea);
+        printRepeatedly(5,"\t");
         printf("> ");
         scanf(" %c", &cInput);
-        processUserInputArea(nAreaIndex, &nRunning, &sArea, player, cInput);
-    }while(cInput!='0'&&nRunning==1);
+        processUserInputArea(&nCollectedRunes, &nRunning, &sArea, player, cInput);
+    }while(nRunning==1);
 }
 
 void doorTravel(struct sAreaData* sArea, Player* player){
@@ -97,7 +100,8 @@ void displayArea(Player* player, struct sAreaData sArea){
     printf("\n");
     
     // TEST TEMPORARY
-    char jobClassSpriteTEST[10][10]={"1","🗡"};
+    char sJobClassSpriteTEST[10][10]={"᭶","🗡"};
+    char sBossSprite[6][10]={"⌘","℧","࿃","֎","۞","ᛝ"};
 
     int nSideMargin=(15-sArea.sFloors[player->nPlayerPos[2]].nDimensions[1])/2;
     int nUpperLowerMargin=(15-sArea.sFloors[player->nPlayerPos[2]].nDimensions[0])/2;
@@ -119,7 +123,7 @@ void displayArea(Player* player, struct sAreaData sArea){
                         } else if (nBoxLine==1&&nPlayerLanding==0){
                             printf("└─┘");
                         } else{
-                            printf("└%s┘",jobClassSpriteTEST[0]);
+                            printf("└%s┘",sJobClassSpriteTEST[0]);
                         }
                         break;
                     case 1:
@@ -128,7 +132,7 @@ void displayArea(Player* player, struct sAreaData sArea){
                         } else if (nBoxLine==1&&nPlayerLanding==0){
                             printf("╘═╛");
                         } else{
-                            printf("╘%s╛",jobClassSpriteTEST[0]);
+                            printf("╘%s╛",sJobClassSpriteTEST[0]);
                         }
                         break;
                     case 2:
@@ -137,7 +141,7 @@ void displayArea(Player* player, struct sAreaData sArea){
                         } else if (nBoxLine==1&&nPlayerLanding==0){
                             printf("╙─╜");
                         } else{
-                            printf("╙%s╜",jobClassSpriteTEST[0]);
+                            printf("╙%s╜",sJobClassSpriteTEST[0]);
                         }
                         break;
                     case 3:
@@ -146,16 +150,16 @@ void displayArea(Player* player, struct sAreaData sArea){
                         } else if (nBoxLine==1&&nPlayerLanding==0){
                             printf("╙ ╜");
                         } else{
-                            printf("╙%s╜",jobClassSpriteTEST[0]);
+                            printf("╙%s╜",sJobClassSpriteTEST[0]);
                         }
                         break;
                     case 4:
                         if (nBoxLine==0){
-                            printf("╆ᛝ╅");
+                            printf("╆%s╅", sBossSprite[sArea.nAreaIndex-1]);
                         } else if (nBoxLine==1&&nPlayerLanding==0){
                             printf("╄┄╃");
                         } else{
-                            printf("╄%s╃",jobClassSpriteTEST[0]);
+                            printf("╄%s╃",sJobClassSpriteTEST[0]);
                         }
                         break;
                     case 5:
@@ -172,7 +176,7 @@ void displayArea(Player* player, struct sAreaData sArea){
                         } else if (nBoxLine==1&&nPlayerLanding==0){
                             printf("╰╨╯");
                         }else{
-                            printf("╰%s╯",jobClassSpriteTEST[0]);
+                            printf("╰%s╯",sJobClassSpriteTEST[0]);
                         }
                         break;
                     case 6:
@@ -189,7 +193,7 @@ void displayArea(Player* player, struct sAreaData sArea){
 
 }
 
-void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea, Player* player,  char cInput){
+void processUserInputArea(int*nCollectedRunes, int* nRunning, struct sAreaData* sArea, Player* player,  char cInput){
 
     int nLandedFastTravel;
     int nLandedBossTile;
@@ -226,7 +230,7 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
                     doorTravel(sArea, player); // Updates player position [row][col][floor]
                     break;
                 case 2: // Spawn tile
-                    runSpawnTile(sArea, player);
+                    runSpawnTile(nCollectedRunes, nRunning, sArea, player);
                     break;
                 case 3: // Consumed spawn tile
                     break;
@@ -277,8 +281,9 @@ void processUserInputArea(int nAreaIndex, int* nRunning, struct sAreaData* sArea
                     }
                     if (sArea->sFastTravels[nLandedFastTravel].nLocked==0){
                         (*nRunning)=0; // end runArea
+                        player->nRunes=(*nCollectedRunes);
                         if (sArea->sBosses[0].nEnabled==0){ // Player does not get the shard if the boss is not defeated
-                            player->nShards[nAreaIndex-1]=1;
+                            player->nShards[sArea->nAreaIndex-1]=1;
                         }
                         if (strcmp(sArea->strAreaName,"Elden Throne")==0){
                             runCreditsTile();

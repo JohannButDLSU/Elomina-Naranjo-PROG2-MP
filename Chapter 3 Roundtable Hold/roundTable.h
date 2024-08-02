@@ -7,7 +7,7 @@
 #include "save.h"
 
 
-void processInputFastTravelMenu(Player* player, char cInput);
+void processInputFastTravelMenu(int* nRunning, Player* player, char cInput);
 void displayFastTravelMenu(Player* player);
 void runFastTravelMenu(Player* player);
 
