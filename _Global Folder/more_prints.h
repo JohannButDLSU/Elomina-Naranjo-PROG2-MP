@@ -47,7 +47,7 @@ void printcCentered(int nColorBG, int ncColorFG, String strTextToPrint, int nLen
 // 120 WILL BE LIKE FULL SCREEN TYPE BEAT
 #define BORDER_1_LENGTH 120
 #define BORDER_2_LENGTH 86
-#define BORDER_5_LENGTH 54
+#define BORDER_5_LENGTH 60
 #define BORDER_PLAYER_SPRITE_LENGTH 34 // 32 for sprite + 2 for borders
 
 void printYBorder(int colorBG, int colorFG, int nLength){
