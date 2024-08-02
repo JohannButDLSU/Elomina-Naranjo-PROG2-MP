@@ -131,7 +131,7 @@ void printFileBox(Player sStoredOnFile, int nSaveExists, int nBoxLine, int nInde
             fprintf(stdout,"       FTH %3d🕯️     DEX %3d⚡         ",sStoredOnFile.nFaith,sStoredOnFile.nDexterity);
             break;
         case 13:
-            fprintf(stdout,"       STR %3d💪    INT %3d🧠          ",sStoredOnFile.nFaith,sStoredOnFile.nDexterity);
+            fprintf(stdout,"       STR %3d💪     INT %3d🧠         ",sStoredOnFile.nFaith,sStoredOnFile.nDexterity);
             break;
         case 14:
             if (nSelected==1){
@@ -231,7 +231,7 @@ void processInputSaveMenu(int *nOminousMessage, char (*saveSlots)[31], int* nGam
             cContinue=' ';
             if (nAllowSaving==1&&(*nOminousMessage)==1){
                 
-                printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tYou will regret this later.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\tYou will regret this later.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                 // getch();
                 scanf(" %c", &cContinue);
             }
