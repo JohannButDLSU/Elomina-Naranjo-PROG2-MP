@@ -11,6 +11,32 @@ void runRoundTable(Player *player){
     }while(cInput!='0');
 }
 
+void runFastTravelMenu(Player* player){
+    char cInput=' ';
+    int nRunning=1;
+    do{
+        displayFastTravelMenu(player);
+        // cInput=getch();
+        scanf(" %c", &cInput);
+        printf("\n");
+        processInputFastTravelMenu(&nRunning, player, cInput);
+    }while(nRunning==1);
+}
+
+void runLevelUpMenu(Player *player){
+    char cInput=' ';
+
+        do{
+            int nLevelUpRuneCost=(player->nLevel*100)/2;
+            displayLevelUpMenu(nLevelUpRuneCost, player);
+            // cInput=getch();
+            scanf(" %c", &cInput);
+            printf("\n");
+            processInputLevelUpMenu(player, nLevelUpRuneCost, cInput);
+            
+        }while(cInput!='0');
+}
+
 //Fast Travel Menu
 void processInputFastTravelMenu(int* nRunning, Player* player, char cInput){
     // Imma put variables here again to fix da stupig 
@@ -120,110 +146,150 @@ void displayFastTravelMenu(Player* player){
     printRepeatedly(5,"\t");
     printf("    > ");
 }
-void runFastTravelMenu(Player* player){
-    char cInput=' ';
-    int nRunning=1;
-    do{
-        displayFastTravelMenu(player);
-        // cInput=getch();
-        scanf(" %c", &cInput);
-        printf("\n");
-        processInputFastTravelMenu(&nRunning, player, cInput);
-    }while(nRunning==1);
-}
 
 //Level Up Menu (Subscreen)
 void processInputLevelUpMenu(Player *player, int nLevelUpRuneCost, char cInput){
     if ((player->nRunes)>=nLevelUpRuneCost){
         switch (cInput){
             case '1':
-                printRepeatedly(4,"\t");
-                printf("Upgrade Health\n");
-                player->nHealth++;
-                (player->nRunes)-=nLevelUpRuneCost;
-                //Upgrade Health here
+                if (player->nHealth<50){
+                    player->nHealth++;
+                    (player->nRunes)-=nLevelUpRuneCost;
+                    //Upgrade Health here
+                } else{
+                    printf("\n\n\n");
+                    printRepeatedly(5,"\t");
+                    printf("You already reached the MAX Health\n\n\n");
+                }
                 break;
             case '2':
-                printRepeatedly(4,"\t");
-                printf("Upgrade Endurance\n");
-                player->nEndurance++;
-                (player->nRunes)-=nLevelUpRuneCost;
-                //Upgrade Endurance here
+                if(player->nEndurance<50){
+                    player->nEndurance++;
+                    (player->nRunes)-=nLevelUpRuneCost;
+                    //Upgrade Endurance here
+                } else{
+                    printf("\n\n\n");
+                    printRepeatedly(5,"\t");
+                    printf("You already reached the MAX Endurance\n\n\n");
+                }
                 break;
             case '3':
-                printRepeatedly(4,"\t");
-                printf("Upgrade Dexterity\n");
-                player->nDexterity++;
-                (player->nRunes)-=nLevelUpRuneCost;
-                //Upgrade Dexterity here
+                if(player->nDexterity<50){
+                    player->nDexterity++;
+                    (player->nRunes)-=nLevelUpRuneCost;
+                    //Upgrade Dexterity here
+                } else{
+                    printf("\n\n\n");
+                    printRepeatedly(5,"\t");
+                    printf("You already reached the MAX Dexterity\n\n\n");
+                }
                 break;
             case '4':
-                printRepeatedly(4,"\t");
-                printf("Upgrade Strength\n");
-                player->nStrength++;
-                (player->nRunes)-=nLevelUpRuneCost;
+                if (player->nStrength<50){
+                    player->nStrength++;
+                    (player->nRunes)-=nLevelUpRuneCost;
+                } else{
+                    printf("\n\n\n");
+                    printRepeatedly(5,"\t");
+                    printf("You already reached the MAX Strength\n\n\n");
+                }
                 break;
             case '5':
-                printRepeatedly(4,"\t");
-                printf("Upgrade Intelligence\n");
-                player->nIntelligence++;
-                (player->nRunes)-=nLevelUpRuneCost;
+                if(player->nIntelligence<50){
+                    player->nIntelligence++;
+                    (player->nRunes)-=nLevelUpRuneCost;
+                } else{
+                    printf("\n\n\n");
+                    printRepeatedly(5,"\t");
+                    printf("You already reached the MAX Intelligence\n\n\n");
+                }
                 break;
             case '6':
-                printRepeatedly(4,"\t");
-                printf("Upgrade Faith\n");
-                player->nFaith++;
-                (player->nRunes)-=nLevelUpRuneCost;
+                if(player->nFaith<50){
+                    player->nFaith++;
+                    (player->nRunes)-=nLevelUpRuneCost;
+                } else{
+                    printf("\n\n\n");
+                    printRepeatedly(5,"\t");
+                    printf("You already reached the MAX Faith\n\n\n");
+                }
                 break;
             case '0':
                 break;
-            default:
-                printRepeatedly(4,"\t");
-                printf("Invalid Input\n"); break;
         }
-    } else if (cInput!='0'){
-        printRepeatedly(4,"\t");
-        printf("You do not have enough ❖ runes for that\n");
+        player->nLevel++;
+    } else if (cInput!='0'&&cInput!='1'&&cInput!='2'&&cInput!='3'&&cInput!='4'&&cInput!='5'&&cInput!='6'){
+        printf("\n\n\n");
+        printRepeatedly(5,"\t");
+        printf("Invalid Input\n\n\n");
+    } else{
+        printf("\n\n\n");
+        printRepeatedly(5,"\t");
+        printf("You do not have enough ❖ runes for that\n\n\n");
     }
 }
 void displayLevelUpMenu(int nLevelUpRuneCost, Player *player){
-    printRepeatedly(4,"\t");
-    printf("Level Up Menu\n");
-    printRepeatedly(4,"\t");
-    printf("%d ❖ Runes\n", player->nRunes);
-    printRepeatedly(4,"\t");
+    printRepeatedly(7,"\t");
+    printf("Level Up Menu\n\n");
+    printRepeatedly(5,"\t");
+    printf("╔══════════════════════════════════════════╗\n");
+    printRepeatedly(5,"\t");
+    printf("║                                          ║\n");
+    printRepeatedly(5,"\t");
+    if (player->nHealth<50){
+        printf("║  (1) Health          (%02d) + 1            ║\n", player->nHealth);
+    } else{    
+        printf("║  (1) Health          [%02d] MAXXED         ║\n", player->nHealth);
+    }
+    printRepeatedly(5,"\t");
+    if (player->nEndurance<50){
+        printf("║  (2) Endurance       (%02d) + 1            ║\n", player->nEndurance);
+    } else{    
+        printf("║  (2) Endurance       [%02d] MAXXED         ║\n", player->nEndurance);
+    }
+    printRepeatedly(5,"\t");
+    if (player->nDexterity<50){
+        printf("║  (3) Dexterity       (%02d) + 1            ║\n", player->nDexterity);
+    } else{    
+        printf("║  (3) Dexterity       [%02d] MAXXED         ║\n", player->nDexterity);
+    }
+    printRepeatedly(5,"\t");
+    if (player->nStrength<50){
+        printf("║  (4) Strength        (%02d) + 1            ║\n", player->nStrength);
+    } else{    
+        printf("║  (4) Strength        [%02d] MAXXED         ║\n", player->nStrength);
+    }
+    printRepeatedly(5,"\t");
+    if (player->nIntelligence<50){
+        printf("║  (5) Intelligence    (%02d) + 1            ║\n", player->nIntelligence);
+    } else{    
+        printf("║  (5) Intelligence    [%02d] MAXXED         ║\n", player->nIntelligence);
+    }
+    printRepeatedly(5,"\t");
+    if (player->nFaith<50){
+        printf("║  (6) Faith           (%02d) + 1            ║\n", player->nFaith);
+    } else{    
+        printf("║  (6) Faith           [%02d] MAXXED         ║\n", player->nFaith);
+    }
+    printRepeatedly(5,"\t");
+    printf("║                                          ║\n");
+    printRepeatedly(5,"\t");
+    printf("║  (0) Back                                ║\n");
+    printRepeatedly(5,"\t");
+    printf("║                                          ║\n");
+    printRepeatedly(5,"\t");
+    printf("╚══════════════════════════════════════════╝\n");
     printf("\n");
-    printRepeatedly(4,"\t");
-    printf("Level Up Cost : %d ❖\n", nLevelUpRuneCost);
-    printRepeatedly(4,"\t");
-    printf("(1) Health          (%d) + 1\n", player->nHealth);
-    printRepeatedly(4,"\t");
-    printf("(2) Endurance       (%d) + 1\n", player->nEndurance);
-    printRepeatedly(4,"\t");
-    printf("(3) Dexterity       (%d) + 1\n", player->nDexterity);
-    printRepeatedly(4,"\t");
-    printf("(4) Strength        (%d) + 1\n", player->nStrength);
-    printRepeatedly(4,"\t");
-    printf("(5) Intelligence    (%d) + 1\n", player->nIntelligence);
-    printRepeatedly(4,"\t");
-    printf("(6) Faith           (%d) + 1\n", player->nFaith);
-    printRepeatedly(4,"\t");
-    printf("(0) Back\n");
-    printRepeatedly(4,"\t");
+    printRepeatedly(5,"\t");
+    printf("    Runes              : ❖ %d \n", player->nRunes);
+    printRepeatedly(5,"\t");
+    printf("    Level Up Rune Cost : ❖ %d \n", nLevelUpRuneCost);
+    printf("\n");
+    printRepeatedly(5,"\t");
+    printf(" - - - - - - - - - - - - - - - - - - - - - - \n");
+    printf("\n");
+    printRepeatedly(5,"\t");
     printf("    > ");
-}
-void runLevelUpMenu(Player *player){
-    char cInput=' ';
-
-        do{
-            int nLevelUpRuneCost=(player->nLevel*100)/2;
-            displayLevelUpMenu(nLevelUpRuneCost, player);
-            // cInput=getch();
-            scanf(" %c", &cInput);
-            printf("\n");
-            processInputLevelUpMenu(player, nLevelUpRuneCost, cInput);
-            
-        }while(cInput!='0');
 }
 
 //RoundTable
