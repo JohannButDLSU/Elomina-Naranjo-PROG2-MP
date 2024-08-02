@@ -98,9 +98,8 @@ void displayArea(Player* player, struct sAreaData sArea){
     printRepeatedly(7,"\t");
     printf("%s\n", sArea.strAreaName);
     printf("\n");
-    
-    // TEST TEMPORARY
-    char sJobClassSpriteTEST[10][10]={"᭶","🗡"};
+
+    char sJobClassSpriteTEST[10][10]={"᭶"};
     char sBossSprite[6][10]={"⌘","℧","࿃","֎","۞","ᛝ"};
 
     int nSideMargin=(15-sArea.sFloors[player->nPlayerPos[2]].nDimensions[1])/2;
