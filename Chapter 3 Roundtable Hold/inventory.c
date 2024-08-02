@@ -186,6 +186,9 @@ void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCu
                 player->nInventorySize-=1;
                 // player->nInventory=realloc(player->nInventory, player->nInventorySize);
             };
+            if (player->nInventorySize%((nNumRow*nNumCol))==0&&(*nPage)>0){
+                (*nPage)-=1;
+            }
             break;
         case '2':
             if(player->sEquippedWeapon.nWeaponIndex!=-1){
