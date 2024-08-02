@@ -125,7 +125,7 @@ void printFileBox(Player sStoredOnFile, int nSaveExists, int nBoxLine, int nInde
             printf("                                       ");
             break;
         case 11:
-            fprintf(stdout,"       HTP %3d❤️     END %3d🗿          ",sStoredOnFile.nHealth,sStoredOnFile.nEndurance);
+            fprintf(stdout,"       HTP %3d❤️     END %3d🗿         ",sStoredOnFile.nHealth,sStoredOnFile.nEndurance);
             break;
         case 12:
             fprintf(stdout,"       FTH %3d🕯️     DEX %3d⚡         ",sStoredOnFile.nFaith,sStoredOnFile.nDexterity);

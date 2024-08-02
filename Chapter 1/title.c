@@ -28,9 +28,9 @@ void displayTitle(){
           printc(0, ORANGE, "                         ████      ████  ████████      ██████████    ████████    ████████████\n");
     printYBorder(0, WHITE, BORDER_1_LENGTH);
     printf("\n");
-    printChoiceBorder(0, WHITE, "[1] New Game", 4, BORDER_1_LENGTH);
+    printChoiceBorder(0, WHITE, "[1] New Game ", 4, BORDER_1_LENGTH);
     printChoiceBorder(0, WHITE, "[2] Load Game", 4, BORDER_1_LENGTH);
-    printChoiceBorder(0, GRAY, "[0] Exit", 4, BORDER_1_LENGTH);
+    printChoiceBorder(0, GRAY, "[0] Exit     ", 4, BORDER_1_LENGTH);
     printChoiceBorderless("[INPUT] : ", BORDER_1_LENGTH);
 }
 
@@ -58,9 +58,11 @@ void processTitleInput(char* cInput){
         }
         break;
     case '0':
-        printf("Game Exit!\n");
+        // printf("Game Exit!\n");
         exit(0);       
     default:
+        printRepeatedly(6,"\t");
+        printf("     Invalid Input\n\n\n");
         break;
     }
 }

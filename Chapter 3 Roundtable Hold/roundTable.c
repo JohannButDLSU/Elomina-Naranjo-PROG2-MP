@@ -53,7 +53,7 @@ void processInputFastTravelMenu(int* nRunning, Player* player, char cInput){
                 runArea(player, 6);
                 (*nRunning)=0;
             } else{
-                printRepeatedly(4,"\t");
+                printRepeatedly(3,"\t");
                 printf("You need the shard from Leyndell Royal Capital to enter the Elden Throne\n"); 
             }
             break;
@@ -61,16 +61,18 @@ void processInputFastTravelMenu(int* nRunning, Player* player, char cInput){
             (*nRunning)=0;
             break;
         default:    
-            printRepeatedly(4,"\t");
+            printRepeatedly(5,"\t");
             printf("Invalid Input\n"); 
             break;
     }
 }
 void displayFastTravelMenu(Player* player){
-    printRepeatedly(7,"\t");
-    printf("Fast Travel Menu\n\n");
+    printRepeatedly(6,"\t");
+    printf("     Fast Travel Menu\n\n");
     printRepeatedly(5,"\t");
     printf("╔═════════════════════════════════════════╗\n");
+    printRepeatedly(5,"\t");
+    printf("║                                         ║\n");
     printRepeatedly(5,"\t");
     printf("║   (1) Stormveil Castle                  ║\n");
     printRepeatedly(5,"\t");
@@ -107,7 +109,11 @@ void displayFastTravelMenu(Player* player){
         printf("             ║\n");
     }
     printRepeatedly(5,"\t");
+    printf("║                                         ║\n");
+    printRepeatedly(5,"\t");
     printf("║   (0) Back                              ║\n");
+    printRepeatedly(5,"\t");
+    printf("║                                         ║\n");
     printRepeatedly(5,"\t");
     printf("╚═════════════════════════════════════════╝\n");
     printf("\n");

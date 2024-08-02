@@ -200,6 +200,9 @@ void processInputInventoryMenu(int* nPage, Player* player, char cInput, int *aCu
             break;
         case '0':
             break;
-        default: printf("Invalid Input\n"); break;
+        default: 
+            printRepeatedly(5,"\t");
+            printf("Invalid Input\n");
+            break;
     }
 }
