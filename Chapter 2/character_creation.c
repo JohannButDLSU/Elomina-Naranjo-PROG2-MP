@@ -39,8 +39,8 @@ void displayCharacterCreation(Player player){
     printYBorder(0, WHITE, BORDER_2_LENGTH); printYBorderPlayer();  printf("\n");
     printChoiceBorder(0, WHITE, "[1] Change Name", 3, BORDER_2_LENGTH);
     printChoiceBorder(0, WHITE, "[2] Change Class", 3, BORDER_2_LENGTH);
-    printChoiceBorder(0, GREEN, "[3] Continue", 3, BORDER_2_LENGTH);
-    printChoiceBorder(0, GRAY, "[0] Back", 3, BORDER_2_LENGTH);
+    printChoiceBorder(0, GREEN, "[3] Continue   ", 3, BORDER_2_LENGTH);
+    printChoiceBorder(0, GRAY, "[0] Back       ", 3, BORDER_2_LENGTH);
     printChoiceBorderless("[INPUT] : ", BORDER_2_LENGTH);
 }
 
