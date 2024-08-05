@@ -395,6 +395,10 @@ void processInputRoundTable(Player *player, char cInput){
             nDummyGameLoaded=0; // This is just a dummy variable
             runSaveMenu(&nDummyGameLoaded, nSavingAllowed, player); 
             break;
+        case 'p':
+        case 'P':
+            player->nRunes+=1000;
+            break;
         default:
             printRepeatedly(5,"\t");
             printf("Invalid Input\n"); 
