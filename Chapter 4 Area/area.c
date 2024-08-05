@@ -286,7 +286,7 @@ void processUserInputArea(int*nCollectedRunes, int* nRunning, struct sAreaData* 
                     }
                     if (sArea->sFastTravels[nLandedFastTravel].nLocked==0){
                         (*nRunning)=0; // end runArea
-                        player->nRunes=(*nCollectedRunes);
+                        player->nRunes+=(*nCollectedRunes);
                         if (sArea->sBosses[0].nEnabled==0){ // Player does not get the shard if the boss is not defeated
                             player->nShards[sArea->nAreaIndex-1]=1;
                         }
